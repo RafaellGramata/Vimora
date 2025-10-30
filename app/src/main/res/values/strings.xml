@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Vimora</string>
+    <string name="appTitle">Vimora</string>
+    <string name="splashTagline">Track. Train. Transform.</string>
+    <string name="appTitleDesc">Vimora</string>
+    <string name="appBackgroundDesc">The background</string>
 </resources>
