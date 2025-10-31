@@ -15,13 +15,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Navigate to MainActivity after 2 seconds
+        // Navigate to WelcomeActivity after 3 seconds
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, WelcomeActivity.class));
                 finish();
             }
-        }, 1000);
+        }, 3000);
     }
 }
