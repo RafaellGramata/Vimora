@@ -7,4 +7,11 @@
     <string name="signupButtonDesc">signup</string>
     <string name="loginButtonDesc">login</string>
     <string name="welcomeLogoDesc">Vimora</string>
+    <string name="signupLabel"><![CDATA[Enter your Username & Email]]></string>
+    <string name="signupUsername">Enter your username</string>
+    <string name="signupEmail">Enter your email</string>
+    <string name="signupUsernameLabel">Username</string>
+    <string name="signupEmailLabel">Email</string>
+    <string name="signupSubmitDesc">Submit</string>
+    <string name="signupForgotPasswordDesc">Forgot Password</string>
 </resources>
