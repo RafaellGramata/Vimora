@@ -9,28 +9,28 @@
     tools:context=".SplashActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/splashLogo"
         android:layout_width="186dp"
         android:layout_height="0dp"
         android:layout_marginTop="243dp"
         android:contentDescription="@string/appTitleDesc"
         android:src="@drawable/splash"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/splashTagline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/splashTagline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginBottom="225dp"
         android:text="@string/splashTagline"
-        android:textColor="#FFD54F"
+        android:textColor="#FF5722"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintStart_toStartOf="@+id/splashLogo"
+        app:layout_constraintTop_toBottomOf="@+id/splashLogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

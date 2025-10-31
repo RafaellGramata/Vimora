@@ -4,4 +4,7 @@
     <string name="splashTagline">Track. Train. Transform.</string>
     <string name="appTitleDesc">Vimora</string>
     <string name="appBackgroundDesc">The background</string>
+    <string name="signupButtonDesc">signup</string>
+    <string name="loginButtonDesc">login</string>
+    <string name="welcomeLogoDesc">Vimora</string>
 </resources>
