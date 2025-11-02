@@ -12,14 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vimora">
         <activity
+            android:name=".trianee.TraineeProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".trianee.TraineeLoginActivity"
             android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".TrainerPlanActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
