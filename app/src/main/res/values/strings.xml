@@ -18,4 +18,9 @@
     <string name="signupForgotPasswordDesc">Forgot Password</string>
     <string name="signupPassword">Enter a password</string>
     <string name="signuPasswordLabel">Password</string>
+    <string name="profileCardName">PROFILE</string>
+    <string name="trackCardName">TRACK</string>
+    <string name="planCardName">PLAN</string>
+    <string name="reminderIconDesc">reminder</string>
+    <string name="settingsIconDesc">settings</string>
 </resources>
