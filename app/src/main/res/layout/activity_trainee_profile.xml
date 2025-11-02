@@ -45,7 +45,7 @@
         app:srcCompat="@drawable/profileback" />
 
     <Button
-        android:id="@+id/btnTrack"
+        android:id="@+id/btnTrackOfProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
 
     <Button
-        android:id="@+id/btnPlan"
+        android:id="@+id/btnPlanOfProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
 
     <Button
-        android:id="@+id/btnProfile"
+        android:id="@+id/btnProfileOfProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -113,7 +113,7 @@
         app:layout_constraintVertical_bias="0.176" />
 
     <ImageButton
-        android:id="@+id/btnSave"
+        android:id="@+id/btnSaveOfProfile"
         android:layout_width="110dp"
         android:layout_height="85dp"
         android:layout_marginBottom="36dp"
@@ -127,7 +127,7 @@
         app:srcCompat="@drawable/save" />
 
     <ImageButton
-        android:id="@+id/btnEdit"
+        android:id="@+id/btnEditOfProfile"
         android:layout_width="76dp"
         android:layout_height="75dp"
         android:layout_marginBottom="140dp"
@@ -182,7 +182,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.394"
         app:layout_constraintStart_toEndOf="@+id/txtTrainer"
-        app:layout_constraintTop_toBottomOf="@+id/btnProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile" />
 
     <EditText
         android:id="@+id/editTxtTraineeName"
@@ -278,7 +278,7 @@
         android:layout_height="48dp"
         android:background="#FFFFFF"
         android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/btnEdit"
+        app:layout_constraintEnd_toStartOf="@+id/btnEditOfProfile"
         app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBMI" />
