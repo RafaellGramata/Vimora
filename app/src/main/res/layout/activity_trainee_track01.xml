@@ -113,7 +113,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack4" />
 
     <TextView
-        android:id="@+id/txtInforamtionWork"
+        android:id="@+id/workoutStartDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -194,7 +194,7 @@
         app:layout_constraintStart_toEndOf="@+id/btnSaveWorkputTrack" />
 
     <EditText
-        android:id="@+id/editCalories"
+        android:id="@+id/trainerCalories2"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -206,10 +206,10 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDateWorkout" />
+        app:layout_constraintTop_toBottomOf="@+id/trainerDate2" />
 
     <EditText
-        android:id="@+id/editDuration"
+        android:id="@+id/trainerDuration2"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -222,10 +222,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editCalories" />
+        app:layout_constraintTop_toBottomOf="@+id/trainerCalories2" />
 
     <EditText
-        android:id="@+id/editWorktype"
+        android:id="@+id/trainerCardioFitness2"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
@@ -238,10 +238,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDuration" />
+        app:layout_constraintTop_toBottomOf="@+id/trainerDuration2" />
 
     <EditText
-        android:id="@+id/editTextDateWorkout"
+        android:id="@+id/trainerDate2"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="92dp"

@@ -7,19 +7,20 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.vimora.R;
 
-public class TrainerTrackActivity extends AppCompatActivity {
+public class TrainerProfileActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trainer_track01);
+        setContentView(R.layout.activity_trainer_profile);
 
-        Button btnProfile = findViewById(R.id.btnProfileOfTrack);
-        Button btnPlan = findViewById(R.id.btnPlanOfTrack);
+        Button btnTrack = findViewById(R.id.btnTrackOfProfile);
+        Button btnPlan = findViewById(R.id.btnPlanOfProfile);
 
-        btnProfile.setOnClickListener(new View.OnClickListener() {
+        btnTrack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TrainerTrackActivity.this, TrainerProfileActivity.class);
+                Intent intent = new Intent(TrainerProfileActivity.this, TrainerTrackActivity.class);
                 startActivity(intent);
             }
         });
@@ -27,7 +28,7 @@ public class TrainerTrackActivity extends AppCompatActivity {
         btnPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TrainerTrackActivity.this, TrainerPlanActivity.class);
+                Intent intent = new Intent(TrainerProfileActivity.this, TrainerPlanActivity.class);
                 startActivity(intent);
             }
         });
