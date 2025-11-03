@@ -1,8 +1,8 @@
-package com.example.vimora;
+package com.example.vimora.trainer;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.vimora.R;
 
 public class TrainerPlanActivity extends AppCompatActivity {
     @Override
