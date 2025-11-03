@@ -12,10 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vimora">
         <activity
-            android:name=".TraineePlanActivity01"
+            android:name=".trianee.TraineeTrackActivity04"
             android:exported="false" />
         <activity
-            android:name=".TraineeRemindActivity"
+            android:name=".trianee.TraineeTrackActivity03"
+            android:exported="false" />
+        <activity
+            android:name=".trianee.TraineeTrackActivity02"
+            android:exported="false" />
+        <activity
+            android:name=".trianee.TraineeTrackActivity01"
+            android:exported="false" />
+        <activity
+            android:name=".trianee.TraineePlanActivity01"
+            android:exported="false" />
+        <activity
+            android:name=".trianee.TraineeRemindActivity"
             android:exported="false" />
         <activity
             android:name=".trianee.TraineeProfileActivity"
