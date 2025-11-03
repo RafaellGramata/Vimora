@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".trainee.TraineeTrackActivity01">
+    tools:context=".trainer.TrainerTrackActivity">
 
     <ImageButton
         android:id="@+id/btnLogout4"
@@ -18,7 +18,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/btnReminder"
+        app:layout_constraintStart_toEndOf="@+id/btnReminder4"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logout" />
 
@@ -75,45 +75,30 @@
         app:srcCompat="@drawable/trackback" />
 
     <TextView
-        android:id="@+id/txtInforamtionWork6"
+        android:id="@+id/durationLabel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Duration (AVG/day)"
+        android:text="Duration"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editDuration"
+        app:layout_constraintBottom_toTopOf="@+id/trainerDuration2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.295"
+        app:layout_constraintHorizontal_bias="0.182"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/durationLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Duration (AVG/day)"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editDuration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.295"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration"
+        app:layout_constraintTop_toBottomOf="@+id/trainerCalories1"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/caloriesLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calories Burned (AVG/day)"
+        android:text="Calories Burned"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/duration"
+        app:layout_constraintBottom_toTopOf="@+id/trainerCalories1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.415"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workoutDate" />
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnPlanOfTrack"
@@ -153,19 +138,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack4" />
 
-    <TextView
-        android:id="@+id/workoutDateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="Workout Start Date"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.301"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack" />
-
     <ImageButton
         android:id="@+id/btnMeal"
         android:layout_width="48dp"
@@ -195,22 +167,22 @@
         app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack" />
 
     <EditText
-        android:id="@+id/duration"
+        android:id="@+id/trainerCalories1"
         android:layout_width="270dp"
         android:layout_height="48dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="136dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="Calories Bured"
+        android:hint="Calories Burned"
         android:inputType="text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workoutDate" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack" />
 
     <EditText
-        android:id="@+id/editDuration"
+        android:id="@+id/trainerDuration2"
         android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
@@ -222,51 +194,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration" />
+        app:layout_constraintTop_toBottomOf="@+id/trainerCalories1" />
 
     <EditText
-        android:id="@+id/cardioFitness"
+        android:id="@+id/trainerWorkoutExercise1"
         android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="Cardio Fitness"
+        android:hint="Workout Exercise"
         android:inputType="text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDuration" />
-
-    <EditText
-        android:id="@+id/workoutDate"
-        android:layout_width="266dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="92dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Date"
-        android:inputType="date"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack" />
+        app:layout_constraintTop_toBottomOf="@+id/trainerDuration2" />
 
     <TextView
         android:id="@+id/workoutDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cardio Fitness"
+        android:text="Workout Exercise"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/cardioFitness"
+        app:layout_constraintBottom_toTopOf="@+id/trainerWorkoutExercise1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.248"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDuration"
+        app:layout_constraintTop_toBottomOf="@+id/trainerDuration2"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="DuplicateIds" />
 
