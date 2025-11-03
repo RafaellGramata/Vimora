@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Vimora"
 include(":app")
+include(":FitnessApp")
