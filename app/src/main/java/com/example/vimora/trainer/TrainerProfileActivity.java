@@ -12,7 +12,7 @@ public class TrainerProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trainer_profile);
+        setContentView(R.layout.activity_trainer_profile1);
 
         Button btnTrack = findViewById(R.id.btnTrackOfProfile);
         Button btnPlan = findViewById(R.id.btnPlanOfProfile);
