@@ -156,7 +156,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="36dp"
-        android:background="#00FFFFFF"
+        android:background="@drawable/reminder"
         android:contentDescription="reminder"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"

@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-<<<<<<< Updated upstream
+
         android:theme="@style/Theme.Vimora">
         <activity
             android:name=".trianee.TraineeTrackActivity04"
@@ -40,20 +40,18 @@
             android:name=".WelcomeActivity"
             android:exported="true" />
         <activity
-            android:name=".TrainerPlanActivity"
-            android:exported="true" />
-=======
+            android:name=".trainer.TrainerPlanActivity"
+            android:exported="true"
         android:theme="@style/Theme.Vimora" >
         <activity
             android:name=".trainee.TraineeProfileActivity02"
             android:exported="false" />
         <activity
-            android:name=".TraineeProfileActivity02"
+            android:name=".trainee.TraineeProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".trainee.TraineeTrackActivity04$TraineeRemindActivity01"
+            android:name=".trainee.TraineeTrackActivity04"
             android:exported="false" /> <!-- Launcher -->
->>>>>>> Stashed changes
         <activity
             android:name=".SplashActivity"
             android:exported="true" >
@@ -62,29 +60,15 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-<<<<<<< Updated upstream
         </activity>
         <activity android:name=".SignupActivity" />
-=======
         </activity> <!-- General activities -->
-        <activity
-            android:name=".WelcomeActivity"
-            android:exported="true" />
-        <activity
-            android:name=".SignupActivity"
-            android:exported="true" /> <!-- Trainer activities -->
         <activity
             android:name=".trainer.TrainerProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".trainer.TrainerPlanActivity"
-            android:exported="true" />
-        <activity
             android:name=".trainer.TrainerTrackActivity"
             android:exported="true" /> <!-- Trainee activities -->
-        <activity
-            android:name=".trainee.TraineeTrackActivity04"
-            android:exported="false" />
         <activity
             android:name=".trainee.TraineeTrackActivity03"
             android:exported="false" />
@@ -101,12 +85,8 @@
             android:name=".trainee.TraineeRemindActivity"
             android:exported="false" />
         <activity
-            android:name=".trainee.TraineeProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".trainee.TraineeLoginActivity"
             android:exported="false" />
->>>>>>> Stashed changes
     </application>
 
 </manifest>
