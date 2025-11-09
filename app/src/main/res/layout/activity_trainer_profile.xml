@@ -128,7 +128,7 @@
         app:srcCompat="@drawable/save" />
 
     <ImageButton
-        android:id="@+id/btnEditOfProfile"
+        android:id="@+id/btnCompletedOfPlan"
         android:layout_width="76dp"
         android:layout_height="75dp"
         android:layout_marginBottom="40dp"
@@ -263,7 +263,7 @@
         android:layout_height="48dp"
         android:background="#FFFFFF"
         android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/btnEditOfProfile"
+        app:layout_constraintEnd_toStartOf="@+id/btnCompletedOfPlan"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBMI" />
