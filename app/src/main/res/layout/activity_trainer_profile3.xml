@@ -53,8 +53,10 @@
         android:text="BMI"
         app:layout_constraintBottom_toBottomOf="@+id/imageTrackBack"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerWeight4" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerWeight4"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editTxtTrainerWeight3"
@@ -100,7 +102,7 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtWeight" />
 
