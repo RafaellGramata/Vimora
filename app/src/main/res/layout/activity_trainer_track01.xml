@@ -101,7 +101,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnPlanOfTrack"
+        android:id="@+id/btnPlanOfTrack00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -114,7 +114,7 @@
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack4" />
 
     <Button
-        android:id="@+id/btnProfileOfTrack"
+        android:id="@+id/btnProfileOfTrack00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -126,7 +126,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageprofileBack4" />
 
     <Button
-        android:id="@+id/btnTrackOfTrack"
+        android:id="@+id/btnTrackOfTrack00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -150,7 +150,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.829"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00" />
 
     <ImageButton
         android:id="@+id/btnInfo"
@@ -164,7 +164,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00" />
 
     <EditText
         android:id="@+id/trainerCalories1"
@@ -179,7 +179,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00" />
 
     <EditText
         android:id="@+id/trainerDuration2"

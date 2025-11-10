@@ -12,7 +12,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        ImageView signupButton = findViewById(R.id.signupSubmit);
+        ImageView signupButton = findViewById(R.id.signupNext);
         signupButton.setOnClickListener(v -> {
             Intent intent = new Intent(SignupActivity.this, TrainerProfileActivity.class);
             startActivity(intent);

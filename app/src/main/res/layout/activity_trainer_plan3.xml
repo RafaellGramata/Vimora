@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF6501"
+    tools:context=".trainer.TrainerProfileActivity">
+
+    <ImageView
+        android:id="@+id/imageTrackBack"
+        android:layout_width="380dp"
+        android:layout_height="680dp"
+        android:layout_marginTop="88dp"
+        android:contentDescription="TrackBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile" />
+
+    <ImageView
+        android:id="@+id/imagePlanBack"
+        android:layout_width="380dp"
+        android:layout_height="680dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="PlanBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
+        app:srcCompat="@drawable/track" />
+
+    <ImageView
+        android:id="@+id/imageprofileBack"
+        android:layout_width="0dp"
+        android:layout_height="680dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="15dp"
+        android:contentDescription="ProfileBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
+        app:srcCompat="@drawable/plan" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerName2"
+        app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile"
+        app:layout_constraintHorizontal_bias="0.581"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
+        app:layout_constraintVertical_bias="0.43"
+        app:srcCompat="@drawable/backhome" />
+
+    <EditText
+        android:id="@+id/editTxtTrainerName2"
+        android:layout_width="326dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:background="#F4F4F4"
+        android:ems="10"
+        android:hint="Search Trainee"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile" />
+
+    <Button
+        android:id="@+id/btnTrackOfProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="PROFILE"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
+
+    <Button
+        android:id="@+id/btnPlanOfProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="TRACK"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
+
+    <Button
+        android:id="@+id/btnProfileOfProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="PLAN"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/btnLogout"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="logout"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/btnReminder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logout" />
+
+    <ImageButton
+        android:id="@+id/btnReminder"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="reminder"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reminder" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="296dp"
+        android:layout_height="253dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerName2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView"
+        app:srcCompat="@drawable/assign" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="76dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView"
+        app:srcCompat="@drawable/deit" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/listView"
+        app:srcCompat="@drawable/save" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

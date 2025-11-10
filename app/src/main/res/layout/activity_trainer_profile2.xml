@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF6501"
+    tools:context=".trainer.TrainerProfileActivity">
+
+    <ImageView
+        android:id="@+id/imageTrackBack"
+        android:layout_width="380dp"
+        android:layout_height="680dp"
+        android:layout_marginTop="88dp"
+        android:contentDescription="TrackBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/track" />
+
+    <ImageView
+        android:id="@+id/imagePlanBack"
+        android:layout_width="380dp"
+        android:layout_height="680dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="PlanBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
+        app:srcCompat="@drawable/plan" />
+
+    <ImageView
+        android:id="@+id/imageprofileBack"
+        android:layout_width="0dp"
+        android:layout_height="680dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="15dp"
+        android:contentDescription="ProfileBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
+        app:srcCompat="@drawable/profile" />
+
+    <Button
+        android:id="@+id/btnTrackOfProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="TRACK"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
+
+    <Button
+        android:id="@+id/btnPlanOfProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="PLAN"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
+
+    <Button
+        android:id="@+id/btnProfileOfProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="PROFILE"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtTrainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trainees:"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
+        app:layout_constraintVertical_bias="0.139" />
+
+    <ImageButton
+        android:id="@+id/btnLogout"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="logout"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/btnReminder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logout" />
+
+    <ImageButton
+        android:id="@+id/btnReminder"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="reminder"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reminder" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtTrainer"
+        app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile"
+        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.91"
+        app:srcCompat="@drawable/backhome" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="06/15"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toEndOf="@+id/txtTrainer"
+        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile" />
+
+    <ListView
+        android:layout_width="269dp"
+        android:layout_height="317dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
