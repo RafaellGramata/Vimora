@@ -89,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupPassword"
-        app:srcCompat="@drawable/signupsubmit" />
+        app:srcCompat="@drawable/signup" />
 
     <TextView
         android:id="@+id/signupEmailLabel"
