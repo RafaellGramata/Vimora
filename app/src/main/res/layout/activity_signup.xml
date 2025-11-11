@@ -68,6 +68,18 @@
         app:layout_constraintTop_toBottomOf="@+id/signupLabel" />
 
     <TextView
+        android:id="@+id/signupTrainerTraineeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="181dp"
+        android:text="@string/signupTraineeOrTrainer"
+        app:layout_constraintBottom_toTopOf="@+id/signupEmailLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupLabel"
+        app:layout_constraintVertical_bias="0.161" />
+
+    <TextView
         android:id="@+id/signupPhoneLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,7 +100,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupPassword"
+        app:layout_constraintTop_toBottomOf="@+id/signupTrainerTrainee"
         app:srcCompat="@drawable/signup" />
 
     <TextView
@@ -145,5 +157,19 @@
         app:layout_constraintEnd_toStartOf="@+id/signupSubmit"
         app:layout_constraintStart_toStartOf="@+id/signupSubmit"
         app:layout_constraintTop_toBottomOf="@+id/signupEmail" />
+
+    <Spinner
+        android:id="@+id/signupTrainerTrainee"
+        android:layout_width="207dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="159dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="394dp"
+        android:entries="@array/signupTraineeTrainer"
+        app:layout_constraintBottom_toTopOf="@+id/signupSubmit"
+        app:layout_constraintEnd_toEndOf="@+id/signupName"
+        app:layout_constraintStart_toStartOf="@+id/signupTrainerTraineeLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
