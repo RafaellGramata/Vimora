@@ -5,7 +5,38 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF6501"
     tools:context=".trianee.TraineeTrackActivity04">
+
+    <ImageButton
+        android:id="@+id/btnLogout"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="logout"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/btnReminder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logout"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/btnReminder"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="reminder"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reminder"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/imagePlanBack6"
@@ -17,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/planback" />
+        app:srcCompat="@drawable/plan" />
 
     <ImageView
         android:id="@+id/imageprofileBack6"
@@ -31,7 +62,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack6"
-        app:srcCompat="@drawable/profileback" />
+        app:srcCompat="@drawable/profile" />
 
     <ImageView
         android:id="@+id/imageTrackBack6"
@@ -43,7 +74,7 @@
         app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageprofileBack6"
-        app:srcCompat="@drawable/trackback" />
+        app:srcCompat="@drawable/track" />
 
     <Button
         android:id="@+id/btnPlanOfTrack4"
@@ -52,6 +83,7 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="PLAN"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -65,6 +97,7 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="PROFILE"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,25 +110,23 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="TRACK"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack6" />
 
-    <TextView
-        android:id="@+id/txtOutputMonthlyMealData"
-        android:layout_width="270dp"
-        android:layout_height="270dp"
-        android:layout_marginBottom="65dp"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230dp"
+        android:src="@drawable/blackcard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtInforamtion2"
@@ -110,57 +141,66 @@
         app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack4" />
 
     <ImageButton
-        android:id="@+id/btnMeal4"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="meal"
-        android:scaleType="fitCenter"
-        android:src="@drawable/mealicon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack4" />
-
-    <ImageButton
         android:id="@+id/btnInfo4"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="#00FFFFFF"
         android:contentDescription="meal"
         android:scaleType="fitCenter"
-        android:src="@drawable/pieicon"
+        android:src="@drawable/backhome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack4" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack4"
+        tools:ignore="TouchTargetSizeCheck" />
 
-    <ImageButton
-        android:id="@+id/btnLogout7"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="logout"
-        android:scaleType="fitCenter"
+    <EditText
+        android:id="@+id/trainerDateMonthly2"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Avg Calories per day"
+        android:inputType="date"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/btnReminder"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logout" />
-
-    <ImageButton
-        android:id="@+id/btnReminder7"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="reminder"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/remindericon" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInforamtion2" />
+
+    <EditText
+        android:id="@+id/trainerCaloriesMonthly2"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Avg protein per day"
+        android:inputType="text"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trainerDateMonthly2" />
+
+    <EditText
+        android:id="@+id/trainerDurationMonthly2"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Avg fat per day"
+        android:inputType="text"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trainerCaloriesMonthly2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

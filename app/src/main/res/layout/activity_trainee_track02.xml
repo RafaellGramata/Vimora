@@ -194,7 +194,7 @@
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="center"
-        android:hint="Date per day"
+        android:hint="Workout per day(minute)"
         android:inputType="date"
         android:textColor="#000000"
         android:textSize="20sp"
