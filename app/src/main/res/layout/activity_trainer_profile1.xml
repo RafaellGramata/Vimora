@@ -8,6 +8,8 @@
     android:background="#FF6501"
     tools:context=".trainer.TrainerProfileActivity">
 
+
+
     <ImageView
         android:id="@+id/imageTrackBack"
         android:layout_width="380dp"
@@ -152,7 +154,8 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/btnReminder"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logout" />
+        app:srcCompat="@drawable/logout"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/btnReminder"
@@ -166,7 +169,8 @@
         app:layout_constraintHorizontal_bias="0.824"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/reminder" />
+        app:srcCompat="@drawable/reminder"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/editTxtTrainerName"

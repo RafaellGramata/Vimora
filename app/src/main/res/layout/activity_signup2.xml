@@ -2,13 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF6501">
-
-    <!-- Top image (e.g., Forgot Password) -->
-
-    <!-- Decorative / background image -->
+    android:background="#FF6501"
+    tools:ignore="ExtraText">
+    tools:context=".Signup2Activity">
 
     <ImageView
         android:id="@+id/imgLoginBack"
@@ -42,21 +41,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
-        android:text="@string/signupNameLabel"
+        android:text="Age"
         app:layout_constraintBottom_toTopOf="@+id/edittxtName"
         app:layout_constraintEnd_toEndOf="@+id/edittxtName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/signupType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:text="Trainee or Trainer"
-        app:layout_constraintBottom_toTopOf="@+id/spnType"
-        app:layout_constraintEnd_toEndOf="@+id/spnType"
-        app:layout_constraintHorizontal_bias="0.003"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -64,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:text="@string/signupPhone"
+        android:text="Height"
         app:layout_constraintBottom_toTopOf="@+id/edittxtPhone2"
         app:layout_constraintEnd_toEndOf="@+id/edittxtPhone2"
         app:layout_constraintHorizontal_bias="0.023"
@@ -74,37 +62,24 @@
         android:id="@+id/signupNext"
         android:layout_width="120dp"
         android:layout_height="72dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/signupSubmitDesc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/next" />
+        app:srcCompat="@drawable/signup" />
 
     <TextView
         android:id="@+id/signupWeightLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
-        android:text="@string/signupEmail"
+        android:text="Weight"
         app:layout_constraintBottom_toTopOf="@+id/edittxtEmail"
         app:layout_constraintEnd_toEndOf="@+id/edittxtEmail"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/signupPasswordLabel"
-        android:layout_width="64dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="55dp"
-        android:autofillHints=""
-        android:text="@string/signuPasswordLabel"
-        app:layout_constraintBottom_toTopOf="@+id/edittxtPassword2"
-        app:layout_constraintEnd_toEndOf="@+id/edittxtPassword2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TextSizeCheck,VisualLintOverlap" />
 
     <EditText
         android:id="@+id/edittxtEmail"
@@ -138,7 +113,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintVertical_bias="0.465" />
 
     <EditText
         android:id="@+id/edittxtPhone2"
@@ -155,33 +130,6 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
-
-    <EditText
-        android:id="@+id/edittxtPassword2"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="104dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spnType"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="280dp"
-        android:backgroundTint="#F4F4F4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.597" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

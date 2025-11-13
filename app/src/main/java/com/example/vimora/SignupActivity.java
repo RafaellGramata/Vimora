@@ -19,6 +19,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         databaseHelper = new DatabaseHelper(this);
 
+        ImageView signupButton = findViewById(R.id.signupNext);
         TextView name = findViewById(R.id.signupName);
         TextView phone = findViewById(R.id.signupPhone);
         TextView email = findViewById(R.id.signupEmail);
