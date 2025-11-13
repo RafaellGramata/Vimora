@@ -39,7 +39,7 @@
             android:name=".trianee.TraineeProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".trianee.TraineeLoginActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
@@ -47,7 +47,7 @@
         <activity
             android:name=".trainer.TrainerPlanActivity"
             android:exported="true"
-            android:theme="@style/Theme.Vimora">
+            android:theme="@style/Theme.Vimora"/>
             <activity
                 android:name=".trainee.TraineeProfileActivity02"
                 android:exported="false" />
@@ -67,7 +67,7 @@
                 </intent-filter>
             </activity>
             <activity android:name=".SignupActivity" />
-        </activity> <!-- General activities -->
+         <!-- General activities -->
         <activity
             android:name=".trainer.TrainerProfileActivity"
             android:exported="true" />
