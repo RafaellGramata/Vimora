@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/toTrainerProfile00"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
@@ -46,23 +46,10 @@
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
         app:srcCompat="@drawable/profile" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BMI"
-        app:layout_constraintBottom_toBottomOf="@+id/imageTrackBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerWeight4"
-        app:layout_constraintVertical_bias="1.0" />
-
     <EditText
         android:id="@+id/editTxtTrainerWeight3"
         android:layout_width="326dp"
         android:layout_height="48dp"
-        android:layout_marginTop="160dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="Height"
@@ -70,15 +57,14 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/editTxtTrainerWeight4"
         android:layout_width="326dp"
         android:layout_height="48dp"
-        android:layout_marginTop="244dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="Height"
@@ -86,15 +72,14 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
         android:id="@+id/editTxtTrainerWeight5"
         android:layout_width="326dp"
         android:layout_height="48dp"
-        android:layout_marginTop="332dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="BMI"
@@ -102,31 +87,37 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Height"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="577dp" />
+        android:text="BMI"
+        app:layout_constraintBottom_toBottomOf="@+id/imageTrackBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerWeight4"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Weight"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="661dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerWeight3" />
 
     <EditText
         android:id="@+id/editTxtTrainerWeight2"
         android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="80dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="56dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="Age"
@@ -134,9 +125,94 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/txtWeight"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Age"
+        app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerWeight2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/intputTrainerInfo"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/outputTraineeName"
+        android:layout_width="326dp"
+        android:layout_height="36dp"
+        android:background="#F4F4F4"
+        android:ems="10"
+        android:hint="  Name"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
+        app:layout_constraintVertical_bias="0.174" />
+
+    <EditText
+        android:id="@+id/intputTrainerInfo"
+        android:layout_width="326dp"
+        android:layout_height="36dp"
+        android:background="#F4F4F4"
+        android:ems="10"
+        android:hint="Assigned Plan"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWeight"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/txtWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="Exercise Plan"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputTraineeName"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerWeight2" />
 
     <Button
         android:id="@+id/btnTrackOfProfile"
@@ -180,34 +256,6 @@
         app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/txtTrainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Trainees:"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.143"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:layout_constraintVertical_bias="0.142" />
-
-    <ImageButton
-        android:id="@+id/btnLogout"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="logout"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/btnReminder"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logout" />
-
     <ImageButton
         android:id="@+id/btnReminder"
         android:layout_width="30dp"
@@ -217,105 +265,21 @@
         android:contentDescription="reminder"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/reminder" />
-
-    <EditText
-        android:id="@+id/editTxtTrainerName"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="  Name"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
-
-    <TextView
-        android:id="@+id/txtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:layout_constraintVertical_bias="0.194" />
-
-    <EditText
-        android:id="@+id/editTxtTrainerWeight"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Assigned Plan"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeight" />
-
-    <TextView
-        android:id="@+id/txtWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:text="Exercise Plan"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:layout_constraintVertical_bias="0.336" />
+        app:srcCompat="@drawable/reminder"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/toTrainerProfile1"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtTrainer"
+        android:layout_marginTop="244dp"
         app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.896"
         app:srcCompat="@drawable/backhome" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="06/15"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
-        app:layout_constraintStart_toEndOf="@+id/txtTrainer"
-        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile"
-        app:layout_constraintVertical_bias="0.367" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Age"
-        app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerWeight2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerWeight" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
