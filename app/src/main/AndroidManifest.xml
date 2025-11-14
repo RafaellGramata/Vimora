@@ -11,77 +11,42 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vimora">
-        <activity
-            android:name=".Signup2Activity"
-            android:exported="false" />
-        <activity
-            android:name=".trainee.TraineeTrackActivity01$TraineeTrackActivity00"
-            android:exported="false" />
-        <activity
-            android:name=".trianee.TraineeTrackActivity04"
-            android:exported="false" />
-        <activity
-            android:name=".trianee.TraineeTrackActivity03"
-            android:exported="false" />
-        <activity
-            android:name=".trianee.TraineeTrackActivity02"
-            android:exported="false" />
-        <activity
-            android:name=".trianee.TraineeTrackActivity01"
-            android:exported="false" />
-        <activity
-            android:name=".trianee.TraineePlanActivity01"
-            android:exported="false" />
-        <activity
-            android:name=".trianee.TraineeRemindActivity"
-            android:exported="false" />
-        <activity
-            android:name=".trianee.TraineeProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".trianee.TraineeLoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".WelcomeActivity"
-            android:exported="true" />
+
+         <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".Signup2Activity" android:exported="false" />
+        <activity android:name=".WelcomeActivity" android:exported="true" />
+
+
         <activity
             android:name=".trainer.TrainerPlanActivity"
             android:exported="true"
-            android:theme="@style/Theme.Vimora">
-            <activity
-                android:name=".trainee.TraineeProfileActivity02"
-                android:exported="false" />
-            <activity
-                android:name=".trainee.TraineeProfileActivity"
-                android:exported="false" />
-            <activity
-                android:name=".trainee.TraineeTrackActivity04"
-                android:exported="false" /> <!-- Launcher -->
-            <activity
-                android:name=".SplashActivity"
-                android:exported="true">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-            </activity>
-            <activity android:name=".SignupActivity" />
-        </activity> <!-- General activities -->
+            android:theme="@style/Theme.Vimora" />
         <activity
             android:name=".trainer.TrainerProfileActivity"
             android:exported="true" />
         <activity
             android:name=".trainer.TrainerTrackActivity"
-            android:exported="true" /> <!-- Trainee activities -->
+            android:exported="true" />
+
+
         <activity
-            android:name=".trainee.TraineeTrackActivity03"
+            android:name=".trainee.TraineeLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".trainee.TraineeTrackActivity02"
+            android:name=".trainee.TraineeProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".trainee.TraineeTrackActivity01"
+            android:name=".trainee.TraineeProfileActivity02"
             android:exported="false" />
         <activity
             android:name=".trainee.TraineePlanActivity01"
@@ -90,8 +55,21 @@
             android:name=".trainee.TraineeRemindActivity"
             android:exported="false" />
         <activity
-            android:name=".trainee.TraineeLoginActivity"
+            android:name=".trainee.TraineeTrackActivity01"
             android:exported="false" />
+        <activity
+            android:name=".trainee.TraineeTrackActivity02"
+            android:exported="false" />
+        <activity
+            android:name=".trainee.TraineeTrackActivity03"
+            android:exported="false" />
+        <activity
+            android:name=".trainee.TraineeTrackActivity04"
+            android:exported="false" />
+        <activity
+            android:name=".trainee.TraineeTrackActivity01$TraineeTrackActivity00"
+            android:exported="false" />
+
     </application>
 
 </manifest>
