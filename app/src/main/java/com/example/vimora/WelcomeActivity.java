@@ -2,6 +2,7 @@ package com.example.vimora;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -29,6 +30,13 @@ public class WelcomeActivity extends AppCompatActivity {
         signupButton.setOnClickListener(v -> {
             Intent intent = new Intent(WelcomeActivity.this, SignupActivity.class);
             startActivity(intent);
+        });
+        ImageView loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));
+            }
         });
     }
 }

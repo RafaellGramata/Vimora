@@ -4,9 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.vimora"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.vimora"
@@ -34,6 +32,7 @@ android {
 }
 
 dependencies {
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
