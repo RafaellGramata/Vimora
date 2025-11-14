@@ -10,7 +10,7 @@ public class TrainerPlanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trainer_plan);
+        setContentView(R.layout.activity_trainer_plan1);
 
         View trackCard = findViewById(R.id.trackCard);
         View profileCard = findViewById(R.id.profileCard);
@@ -19,6 +19,6 @@ public class TrainerPlanActivity extends AppCompatActivity {
                 startActivity(new Intent(this, TrainerTrackActivity.class)));
 
         profileCard.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity.class)));
+                startActivity(new Intent(this, TrainerProfileActivity1.class)));
     }
 }

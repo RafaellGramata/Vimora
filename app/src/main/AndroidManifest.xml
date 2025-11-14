@@ -32,7 +32,13 @@
             android:exported="true"
             android:theme="@style/Theme.Vimora" />
         <activity
-            android:name=".trainer.TrainerProfileActivity"
+            android:name=".trainer.TrainerProfileActivity1"
+            android:exported="true" />
+        <activity
+            android:name=".trainer.TrainerProfileActivity2"
+            android:exported="true" />
+        <activity
+            android:name=".trainer.TrainerProfileActivity3"
             android:exported="true" />
         <activity
             android:name=".trainer.TrainerTrackActivity"
@@ -41,34 +47,34 @@
 
         <activity
             android:name=".trainee.TraineeLoginActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".trainee.TraineeProfileActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".trainee.TraineeProfileActivity02"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".trainee.TraineePlanActivity01"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".trainee.TraineeRemindActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".trainee.TraineeTrackActivity01"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".trainee.TraineeTrackActivity02"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".trainee.TraineeTrackActivity03"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".trainee.TraineeTrackActivity04"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".trainee.TraineeTrackActivity01$TraineeTrackActivity00"
-            android:exported="false" />
+            android:exported="true" />
 
     </application>
 
