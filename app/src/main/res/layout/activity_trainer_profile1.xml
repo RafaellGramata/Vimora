@@ -43,7 +43,7 @@
         android:layout_marginEnd="15dp"
         android:contentDescription="ProfileBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
         app:srcCompat="@drawable/profile" />
@@ -62,19 +62,23 @@
         app:layout_constraintTop_toBottomOf="@+id/outputTraineeName"
         app:layout_constraintVertical_bias="0.301" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/toTrainerProfile2"
         android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="8dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="back to profile1"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toEndOf="@+id/btnProfileOfProfile"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:srcCompat="@drawable/forward" />
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toEndOf="@+id/btnProfileOfProfile1"
+        app:layout_constraintTop_toTopOf="@+id/btnProfileOfProfile1"
+        app:srcCompat="@drawable/forward"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/btnTrackOfProfile"
+        android:id="@+id/btnTrackOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -86,7 +90,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
 
     <Button
-        android:id="@+id/btnPlanOfProfile"
+        android:id="@+id/btnPlanOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -100,7 +104,7 @@
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
 
     <Button
-        android:id="@+id/btnProfileOfProfile"
+        android:id="@+id/btnProfileOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -173,7 +177,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile"
+        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile1"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView

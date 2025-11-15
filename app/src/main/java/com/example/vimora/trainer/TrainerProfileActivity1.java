@@ -1,9 +1,13 @@
 package com.example.vimora.trainer;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,8 +31,26 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         });
 
 
-        Button btnTrack = findViewById(R.id.btnTrackOfProfile);
-        Button btnPlan = findViewById(R.id.btnPlanOfProfile);
+        Button btnTrack = findViewById(R.id.btnTrackOfProfile1);
+        Button btnPlan = findViewById(R.id.btnPlanOfProfile1);
+        ImageButton btnProfile2 = findViewById(R.id.toTrainerProfile2);
+        ImageButton btnReminder = findViewById(R.id.btnReminder);
+
+        btnReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainerProfileActivity1.this, TrainerProfileActivity2.class);
+                startActivity(intent);
+            }
+        });
+
+        btnProfile2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrainerProfileActivity1.this, TrainerProfileActivity2.class);
+                startActivity(intent);
+            }
+        });
 
         btnTrack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,5 +67,11 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        TextView outputAssignNum = findViewById(R.id.outputAssignNum);
+        EditText inputTrainerSpec = findViewById(R.id.inputTrainerSpec);
+        EditText outputTraineeName = findViewById(R.id.outputTraineeName);
+        EditText inputHandleNum = findViewById(R.id.inputHandleNum);
+        EditText intputTrainerInfo = findViewById(R.id.intputTrainerInfo);
     }
 }

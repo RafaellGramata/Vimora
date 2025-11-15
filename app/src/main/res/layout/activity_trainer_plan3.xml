@@ -51,7 +51,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerName2"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile"
+        app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile1"
         app:layout_constraintHorizontal_bias="0.581"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
@@ -72,10 +72,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile1" />
 
     <Button
-        android:id="@+id/btnTrackOfProfile"
+        android:id="@+id/btnTrackOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -88,7 +88,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
 
     <Button
-        android:id="@+id/btnPlanOfProfile"
+        android:id="@+id/btnPlanOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
 
     <Button
-        android:id="@+id/btnProfileOfProfile"
+        android:id="@+id/btnProfileOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"

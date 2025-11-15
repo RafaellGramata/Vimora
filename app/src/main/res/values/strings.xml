@@ -14,7 +14,7 @@
     <string name="signupNameLabel">Name</string>
     <string name="signupPhoneLabel">Phone</string>
     <string name="signupEmailLabel">Email</string>
-    <string name="signupSubmitDesc">Submit</string>
+    <string name="signupSubmitDesc">Sign Up</string>
     <string name="signupForgotPasswordDesc">Forgot Password</string>
     <string name="signupPassword">Enter a password</string>
     <string name="signuPasswordLabel">Password</string>
@@ -23,4 +23,9 @@
     <string name="planCardName">PLAN</string>
     <string name="reminderIconDesc">reminder</string>
     <string name="settingsIconDesc">settings</string>
+    <string name="signupTraineeOrTrainer">I am a</string>
+    <string-array name="signupTraineeTrainer">
+        <item>Trainee</item>
+        <item>Trainer</item>
+    </string-array>
 </resources>
