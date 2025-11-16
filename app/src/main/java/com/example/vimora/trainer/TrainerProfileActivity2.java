@@ -1,10 +1,11 @@
 package com.example.vimora.trainer;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,59 +14,104 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.vimora.DatabaseHelper;
 import com.example.vimora.R;
 
+import java.util.ArrayList;
+
 public class TrainerProfileActivity2 extends AppCompatActivity {
+
+    private DatabaseHelper dbHelper;
+    private long currentTrainerId;
+    private ListView listViewTrainees;
+    private TextView tvCurrentTrainees, tvMaxTrainees;
+
+    private static final String PREF_NAME = "TrainerProfilePref";
+    private static final String KEY_TRAINER_ID = "trainerId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        dbHelper = new DatabaseHelper(this);
         setContentView(R.layout.activity_trainer_profile2);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.toTrainerProfile00), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        Button btnTrack = findViewById(R.id.btnTrackOfProfile1);
-        Button btnPlan = findViewById(R.id.btnPlanOfProfile1);
-        ImageButton btnProfile1 = findViewById(R.id.toTrainerProfile1);
-        ImageButton btnReminder = findViewById(R.id.btnReminder);
+        SharedPreferences pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        currentTrainerId = pref.getLong(KEY_TRAINER_ID, -1);
+        if (currentTrainerId == -1) {
+            finish();
+            return;
+        }
+        initViews();
+        setupButtons();
+        loadTraineeData();
+    }
 
-        btnReminder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TrainerProfileActivity2.this, TrainerProfileActivity2.class);
-                startActivity(intent);
-            }
+    private void initViews() {
+        listViewTrainees = findViewById(R.id.listViewTrainees);
+        tvCurrentTrainees = findViewById(R.id.tvCurrentTrainees);
+        tvMaxTrainees = findViewById(R.id.tvMaxTrainees);
+    }
+
+
+    private void setupButtons() {
+        findViewById(R.id.btnReminder).setOnClickListener(v ->
+                startActivity(new Intent(this, TrainerProfileActivity2.class)));
+
+        findViewById(R.id.toTrainerProfile1).setOnClickListener(v ->
+                startActivity(new Intent(this, TrainerProfileActivity1.class)));
+
+        findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v ->
+                startActivity(new Intent(this, TrainerTrackActivity.class)));
+
+        findViewById(R.id.btnPlanOfProfile1).setOnClickListener(v ->
+                startActivity(new Intent(this, TrainerPlanActivity1.class)));
+    }
+
+    private void loadTraineeData() {
+
+        Cursor profile = dbHelper.getTrainerProfile(currentTrainerId);
+        int maxHandle = 0;
+        if (profile.moveToFirst()) {
+            maxHandle = profile.getInt(profile.getColumnIndexOrThrow("trainerHandleNum"));
+        }
+        profile.close();
+        tvMaxTrainees.setText(String.valueOf(maxHandle));
+
+        Cursor trainees = dbHelper.getTraineesByTrainer(currentTrainerId);
+        ArrayList<String> traineeNames = new ArrayList<>();
+        final ArrayList<Long> traineeIds = new ArrayList<>();
+
+        while (trainees.moveToNext()) {
+            long id = trainees.getLong(trainees.getColumnIndexOrThrow("userID"));
+            String name = trainees.getString(trainees.getColumnIndexOrThrow("name"));
+            traineeNames.add(name);
+            traineeIds.add(id);
+        }
+        trainees.close();
+
+        tvCurrentTrainees.setText(String.valueOf(traineeNames.size()));
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_list_item_1, traineeNames);
+        listViewTrainees.setAdapter(adapter);
+
+        listViewTrainees.setOnItemClickListener((parent, view, position, id) -> {
+            long selectedTraineeId = traineeIds.get(position);
+            Intent intent = new Intent(this, TrainerProfileActivity3.class);
+            intent.putExtra("traineeId", selectedTraineeId);
+            startActivity(intent);
         });
+    }
 
-        btnProfile1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TrainerProfileActivity2.this, TrainerProfileActivity1.class);
-                startActivity(intent);
-            }
-        });
-
-        btnTrack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TrainerProfileActivity2.this, TrainerTrackActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnPlan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TrainerProfileActivity2.this, TrainerPlanActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        TextView outputAssignNum2 = findViewById(R.id.outputAssignNum2);
-        TextView outputHandleNum = findViewById(R.id.outputHandleNum);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadTraineeData();
     }
 }

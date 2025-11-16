@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toTrainerProfile00"
+    android:id="@+id/tvName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
@@ -51,24 +51,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BMI"
-        app:layout_constraintStart_toStartOf="@+id/outputHeight"
-        app:layout_constraintTop_toBottomOf="@+id/outputHeight" />
+        app:layout_constraintStart_toStartOf="@+id/tvHeight"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeight" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Weight"
-        app:layout_constraintStart_toStartOf="@+id/outputWeight"
-        app:layout_constraintTop_toBottomOf="@+id/outputWeight" />
+        app:layout_constraintStart_toStartOf="@+id/tvWeight"
+        app:layout_constraintTop_toBottomOf="@+id/tvWeight" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Age"
-        app:layout_constraintBottom_toTopOf="@+id/outputAge"
-        app:layout_constraintStart_toStartOf="@+id/outputAge" />
+        app:layout_constraintBottom_toTopOf="@+id/tvAge"
+        app:layout_constraintStart_toStartOf="@+id/tvAge" />
 
     <TextView
         android:id="@+id/txtName"
@@ -99,8 +99,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Height"
-        app:layout_constraintBottom_toTopOf="@+id/outputWeight"
-        app:layout_constraintStart_toStartOf="@+id/outputWeight" />
+        app:layout_constraintBottom_toTopOf="@+id/tvWeight"
+        app:layout_constraintStart_toStartOf="@+id/tvWeight" />
 
     <Button
         android:id="@+id/btnTrackOfProfile1"
@@ -188,13 +188,13 @@
         android:hint="  Name"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/outputAssignedPlan"
+        app:layout_constraintBottom_toTopOf="@+id/tvAssignedPlan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnReminder" />
 
     <TextView
-        android:id="@+id/outputAssignedPlan"
+        android:id="@+id/tvAssignedPlan"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="42dp"
@@ -205,13 +205,13 @@
         android:hint="  Assigned Plan"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/outputAge"
+        app:layout_constraintBottom_toTopOf="@+id/tvAge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/outputTraineeName" />
 
     <TextView
-        android:id="@+id/outputAge"
+        android:id="@+id/tvAge"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="42dp"
@@ -222,13 +222,13 @@
         android:hint="  Age"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/outputWeight"
+        app:layout_constraintBottom_toTopOf="@+id/tvWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outputAssignedPlan" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAssignedPlan" />
 
     <TextView
-        android:id="@+id/outputHeight"
+        android:id="@+id/tvHeight"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="42dp"
@@ -239,13 +239,13 @@
         android:hint="  Height"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/outputBMI"
+        app:layout_constraintBottom_toTopOf="@+id/tvBMI"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outputWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/tvWeight" />
 
     <TextView
-        android:id="@+id/outputBMI"
+        android:id="@+id/tvBMI"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="42dp"
@@ -259,10 +259,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outputHeight" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHeight" />
 
     <TextView
-        android:id="@+id/outputWeight"
+        android:id="@+id/tvWeight"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="42dp"
@@ -273,9 +273,9 @@
         android:hint="  Weight"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/outputHeight"
+        app:layout_constraintBottom_toTopOf="@+id/tvHeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outputAge" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAge" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

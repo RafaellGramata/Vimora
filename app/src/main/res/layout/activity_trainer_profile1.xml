@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/toTrainerProfile00"
+    android:id="@+id/tvName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
@@ -55,7 +55,7 @@
         android:background="#F4F4F4"
         android:text="/"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/intputTrainerInfo"
+        app:layout_constraintBottom_toTopOf="@+id/inputTrainerInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toEndOf="@+id/txtHeight"
@@ -195,7 +195,7 @@
         app:layout_constraintVertical_bias="0.247" />
 
     <EditText
-        android:id="@+id/intputTrainerInfo"
+        android:id="@+id/inputTrainerInfo"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:background="#F4F4F4"
@@ -244,7 +244,7 @@
         android:layout_height="wrap_content"
         android:background="#F4F4F4"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/intputTrainerInfo"
+        app:layout_constraintBottom_toTopOf="@+id/inputTrainerInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toEndOf="@+id/txtHeight"

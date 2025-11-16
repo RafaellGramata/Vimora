@@ -28,7 +28,7 @@
 
 
         <activity
-            android:name=".trainer.TrainerPlanActivity"
+            android:name=".trainer.TrainerPlanActivity1"
             android:exported="true"
             android:theme="@style/Theme.Vimora" />
         <activity
