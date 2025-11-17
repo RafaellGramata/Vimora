@@ -28,4 +28,6 @@
         <item>Trainee</item>
         <item>Trainer</item>
     </string-array>
+    <string name="inputHeight">Height (cm)</string>
+    <string name="inputWeight">Weight (kg)</string>
 </resources>

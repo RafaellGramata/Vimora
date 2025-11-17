@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     final static String DATABASE_NAME = "Vimora";
-    final static int DATABASE_VERSION = 6; // why did I make this "3" for the first version?
+    final static int DATABASE_VERSION = 6;
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -125,6 +125,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("weight",weight);
         values.put("time", System.currentTimeMillis());
         long r = sqLiteDatabase.insert("WeightSnapshot",null,values);
+        sqLiteDatabase.close();
+        return r>0;
+    }
+
+    public int getLatestWeight(long trainee) { // assumes input is a valid trainee with an existent weightSnapshot
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor result = sqLiteDatabase.rawQuery("SELECT weight FROM WeightSnapshot WHERE traineeID=? ORDER BY time DESC",new String[]{String.valueOf(trainee)});
+        result.moveToFirst();
+        int weight = result.getInt(0);
+        result.close();
+        return weight;
+    }
+
+    public boolean setTraineeHeight(long trainee, int height) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("traineeHeight",height);
+        long r = sqLiteDatabase.update("User",values,"userID=?",new String[]{String.valueOf(trainee)});
+        sqLiteDatabase.close();
+        return r>0;
+    }
+    public int getTraineeHeight(long trainee) { // assumes input is a valid trainee
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor result = sqLiteDatabase.rawQuery("SELECT traineeHeight FROM User WHERE userID=?",new String[]{String.valueOf(trainee)});
+        result.moveToFirst();
+        int weight = result.getInt(0);
+        result.close();
+        return weight;
+    }
+    public int getTraineeAge(long trainee) { // assumes input is a valid trainee
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor result = sqLiteDatabase.rawQuery("SELECT age FROM User WHERE userID=?",new String[]{String.valueOf(trainee)});
+        result.moveToFirst();
+        int age = result.getInt(0);
+        result.close();
+        return age;
+    }
+    public boolean setTraineeAge(long trainee, int age) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("traineeAge",age);
+        long r = sqLiteDatabase.update("User",values,"userID=?",new String[]{String.valueOf(trainee)});
+        sqLiteDatabase.close();
+        return r>0;
+    }
+
+    public String getName(long userID) { // assumes input is a valid user
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor result = sqLiteDatabase.rawQuery("SELECT name FROM User WHERE userID=?",new String[]{String.valueOf(userID)});
+        result.moveToFirst();
+        String name = result.getString(0);
+        result.close();
+        return name;
+    }
+    public boolean setName(long userID, String name) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name",name);
+        long r = sqLiteDatabase.update("User",values,"userID=?",new String[]{String.valueOf(userID)});
         sqLiteDatabase.close();
         return r>0;
     }
