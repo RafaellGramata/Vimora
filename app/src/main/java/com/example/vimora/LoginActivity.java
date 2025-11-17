@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.vimora.trainee.TraineePlanActivity01;
-import com.example.vimora.trainer.TrainerPlanActivity;
+import com.example.vimora.trainee.TraineeProfileActivity;
+import com.example.vimora.trainer.TrainerProfileActivity;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,10 +31,10 @@ public class LoginActivity extends AppCompatActivity {
                     boolean isTrainer = databaseHelper.isTrainer(userID);
                     Intent intent;
                     if (isTrainer) {
-                        intent = new Intent(LoginActivity.this, TrainerPlanActivity.class);
+                        intent = new Intent(LoginActivity.this, TrainerProfileActivity.class);
                     }
                     else {
-                        intent = new Intent(LoginActivity.this, TraineePlanActivity01.class);
+                        intent = new Intent(LoginActivity.this, TraineeProfileActivity.class);
                     }
                     intent.putExtra("userID",userID);
                     startActivity(intent);
