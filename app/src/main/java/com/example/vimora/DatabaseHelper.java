@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.SimpleCursorAdapter;
 
 import androidx.annotation.Nullable;
 
@@ -118,6 +119,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return trainer;
     }
 
+    public Cursor listViewTrainers() {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        return sqLiteDatabase.rawQuery("SELECT rowid _id,* FROM User WHERE isTrainer=1 ORDER BY name",new String[]{});
+    }
     public boolean addWeightSnapshot(long trainee, int weight) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues values = new ContentValues();

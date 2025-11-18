@@ -51,7 +51,7 @@
         app:srcCompat="@drawable/choose" />
 
     <EditText
-        android:id="@+id/editTxtTrainerName"
+        android:id="@+id/txtTrainerName"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:layout_marginTop="56dp"
@@ -135,7 +135,7 @@
         android:ems="10"
         android:hint="  Specialization"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerName"
+        app:layout_constraintBottom_toTopOf="@+id/txtTrainerName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toEndOf="@+id/txtTrainer" />
@@ -166,7 +166,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toEndOf="@+id/txtHeight"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerName"
+        app:layout_constraintTop_toBottomOf="@+id/txtTrainerName"
         app:layout_constraintVertical_bias="0.19" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

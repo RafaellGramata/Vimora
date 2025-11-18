@@ -223,7 +223,7 @@
         app:srcCompat="@drawable/reminder" />
 
     <EditText
-        android:id="@+id/editTxtTrainerName"
+        android:id="@+id/txtTrainerName"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:background="#F4F4F4"
@@ -299,7 +299,7 @@
         android:layout_height="wrap_content"
         android:text="06/15"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerName"
+        app:layout_constraintBottom_toTopOf="@+id/txtTrainerName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toEndOf="@+id/txtTrainer"

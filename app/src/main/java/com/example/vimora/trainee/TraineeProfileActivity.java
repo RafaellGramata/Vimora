@@ -47,6 +47,7 @@ public class TraineeProfileActivity extends AppCompatActivity {
         TextView txtWeight = findViewById(R.id.editTxtTraineeWeight);
         TextView txtAge = findViewById(R.id.editTxtTraineeAge);
         txtBMI = findViewById(R.id.txtOutputBMI);
+        TextView txtTrainerName = findViewById(R.id.txtTrainerName);
 
         height = databaseHelper.getTraineeHeight(userID);
         weight = databaseHelper.getLatestWeight(userID);
@@ -131,6 +132,14 @@ public class TraineeProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent newIntent = new Intent(TraineeProfileActivity.this, TraineeRemindActivity.class);
+                newIntent.putExtra("userID",userID);
+                startActivity(newIntent);
+            }
+        });
+        txtTrainerName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newIntent = new Intent(TraineeProfileActivity.this, TraineeListTrainersActivity.class);
                 newIntent.putExtra("userID",userID);
                 startActivity(newIntent);
             }

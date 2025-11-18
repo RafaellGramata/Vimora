@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vimora">
         <activity
+            android:name=".trainee.TraineeListTrainersActivity"
+            android:exported="false" />
+        <activity
             android:name=".Signup2Activity"
             android:exported="false" />
         <activity
@@ -47,27 +50,26 @@
         <activity
             android:name=".trainer.TrainerPlanActivity"
             android:exported="true"
-            android:theme="@style/Theme.Vimora"/>
-            <activity
-                android:name=".trainee.TraineeProfileActivity02"
-                android:exported="false" />
-            <activity
-                android:name=".trainee.TraineeProfileActivity"
-                android:exported="false" />
-            <activity
-                android:name=".trainee.TraineeTrackActivity04"
-                android:exported="false" /> <!-- Launcher -->
-            <activity
-                android:name=".SplashActivity"
-                android:exported="true">
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.Vimora" />
+        <activity
+            android:name=".trainee.TraineeProfileActivity02"
+            android:exported="false" />
+        <activity
+            android:name=".trainee.TraineeProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".trainee.TraineeTrackActivity04"
+            android:exported="false" /> <!-- Launcher -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-            </activity>
-            <activity android:name=".SignupActivity" />
-         <!-- General activities -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SignupActivity" /> <!-- General activities -->
         <activity
             android:name=".trainer.TrainerProfileActivity"
             android:exported="true" />
