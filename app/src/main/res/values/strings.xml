@@ -30,4 +30,5 @@
     </string-array>
     <string name="inputHeight">Height (cm)</string>
     <string name="inputWeight">Weight (kg)</string>
+    <string name="inputAge">Age</string>
 </resources>

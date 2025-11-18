@@ -131,7 +131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int getLatestWeight(long trainee) { // assumes input is a valid trainee with an existent weightSnapshot
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor result = sqLiteDatabase.rawQuery("SELECT weight FROM WeightSnapshot WHERE traineeID=? ORDER BY time DESC",new String[]{String.valueOf(trainee)});
+        Cursor result = sqLiteDatabase.rawQuery("SELECT weight FROM WeightSnapshot WHERE traineeID=? ORDER BY time DESC LIMIT 1",new String[]{String.valueOf(trainee)});
         result.moveToFirst();
         int weight = result.getInt(0);
         result.close();
@@ -156,7 +156,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public int getTraineeAge(long trainee) { // assumes input is a valid trainee
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor result = sqLiteDatabase.rawQuery("SELECT age FROM User WHERE userID=?",new String[]{String.valueOf(trainee)});
+        Cursor result = sqLiteDatabase.rawQuery("SELECT traineeAge FROM User WHERE userID=?",new String[]{String.valueOf(trainee)});
         result.moveToFirst();
         int age = result.getInt(0);
         result.close();
