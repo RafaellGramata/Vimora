@@ -90,7 +90,7 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="TRACK"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"

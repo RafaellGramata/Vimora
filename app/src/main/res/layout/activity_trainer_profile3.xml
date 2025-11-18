@@ -81,7 +81,7 @@
         android:layout_marginTop="244dp"
         android:background="#F4F4F4"
         android:ems="10"
-        android:hint="Height"
+        android:hint="Weight"
         android:inputType="text"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -110,17 +110,23 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="132dp"
         android:text="Height"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="577dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
         android:text="Weight"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="661dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTxtTrainerWeight2"
@@ -246,7 +252,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
         app:layout_constraintVertical_bias="0.194" />
@@ -276,7 +282,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
         app:layout_constraintVertical_bias="0.336" />
@@ -285,12 +291,11 @@
         android:id="@+id/imageView3"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtTrainer"
+        android:layout_marginBottom="456dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.896"
         app:srcCompat="@drawable/backhome" />
 
     <TextView
@@ -314,8 +319,9 @@
         android:text="Age"
         app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerWeight2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerWeight"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
