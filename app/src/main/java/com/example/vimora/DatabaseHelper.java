@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     final static String DATABASE_NAME = "Vimora";
-    final static int DATABASE_VERSION = 8; // why did I make this "3" for the first version?
+    final static int DATABASE_VERSION = 3; // why did I make this "3" for the first version?
 
     final static String TABLE_PLAN = "PlanTable";
     final static String COL_PLAN_ID = "PlanID";
@@ -82,7 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_REMIND_DATE + " TEXT NOT NULL," +
                 COL_REMIND_CONTENT + " TEXT NOT NULL)");
 
-        db.execSQL("CREATE TABLE AssignedPlan (" +
+        db.execSQL("CREATE TABLE " + TABLE_ASSIGNED_PLAN + "(" +
                 "assignmentID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "planID INTEGER NOT NULL, " +
                 "traineeID INTEGER NOT NULL, " +
@@ -95,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS User");
-        if (oldVersion < 8) {
+        if (oldVersion < 3) {
             db.execSQL("CREATE TABLE IF NOT EXISTS AssignedPlan (" +
                     "assignmentID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "planID INTEGER NOT NULL, " +
@@ -110,7 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS WeightSnapshot");
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAN);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_REMIND);
-            db.execSQL("DROP TABLE IF EXISTS AssignedPlan");
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_ASSIGNED_PLAN);
             onCreate(db);
         }
     }
@@ -136,11 +136,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else return false;
     }
 
-    public boolean updateTrainerProfile(long trainerId,
-                                        String name,
-                                        String specialization,
-                                        int handleNum,
-                                        String about) {
+    public boolean updateTrainerProfile(long trainerId,String name,String specialization,int handleNum,String about) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("trainerName", name);
@@ -331,7 +327,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put("traineeID", traineeId);
         cv.put("assignedDate", getCurrentDateTime());
 
-        long result = db.insert("AssignedPlan", null, cv);
+        long result = db.insert(TABLE_ASSIGNED_PLAN, null, cv);
         db.close();
         return result != -1;
     }
