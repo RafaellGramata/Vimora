@@ -115,7 +115,7 @@
         app:layout_constraintVertical_bias="0.142" />
 
     <ImageButton
-        android:id="@+id/btnSaveOfProfile"
+        android:id="@+id/btnBack"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginBottom="152dp"
@@ -173,7 +173,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTxtTrainerName"
+        android:id="@+id/txtTrainerName"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:background="#F4F4F4"
@@ -253,7 +253,7 @@
         android:ems="10"
         android:hint="Specialization"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerName"
+        app:layout_constraintBottom_toTopOf="@+id/txtTrainerName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.254"
         app:layout_constraintStart_toEndOf="@+id/txtTrainer"
@@ -271,7 +271,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toEndOf="@+id/txtHeight"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerName"
+        app:layout_constraintTop_toBottomOf="@+id/txtTrainerName"
         app:layout_constraintVertical_bias="0.301" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

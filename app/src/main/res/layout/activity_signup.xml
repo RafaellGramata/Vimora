@@ -27,7 +27,7 @@
         android:id="@+id/signupLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="48dp"
         android:text="Join the Vimora family!"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imgLoginBack" />
 
     <TextView
         android:id="@+id/signupAgeLabel"
@@ -120,8 +120,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" />
+        app:layout_constraintTop_toBottomOf="@+id/edittxtHeight"
+        app:layout_constraintVertical_bias="0.134" />
 
     <EditText
         android:id="@+id/edittxtAge"
@@ -137,8 +137,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.522" />
+        app:layout_constraintTop_toBottomOf="@+id/spnType"
+        app:layout_constraintVertical_bias="0.092" />
 
     <EditText
         android:id="@+id/edittxtHeight"
@@ -154,35 +154,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintTop_toBottomOf="@+id/edittxtAge"
+        app:layout_constraintVertical_bias="0.101" />
 
     <EditText
         android:id="@+id/edittxtPassword2"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginTop="28dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittxtWeight" />
 
     <Spinner
         android:id="@+id/spnType"
         android:layout_width="300dp"
         android:layout_height="48dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#F4F4F4"
         android:entries="@array/signupTraineeTrainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signupLabel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

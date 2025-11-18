@@ -1,4 +1,4 @@
-package com.example.vimora.trainee;
+package com.example.vimora.trianee;
 
 import android.os.Bundle;
 
