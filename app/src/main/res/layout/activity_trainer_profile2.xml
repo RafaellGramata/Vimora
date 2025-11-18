@@ -134,12 +134,11 @@
         android:id="@+id/imageView3"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtTrainer"
+        android:layout_marginBottom="456dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile"
-        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintHorizontal_bias="0.676"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.91"
         app:srcCompat="@drawable/backhome" />
 
     <TextView
