@@ -1,6 +1,11 @@
 package com.example.vimora.trainee;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -26,6 +31,8 @@ public class TraineeListTrainersActivity extends AppCompatActivity {
             return insets;
         });
         databaseHelper = new DatabaseHelper(this);
+        Intent intent = getIntent();
+        long userID = intent.getLongExtra("userID",-1);
         ListView listTrainers = findViewById(R.id.listTrainers);
         SimpleCursorAdapter trainers = new SimpleCursorAdapter(
                 TraineeListTrainersActivity.this,
@@ -36,5 +43,17 @@ public class TraineeListTrainersActivity extends AppCompatActivity {
                 0);
         listTrainers.setAdapter(trainers);
 
+        listTrainers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Cursor cursor = (Cursor) adapterView.getItemAtPosition(i);
+                long trainerID = cursor.getLong(cursor.getColumnIndex("userID"));
+                Intent newIntent = new Intent(TraineeListTrainersActivity.this, TraineeProfileActivity01.class);
+                newIntent.putExtra("userID",userID);
+                newIntent.putExtra("trainerID",trainerID);
+                startActivity(newIntent);
+            }
+        });
     }
 }

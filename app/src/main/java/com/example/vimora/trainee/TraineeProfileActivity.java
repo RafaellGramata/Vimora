@@ -35,7 +35,7 @@ public class TraineeProfileActivity extends AppCompatActivity {
         });
         databaseHelper = new DatabaseHelper(this);
         Intent intent = getIntent();
-        long userID = intent.getLongExtra("userID",-1); // must exist!    @Override
+        long userID = intent.getLongExtra("userID",-1); // must exist!
 
         Button btnPlan = findViewById(R.id.btnPlanOfProfile);
         Button btnTrack = findViewById(R.id.btnTrackOfProfile);
@@ -52,11 +52,15 @@ public class TraineeProfileActivity extends AppCompatActivity {
         height = databaseHelper.getTraineeHeight(userID);
         weight = databaseHelper.getLatestWeight(userID);
 
+        long trainerID = databaseHelper.getTraineeTrainer(userID);
+        String trainerName = trainerID>=0?databaseHelper.getName(trainerID):"";
+
         name.setText(databaseHelper.getName(userID));
         txtHeight.setText(Integer.toString(height));
         txtWeight.setText(Integer.toString(weight));
         txtAge.setText(Integer.toString(databaseHelper.getTraineeAge(userID)));
         updateBMI();
+        txtTrainerName.setText(trainerName);
 
         name.addTextChangedListener(new TextWatcher() {
             @Override

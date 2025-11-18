@@ -192,6 +192,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.close();
         return r>0;
     }
+    public long getTraineeTrainer(long userID) { // returns -1 if trainee does not have a trainer
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor result = sqLiteDatabase.rawQuery("SELECT trainerID FROM User WHERE userID=?",new String[]{String.valueOf(userID)});
+        result.moveToFirst();
+        long trainerID = result.isNull(0)?-1:result.getLong(0);
+        result.close();
+        return trainerID;
+    }
+    public boolean setTraineeTrainer(long userID, long trainerID) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("trainerID",trainerID);
+        long r = sqLiteDatabase.update("User",values,"userID=?",new String[]{String.valueOf(userID)});
+        sqLiteDatabase.close();
+        return r>0;
+    }
 
     private static String hashPassword(String password) { // we don't want to store the password raw in the database
         String normalized = java.text.Normalizer.normalize(password, Normalizer.Form.NFKD);

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vimora">
         <activity
+            android:name=".trainee.TraineeProfileActivity01"
+            android:exported="false" />
+        <activity
             android:name=".trainee.TraineeListTrainersActivity"
             android:exported="false" />
         <activity
@@ -51,9 +54,6 @@
             android:name=".trainer.TrainerPlanActivity"
             android:exported="true"
             android:theme="@style/Theme.Vimora" />
-        <activity
-            android:name=".trainee.TraineeProfileActivity02"
-            android:exported="false" />
         <activity
             android:name=".trainee.TraineeProfileActivity"
             android:exported="false" />
