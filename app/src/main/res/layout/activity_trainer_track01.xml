@@ -5,51 +5,35 @@
     android:id="@+id/tvName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".trainer.TrainerTrackActivity">
-
-    <ImageButton
-        android:id="@+id/btnLogout4"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="logout"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/btnReminder4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logout" />
-
-    <ImageButton
-        android:id="@+id/btnReminder4"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="36dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="reminder"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.763"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/remindericon" />
+    android:background="#FF6501"
+    tools:context=".trainer.TrainerProfileActivity">
 
     <ImageView
-        android:id="@+id/imagePlanBack4"
+        android:id="@+id/imageTrackBack"
         android:layout_width="380dp"
         android:layout_height="680dp"
         android:layout_marginTop="88dp"
-        android:contentDescription="PlanBackground"
+        android:contentDescription="TrackBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/planback" />
+        app:srcCompat="@drawable/plan" />
 
     <ImageView
-        android:id="@+id/imageprofileBack4"
+        android:id="@+id/imagePlanBack"
+        android:layout_width="380dp"
+        android:layout_height="680dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="PlanBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
+        app:srcCompat="@drawable/profile" />
+
+    <ImageView
+        android:id="@+id/imageprofileBack"
         android:layout_width="0dp"
         android:layout_height="680dp"
         android:layout_marginStart="15dp"
@@ -59,171 +43,115 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack4"
-        app:srcCompat="@drawable/profileback" />
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
+        app:srcCompat="@drawable/track" />
 
     <ImageView
-        android:id="@+id/imageTrackBack4"
-        android:layout_width="380dp"
-        android:layout_height="680dp"
-        android:layout_marginTop="64dp"
-        android:contentDescription="TrackBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack4"
-        app:srcCompat="@drawable/trackback" />
-
-    <TextView
-        android:id="@+id/durationLabel1"
-        android:layout_width="wrap_content"
+        android:id="@+id/imageView12"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="Duration"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/trainerDuration2"
+        android:layout_marginTop="264dp"
+        android:src="@drawable/blackcard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainerCalories1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/caloriesLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calories Burned"
-        android:textColor="#FFFFFF"
+    <EditText
+        android:id="@+id/editTxtTrainerName"
+        android:layout_width="326dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="384dp"
+        android:background="#F4F4F4"
+        android:ems="10"
+        android:hint="Search Trainee"
+        android:inputType="text"
+        android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/trainerCalories1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="296dp"
+        android:layout_height="253dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnPlanOfTrack00"
+        android:id="@+id/btnTrackOfProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="PLAN"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack4" />
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
 
     <Button
-        android:id="@+id/btnProfileOfTrack00"
+        android:id="@+id/btnPlanOfProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="PROFILE"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack4" />
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
 
     <Button
-        android:id="@+id/btnTrackOfTrack00"
+        android:id="@+id/btnProfileOfProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="TRACK"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTrackBack4" />
-
-    <ImageButton
-        android:id="@+id/btnMeal"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="meal"
-        android:scaleType="fitCenter"
-        android:src="@drawable/mealicon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00" />
-
-    <ImageButton
-        android:id="@+id/btnInfo"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="meal"
-        android:scaleType="fitCenter"
-        android:src="@drawable/pieicon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00" />
-
-    <EditText
-        android:id="@+id/trainerCalories1"
-        android:layout_width="270dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="136dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Calories Burned"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00" />
-
-    <EditText
-        android:id="@+id/trainerDuration2"
-        android:layout_width="270dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Duration"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainerCalories1" />
-
-    <EditText
-        android:id="@+id/trainerWorkoutExercise1"
-        android:layout_width="270dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Workout Exercise"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainerDuration2" />
-
-    <TextView
-        android:id="@+id/workoutDateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Workout Exercise"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/trainerWorkoutExercise1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainerDuration2"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="DuplicateIds" />
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/btnLogout"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="logout"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@+id/btnReminder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logout" />
+
+    <ImageButton
+        android:id="@+id/btnReminder"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="reminder"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reminder" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
