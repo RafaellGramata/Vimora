@@ -3,6 +3,7 @@ package com.example.vimora.trainer;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,7 +23,6 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
     private ListView listViewTrainees;
-    private ImageButton btnSave;
     private long planId;
     private ArrayList<Long> traineeIds;
     private ArrayList<String> traineeNames;
@@ -44,17 +44,44 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
             return;
         }
 
-        initViews();
+        ListView listViewTrainees = findViewById(R.id.listViewTrainees);
+
+        traineeIds = new ArrayList<>();
+        traineeNames = new ArrayList<>();
+
+        ImageButton btnBack2 = findViewById(R.id.btnBack2);
+        btnBack2.setOnClickListener(v -> finish());
+
+        ImageButton btnReminder = findViewById(R.id.btnReminder);
+        btnReminder.setOnClickListener(v ->
+                startActivity(new Intent(this, TrainerProfileActivity2.class)));
+
+        ImageButton btnSave2 = findViewById(R.id.btnSave2);
+        btnSave2.setOnClickListener(v -> {
+            int position = listViewTrainees.getCheckedItemPosition();
+            if (position != ListView.INVALID_POSITION) {
+                long traineeId = traineeIds.get(position);
+                if (dbHelper.assignPlanToTrainee(planId, traineeId)) {
+                    Toast.makeText(this, "Assigned successfully!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            } else {
+                Toast.makeText(this, "Please select a trainee", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button btnProfileOfProfile1 = findViewById(R.id.btnProfileOfProfile1);
+        btnProfileOfProfile1.setOnClickListener(v ->
+                startActivity(new Intent(this, TrainerProfileActivity1.class)));
+
+        Button btnTrackOfProfile1 = findViewById(R.id.btnTrackOfProfile1);
+        btnTrackOfProfile1.setOnClickListener(v ->
+                startActivity(new Intent(this, TrainerTrackActivity.class)));
+
         loadTrainees();
         setupButtons();
     }
 
-    private void initViews() {
-        listViewTrainees = findViewById(R.id.listViewTrainees);
-        btnSave = findViewById(R.id.btnSave);
-        traineeIds = new ArrayList<>();
-        traineeNames = new ArrayList<>();
-    }
 
     private void loadTrainees() {
         Cursor cursor = dbHelper.getAllTrainees();
@@ -73,26 +100,6 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
                 this, android.R.layout.simple_list_item_single_choice, traineeNames));
     }
     private void setupButtons() {
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-        findViewById(R.id.btnReminder).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity2.class)));
 
-        btnSave.setOnClickListener(v -> {
-            int pos = listViewTrainees.getCheckedItemPosition();
-            if (pos != ListView.INVALID_POSITION) {
-                long traineeId = traineeIds.get(pos);
-                if (dbHelper.assignPlanToTrainee(planId, traineeId)) {
-                    Toast.makeText(this, "Assigned successfully!", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            } else {
-                Toast.makeText(this, "Please select a trainee", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        findViewById(R.id.btnProfileOfProfile1).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity1.class)));
-        findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerTrackActivity.class)));
     }
 }

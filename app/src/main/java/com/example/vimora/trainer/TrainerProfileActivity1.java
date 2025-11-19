@@ -24,7 +24,6 @@ import com.example.vimora.R;
 public class TrainerProfileActivity1 extends AppCompatActivity {
 
     private EditText etSpec, etName, etHandleNum, etAbout;
-    private TextView tvTraineeCount;
     private DatabaseHelper dbHelper;
     private long currentTrainerId;
     private static final String PREF_NAME = "TrainerProfilePref";
@@ -50,22 +49,13 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             return;
         }
 
-        initViews();
-        setupButtons();
-        loadProfile();
-    }
-
-    private void initViews() {
-        etSpec      = findViewById(R.id.inputTrainerSpec);
-        etName      = findViewById(R.id.outputTraineeName);
-        etHandleNum = findViewById(R.id.inputHandleNum);
-        etAbout     = findViewById(R.id.inputTrainerInfo);
-        tvTraineeCount = findViewById(R.id.outputAssignNum);
-
+        EditText etSpec = findViewById(R.id.inputTrainerSpec);
+        EditText etName = findViewById(R.id.outputTraineeName);
+        EditText etHandleNum = findViewById(R.id.inputHandleNum);
+        EditText etAbout = findViewById(R.id.inputTrainerInfo);
+        TextView tvTraineeCount = findViewById(R.id.outputAssignNum);
         tvTraineeCount.setEnabled(false);
-    }
 
-    private void setupButtons() {
         Button btnTrack = findViewById(R.id.btnTrackOfProfile1);
         Button btnPlan = findViewById(R.id.btnPlanOfProfile1);
         ImageButton btnProfile2 = findViewById(R.id.toTrainerProfile2);
@@ -103,8 +93,6 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             }
         });
 
-    }
-    private void loadProfile() {
         Cursor c = dbHelper.getTrainerProfile(currentTrainerId);
         if (c.moveToFirst()) {
             etName.setText(c.getString(c.getColumnIndexOrThrow("name")));
@@ -116,7 +104,9 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
 
         int count = dbHelper.countTrainees(currentTrainerId);
         tvTraineeCount.setText(String.valueOf(count));
+
     }
+
 
     private void saveProfile() {
         String name   = etName.getText().toString().trim();
@@ -146,4 +136,4 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         super.onPause();
         saveProfile();
     }
-        }
+}

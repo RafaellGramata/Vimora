@@ -1,11 +1,11 @@
 package com.example.vimora.trainer;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -48,14 +48,7 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
             return insets;
         });
 
-        initViews();
-        setupButtons();
-        loadExercises();
-        setupSearch();
-    }
-
-    private void initViews() {
-        listViewExercises = findViewById(R.id.listViewExercises);
+        listViewExercises = findViewById(R.id.listViewTrainees);
         etSearch = findViewById(R.id.etSearchExercise);
         btnAdd = findViewById(R.id.btnAdd);
 
@@ -66,19 +59,21 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseNames);
         listViewExercises.setAdapter(adapter);
-    }
 
-    private void setupButtons() {
-        findViewById(R.id.btnReminder).setOnClickListener(v ->
+        ImageButton btnReminder = findViewById(R.id.btnReminder);
+        btnReminder.setOnClickListener(v ->
                 startActivity(new Intent(this, TrainerProfileActivity2.class)));
 
-        findViewById(R.id.btnProfileOfProfile1).setOnClickListener(v ->
+        Button btnProfileOfProfile1 = findViewById(R.id.btnProfileOfProfile1);
+        btnProfileOfProfile1.setOnClickListener(v ->
                 startActivity(new Intent(this, TrainerProfileActivity1.class)));
 
-        findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v ->
+        Button btnTrackOfProfile1 = findViewById(R.id.btnTrackOfProfile1);
+        btnTrackOfProfile1.setOnClickListener(v ->
                 startActivity(new Intent(this, TrainerTrackActivity.class)));
 
-        findViewById(R.id.btnPlanOfProfile1).setOnClickListener(v -> { });
+        Button btnPlanOfProfile1 = findViewById(R.id.btnPlanOfProfile1);
+        btnPlanOfProfile1.setOnClickListener(v -> { });
 
         btnAdd.setOnClickListener(v -> showAddDialog());
         listViewExercises.setOnItemLongClickListener((parent, view, position, id) -> {
@@ -104,6 +99,9 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
             intent.putExtra("planId", planId);
             startActivity(intent);
         });
+
+        loadExercises();
+        setupSearch();
     }
 
     private void setupSearch() {
@@ -119,23 +117,7 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
     }
 
     private void loadExercises() {
-        Cursor cursor = dbHelper.getAllPlans();
-        allExerciseNames.clear();
-        allExerciseIds.clear();
-        exerciseNames.clear();
-        exerciseIds.clear();
 
-        while (cursor.moveToNext()) {
-            long id = cursor.getLong(cursor.getColumnIndexOrThrow("PlanID"));
-            String name = cursor.getString(cursor.getColumnIndexOrThrow("ExerciseName"));
-            allExerciseIds.add(id);
-            allExerciseNames.add(name);
-        }
-        cursor.close();
-
-        exerciseIds.addAll(allExerciseIds);
-        exerciseNames.addAll(allExerciseNames);
-        adapter.notifyDataSetChanged();
     }
 
     private void filterExercises(String query) {

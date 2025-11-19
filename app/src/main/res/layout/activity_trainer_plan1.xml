@@ -62,7 +62,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnTrackOfProfile1"
@@ -123,7 +124,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <ListView
-        android:id="@+id/listViewExercises"
+        android:id="@+id/listViewTrainees"
         android:layout_width="296dp"
         android:layout_height="253dp"
         android:layout_marginTop="28dp"
