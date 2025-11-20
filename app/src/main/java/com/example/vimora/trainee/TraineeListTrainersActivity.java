@@ -48,11 +48,14 @@ public class TraineeListTrainersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Cursor cursor = (Cursor) adapterView.getItemAtPosition(i);
-                long trainerID = cursor.getLong(cursor.getColumnIndex("userID"));
-                Intent newIntent = new Intent(TraineeListTrainersActivity.this, TraineeProfileActivity01.class);
-                newIntent.putExtra("userID",userID);
-                newIntent.putExtra("trainerID",trainerID);
-                startActivity(newIntent);
+                int idIndex = cursor.getColumnIndex("userID");
+                if (idIndex != -1) {
+                    long trainerID = cursor.getLong(cursor.getColumnIndex("userID"));
+                    Intent newIntent = new Intent(TraineeListTrainersActivity.this, TraineeProfileActivity01.class);
+                    newIntent.putExtra("userID", userID);
+                    newIntent.putExtra("trainerID", trainerID);
+                    startActivity(newIntent);
+                }
             }
         });
     }

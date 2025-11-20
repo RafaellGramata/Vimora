@@ -19,7 +19,7 @@ public class TrainerTrackActivity extends AppCompatActivity {
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TrainerTrackActivity.this, TrainerProfileActivity.class);
+                Intent intent = new Intent(TrainerTrackActivity.this, TrainerProfileActivity1.class);
                 startActivity(intent);
             }
         });
@@ -27,7 +27,7 @@ public class TrainerTrackActivity extends AppCompatActivity {
         btnPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TrainerTrackActivity.this, TrainerPlanActivity.class);
+                Intent intent = new Intent(TrainerTrackActivity.this, TrainerPlanActivity1.class);
                 startActivity(intent);
             }
         });

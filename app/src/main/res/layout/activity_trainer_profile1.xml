@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/tvName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
-    tools:context=".trainer.TrainerProfileActivity">
+    tools:context=".trainer.TrainerProfileActivity1">
 
 
 
@@ -43,23 +43,42 @@
         android:layout_marginEnd="15dp"
         android:contentDescription="ProfileBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
         app:srcCompat="@drawable/profile" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#F4F4F4"
+        android:text="/"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/inputTrainerInfo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnProfileOfProfile"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:srcCompat="@drawable/forward" />
+        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintStart_toEndOf="@+id/txtTraineeNum"
+        app:layout_constraintTop_toBottomOf="@+id/outputTraineeName"
+        app:layout_constraintVertical_bias="0.301" />
+
+    <ImageButton
+        android:id="@+id/toTrainerProfile2"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="8dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="back to profile1"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toEndOf="@+id/btnProfileOfProfile1"
+        app:layout_constraintTop_toTopOf="@+id/btnProfileOfProfile1"
+        app:srcCompat="@drawable/forward"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/btnTrackOfProfile"
+        android:id="@+id/btnTrackOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -71,7 +90,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
 
     <Button
-        android:id="@+id/btnPlanOfProfile"
+        android:id="@+id/btnPlanOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -85,7 +104,7 @@
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
 
     <Button
-        android:id="@+id/btnProfileOfProfile"
+        android:id="@+id/btnProfileOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -93,69 +112,23 @@
         android:text="PROFILE"
         android:textColor="#000000"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack" />
 
     <TextView
         android:id="@+id/txtTrainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:text="Specialization"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:layout_constraintVertical_bias="0.142" />
-
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="152dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="save"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.626"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/save" />
-
-    <ImageButton
-        android:id="@+id/btnEditOfProfile"
-        android:layout_width="76dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="144dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="edit"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.361"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/deit" />
-
-    <ImageButton
-        android:id="@+id/btnLogout"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="logout"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/btnReminder"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logout"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack" />
 
     <ImageButton
         android:id="@+id/btnReminder"
@@ -166,14 +139,14 @@
         android:contentDescription="reminder"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/reminder"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/txtTrainerName"
+        android:id="@+id/outputTraineeName"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:background="#F4F4F4"
@@ -187,22 +160,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
+    <EditText
+        android:id="@+id/inputTrainerSpec"
+        android:layout_width="195dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:background="#F4F4F4"
+        android:ems="10"
+        android:hint="Specialization"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile1"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <TextView
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
         android:text="Name"
         android:textColor="#000000"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:layout_constraintVertical_bias="0.247" />
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack" />
 
     <EditText
-        android:id="@+id/editTxtTrainerWeight"
+        android:id="@+id/inputTrainerInfo"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:background="#F4F4F4"
@@ -214,64 +203,60 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAboutme" />
 
     <TextView
-        android:id="@+id/txtWeight"
+        android:id="@+id/txtAboutme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:layout_marginTop="292dp"
         android:text="About Me"
         android:textColor="#000000"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:layout_constraintVertical_bias="0.448" />
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack" />
 
     <TextView
-        android:id="@+id/txtHeight"
+        android:id="@+id/txtTraineeNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
         android:text="Trainees:"
         android:textColor="#000000"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePlanBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:layout_constraintVertical_bias="0.385" />
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="190dp"
-        android:layout_height="48dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Specialization"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtTrainerName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.254"
-        app:layout_constraintStart_toEndOf="@+id/txtTrainer"
-        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile"
-        app:layout_constraintVertical_bias="0.333" />
-
-    <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/outputAssignNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#F4F4F4"
-        android:text="06/15"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerWeight"
+        app:layout_constraintBottom_toTopOf="@+id/inputTrainerInfo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toEndOf="@+id/txtHeight"
-        app:layout_constraintTop_toBottomOf="@+id/txtTrainerName"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toEndOf="@+id/txtTraineeNum"
+        app:layout_constraintTop_toBottomOf="@+id/outputTraineeName"
         app:layout_constraintVertical_bias="0.301" />
+
+    <EditText
+        android:id="@+id/inputHandleNum"
+        android:layout_width="55dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="9dp"
+        android:ems="10"
+        android:hint="num"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/outputTraineeName"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
