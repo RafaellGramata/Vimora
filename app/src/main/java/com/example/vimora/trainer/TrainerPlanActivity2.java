@@ -22,6 +22,7 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
     private DatabaseHelper dbHelper;
     private EditText etExercisePlan;
     private long planId;
+    private long currentTrainerId;
     private boolean isEditing = false;
 
     @Override
@@ -30,13 +31,16 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         dbHelper = new DatabaseHelper(this);
         setContentView(R.layout.activity_trainer_plan2);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.etExercisePlan), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        planId = getIntent().getLongExtra("planId", -1);
+        Intent intent = getIntent();
+        planId = intent.getLongExtra("planId", -1);
+        currentTrainerId = intent.getLongExtra("userID", -1);
+
         if (planId == -1) {
             finish();
             return;
@@ -49,43 +53,62 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
         ImageButton btnAssign = findViewById(R.id.btnAssign);
 
         ImageButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity1.class)));
+        btnBack.setOnClickListener(v -> {
+            finish();
+        });
 
         ImageButton btnReminder = findViewById(R.id.btnReminder);
-        btnReminder.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity2.class)));
+        btnReminder.setOnClickListener(v -> {
+            Intent i = new Intent(this, TrainerProfileActivity2.class);
+            i.putExtra("userID", currentTrainerId);
+            startActivity(i);
+        });
 
 
 
         btnAssign.setOnClickListener(v -> {
             savePlanNow();
-            Intent intent = new Intent(this, TrainerPlanActivity3.class);
-            intent.putExtra("planId", planId);
-            startActivity(intent);
+            Intent i = new Intent(this, TrainerPlanActivity3.class);
+            i.putExtra("planId", planId);
+            i.putExtra("userID", currentTrainerId);
+            startActivity(i);
         });
 
         Button btnProfileOfProfile1 = findViewById(R.id.btnProfileOfProfile1);
-        btnProfileOfProfile1.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity1.class)));
+        btnProfileOfProfile1.setOnClickListener(v -> {
+            Intent i = new Intent(this, TrainerProfileActivity1.class);
+            i.putExtra("userID", currentTrainerId);
+            startActivity(i);
+        });
 
         Button btnTrackOfProfile1 = findViewById(R.id.btnTrackOfProfile1);
-        btnTrackOfProfile1.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerTrackActivity.class)));
+        btnTrackOfProfile1.setOnClickListener(v -> {
+            Intent i = new Intent(this, TrainerTrackActivity.class);
+            i.putExtra("userID", currentTrainerId);
+            startActivity(i);
+        });
     }
 
 
     private void loadPlanContent() {
         Cursor c = dbHelper.getAllPlans();
-        while (c.moveToNext()) {
-            if (c.getLong(c.getColumnIndexOrThrow("PlanID")) == planId) {
-                String content = c.getString(c.getColumnIndexOrThrow("ExerciseContent"));
-                etExercisePlan.setText(content);
-                etExercisePlan.setSelection(content.length());
-                break;
+        if (c != null) {
+            while (c.moveToNext()) {
+                try {
+                    if (c.getLong(c.getColumnIndexOrThrow("PlanID")) == planId) {
+                        String content = c.getString(c.getColumnIndexOrThrow("ExerciseContent"));
+                        if (content != null) {
+                            etExercisePlan.setText(content);
+                            etExercisePlan.setSelection(content.length());
+                        }
+                        break;
+                    }
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                }
             }
+            c.close();
         }
-        c.close();
     }
 
     @Override
@@ -95,6 +118,7 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
     }
 
     private void savePlanNow() {
+        if (etExercisePlan == null) return;
         String content = etExercisePlan.getText().toString().trim();
         boolean success = dbHelper.updatePlan(planId, null, content);
         if (success && !isFinishing()) {

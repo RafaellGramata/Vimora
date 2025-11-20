@@ -25,12 +25,18 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".Signup2Activity" android:exported="false" />
         <activity android:name=".WelcomeActivity" android:exported="true" />
-
+        <activity android:name=".LoginActivity" />
 
         <activity
             android:name=".trainer.TrainerPlanActivity1"
             android:exported="true"
             android:theme="@style/Theme.Vimora" />
+        <activity
+            android:name=".trainer.TrainerPlanActivity2"
+            android:exported="true" />
+        <activity
+            android:name=".trainer.TrainerPlanActivity3"
+            android:exported="true" />
         <activity
             android:name=".trainer.TrainerProfileActivity1"
             android:exported="true" />

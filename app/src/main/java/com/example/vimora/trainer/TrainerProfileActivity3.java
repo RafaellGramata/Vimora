@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
     private long traineeId;
+    private long currentTrainerId;
 
     private TextView tvName, tvAssignedPlan, tvAge, tvWeight, tvHeight, tvBMI;
     @Override
@@ -32,7 +34,10 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
             return insets;
         });
 
-        traineeId = getIntent().getLongExtra("traineeId", -1);
+        Intent intent = getIntent();
+        traineeId = intent.getLongExtra("traineeId", -1);
+
+        currentTrainerId = intent.getLongExtra("userID", -1);
         if (traineeId == -1) {
             finish();
             return;
@@ -54,33 +59,50 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
 
     private void setupButtons() {
         findViewById(R.id.toTrainerProfile2).setOnClickListener(v -> finish());
-        findViewById(R.id.btnReminder).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity2.class)));
-        findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerTrackActivity.class)));
-        findViewById(R.id.btnPlanOfProfile1).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerPlanActivity1.class)));
+        findViewById(R.id.btnReminder).setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerProfileActivity2.class);
+            intent.putExtra("userID", currentTrainerId);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerTrackActivity.class);
+            intent.putExtra("userID", currentTrainerId);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.btnPlanOfProfile1).setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerPlanActivity1.class);
+            intent.putExtra("userID", currentTrainerId);
+            startActivity(intent);
+        });
     }
 
     private void loadTraineeData() {
         Cursor c = dbHelper.getTraineeDetails(traineeId);
         if (c.moveToFirst()) {
             String name = c.getString(c.getColumnIndexOrThrow("name"));
-            int age = c.getInt(c.getColumnIndexOrThrow("traineeAge"));
-            int heightCm = c.getInt(c.getColumnIndexOrThrow("traineeHeight"));
-            int weightKg = c.getInt(c.getColumnIndexOrThrow("latestWeight"));
+            try {
+                int age = c.getInt(c.getColumnIndexOrThrow("traineeAge"));
+                int heightCm = c.getInt(c.getColumnIndexOrThrow("traineeHeight"));
 
-            tvName.setText(name);
-            tvAge.setText(String.valueOf(age));
-            tvHeight.setText(heightCm + " cm");
-            tvWeight.setText(weightKg + " kg");
+                int weightKg = dbHelper.getLatestWeight(traineeId);
 
-            if (heightCm > 0 && weightKg > 0) {
-                double heightM = heightCm / 100.0;
-                double bmi = weightKg / (heightM * heightM);
-                tvBMI.setText(String.format("%.1f", bmi));
-            } else {
-                tvBMI.setText("N/A");
+                tvName.setText(name);
+                tvAge.setText(String.valueOf(age));
+                tvHeight.setText(heightCm + " cm");
+                tvWeight.setText(weightKg + " kg");
+
+                if (heightCm > 0 && weightKg > 0) {
+                    double heightM = heightCm / 100.0;
+                    double bmi = weightKg / (heightM * heightM);
+                    tvBMI.setText(String.format("%.1f", bmi));
+                } else {
+                    tvBMI.setText("N/A");
+                }
+            }catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Error loading data", Toast.LENGTH_SHORT).show();
             }
         }
         c.close();

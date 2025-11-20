@@ -29,6 +29,7 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
     private ListView listViewExercises;
     private EditText etSearch;
     private ImageButton btnAdd;
+    private long currentTrainerId;
 
     private ArrayAdapter<String> adapter;
     private ArrayList<String> exerciseNames;
@@ -41,6 +42,7 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         dbHelper = new DatabaseHelper(this);
+        currentTrainerId = getIntent().getLongExtra("userID", -1);
         setContentView(R.layout.activity_trainer_plan1);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -61,19 +63,32 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
         listViewExercises.setAdapter(adapter);
 
         ImageButton btnReminder = findViewById(R.id.btnReminder);
-        btnReminder.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity2.class)));
+        btnReminder.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerProfileActivity2.class);
+            intent.putExtra("userID", currentTrainerId);
+            startActivity(intent);
+        });
 
         Button btnProfileOfProfile1 = findViewById(R.id.btnProfileOfProfile1);
-        btnProfileOfProfile1.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity1.class)));
+        btnProfileOfProfile1.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerProfileActivity1.class);
+            intent.putExtra("userID", currentTrainerId);
+            startActivity(intent);
+        });
 
         Button btnTrackOfProfile1 = findViewById(R.id.btnTrackOfProfile1);
-        btnTrackOfProfile1.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerTrackActivity.class)));
+        btnTrackOfProfile1.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerProfileActivity1.class);
+            intent.putExtra("userID", currentTrainerId);
+            startActivity(intent);
+        });
 
         Button btnPlanOfProfile1 = findViewById(R.id.btnPlanOfProfile1);
-        btnPlanOfProfile1.setOnClickListener(v -> { });
+        btnPlanOfProfile1.setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerPlanActivity1.class);
+            intent.putExtra("userID", currentTrainerId);
+            startActivity(intent);
+        });
 
         btnAdd.setOnClickListener(v -> showAddDialog());
         listViewExercises.setOnItemLongClickListener((parent, view, position, id) -> {
@@ -97,6 +112,7 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
             long planId = exerciseIds.get(position);
             Intent intent = new Intent(this, TrainerPlanActivity2.class);
             intent.putExtra("planId", planId);
+            intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
 
@@ -117,7 +133,26 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
     }
 
     private void loadExercises() {
+        exerciseNames.clear();
+        exerciseIds.clear();
+        allExerciseNames.clear();
+        allExerciseIds.clear();
 
+        android.database.Cursor cursor = dbHelper.getAllPlans();
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                long id = cursor.getLong(cursor.getColumnIndexOrThrow("PlanID"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("ExerciseName"));
+
+                allExerciseNames.add(name);
+                allExerciseIds.add(id);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        String currentQuery = etSearch.getText().toString();
+        filterExercises(currentQuery);
     }
 
     private void filterExercises(String query) {

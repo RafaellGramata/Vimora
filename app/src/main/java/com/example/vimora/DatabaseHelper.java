@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -17,8 +16,8 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    static MessageDigest md;
 
+    private static MessageDigest md;
     static {
         try {
             md = MessageDigest.getInstance("SHA-256");
@@ -27,123 +26,158 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    private static final String DATABASE_NAME = "Vimora";
+    private static final int DATABASE_VERSION = 6;   // 你的原始版本號
 
-    final static String DATABASE_NAME = "Vimora";
-    final static int DATABASE_VERSION = 3; // why did I make this "3" for the first version?
+    // Plan Table
+    private static final String TABLE_PLAN = "PlanTable";
+    private static final String COL_PLAN_ID = "PlanID";
+    private static final String COL_EXERCISE_NAME = "ExerciseName";
+    private static final String COL_EXERCISE_CONTENT = "ExerciseContent";
 
-    final static String TABLE_PLAN = "PlanTable";
-    final static String COL_PLAN_ID = "PlanID";
-    final static String COL_EXERCISE_NAME = "ExerciseName";
-    final static String COL_EXERCISE_CONTENT = "ExerciseContent";
+    // Reminder Table (可選)
+    private static final String TABLE_REMIND = "RemindTable";
+    private static final String COL_REMIND_ID = "RemindID";
+    private static final String COL_REMIND_DATE = "RemindDate";
+    private static final String COL_REMIND_CONTENT = "RemindContent";
 
-    final static String TABLE_REMIND = "RemindTable";
-    final static String COL_REMIND_ID = "RemindID";
-    final static String COL_REMIND_DATE = "RemindDate";
-    final static String COL_REMIND_CONTENT = "RemindContent";
-    final static String TABLE_ASSIGNED_PLAN = "AssignedPlan";
+    // AssignedPlan Table
+    private static final String TABLE_ASSIGNED_PLAN = "AssignedPlan";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
     @Override
-    public void onConfigure(SQLiteDatabase sqLiteDatabase) {
-        super.onConfigure(sqLiteDatabase);
-        sqLiteDatabase.setForeignKeyConstraintsEnabled(true);
+    public void onConfigure(SQLiteDatabase db) {
+        super.onConfigure(db);
+        db.setForeignKeyConstraintsEnabled(true);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // User 表（已包含所有欄位）
         db.execSQL("CREATE TABLE User (" +
-                "userID INTEGER PRIMARY KEY, " +
+                "userID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT NOT NULL, " +
                 "email TEXT UNIQUE NOT NULL, " +
                 "phone TEXT, " +
                 "passwordHash TEXT NOT NULL, " +
-                "isTrainer INTEGER NOT NULL, " +
+                "isTrainer INTEGER NOT NULL DEFAULT 0, " +
                 "trainerID INTEGER, " +
                 "traineeHeight INTEGER, " +
                 "traineeAge INTEGER, " +
                 "trainerAbout TEXT, " +
+                "trainerSpecialization TEXT, " +
+                "trainerHandleNum INTEGER DEFAULT 0, " +
                 "FOREIGN KEY (trainerID) REFERENCES User(userID))");
+
         db.execSQL("CREATE TABLE WeightSnapshot (" +
-                "snapshotID INTEGER PRIMARY KEY," +
+                "snapshotID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "traineeID INTEGER," +
                 "time INTEGER," +
                 "weight INTEGER," +
                 "FOREIGN KEY (traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
 
-
+        // 三張新表
         db.execSQL("CREATE TABLE " + TABLE_PLAN + " (" +
-                COL_PLAN_ID + " INTEGER PRIMARY KEY, " +
+                COL_PLAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_EXERCISE_NAME + " TEXT NOT NULL," +
                 COL_EXERCISE_CONTENT + " TEXT NOT NULL)");
 
         db.execSQL("CREATE TABLE " + TABLE_REMIND + " (" +
-                COL_REMIND_ID + " INTEGER PRIMARY KEY, " +
+                COL_REMIND_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_REMIND_DATE + " TEXT NOT NULL," +
                 COL_REMIND_CONTENT + " TEXT NOT NULL)");
 
-        db.execSQL("CREATE TABLE " + TABLE_ASSIGNED_PLAN + "(" +
+        db.execSQL("CREATE TABLE " + TABLE_ASSIGNED_PLAN + " (" +
                 "assignmentID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "planID INTEGER NOT NULL, " +
                 "traineeID INTEGER NOT NULL, " +
                 "assignedDate TEXT NOT NULL, " +
                 "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS User");
-        if (oldVersion < 3) {
-            db.execSQL("CREATE TABLE IF NOT EXISTS AssignedPlan (" +
+        if (oldVersion < 4) {
+            db.execSQL("ALTER TABLE User ADD COLUMN trainerSpecialization TEXT");
+            db.execSQL("ALTER TABLE User ADD COLUMN trainerHandleNum INTEGER DEFAULT 0");
+        }
+        if (oldVersion < 5) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_PLAN + " (" +
+                    COL_PLAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COL_EXERCISE_NAME + " TEXT NOT NULL," +
+                    COL_EXERCISE_CONTENT + " TEXT NOT NULL)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_REMIND + " (" +
+                    COL_REMIND_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COL_REMIND_DATE + " TEXT NOT NULL," +
+                    COL_REMIND_CONTENT + " TEXT NOT NULL)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_ASSIGNED_PLAN + " (" +
                     "assignmentID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "planID INTEGER NOT NULL, " +
                     "traineeID INTEGER NOT NULL, " +
                     "assignedDate TEXT NOT NULL, " +
-                    "FOREIGN KEY(planID) REFERENCES PlanTable(PlanID) ON DELETE CASCADE, " +
+                    "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
         }
-        else {
-            db.execSQL("ALTER TABLE User ADD COLUMN trainerSpecialization TEXT");
-            db.execSQL("ALTER TABLE User ADD COLUMN trainerHandleNum INTEGER DEFAULT 0");
-            db.execSQL("DROP TABLE IF EXISTS WeightSnapshot");
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAN);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_REMIND);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_ASSIGNED_PLAN);
-            onCreate(db);
-        }
+        // 如之後還有新欄位再繼續加 if (oldVersion < X) {}
     }
 
-    public boolean signUp(String name, String phone, String email, String password, boolean isTrainer, int height, int weight, int age) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+    /* ====================== 註冊 & 登入 ====================== */
+    public boolean signUp(String name, String phone, String email, String password, boolean isTrainer,
+                          int height, int weight, int age) {
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("name",name);
-        values.put("phone",phone);
-        values.put("email",email);
-        values.put("passwordHash",hashPassword(password));
-        values.put("isTrainer",isTrainer);
+        values.put("name", name);
+        values.put("phone", phone);
+        values.put("email", email);
+        values.put("passwordHash", hashPassword(password));
+        values.put("isTrainer", isTrainer ? 1 : 0);
         if (!isTrainer) {
-            values.put("traineeHeight",height);
-            values.put("traineeAge",age);
+            values.put("traineeHeight", height);
+            values.put("traineeAge", age);
         }
-        long r = sqLiteDatabase.insert("User",null,values);
-        sqLiteDatabase.close();
-        if (r>0) {
-            if (!isTrainer) return addWeightSnapshot(r,weight);
-            else return true;
+        long r = db.insert("User", null, values);
+        db.close();
+        if (r > 0) {
+            if (!isTrainer) return addWeightSnapshot(r, weight);
+            return true;
         }
-        else return false;
+        return false;
     }
 
-    public boolean updateTrainerProfile(long trainerId,String name,String specialization,int handleNum,String about) {
+    @SuppressLint("Range")
+    public long login(String email, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM User WHERE email=?", new String[]{email});
+        if (!c.moveToFirst()) { c.close(); return -1; }
+        String stored = c.getString(c.getColumnIndex("passwordHash"));
+        if (!hashPassword(password).equals(stored)) { c.close(); return -1; }
+        long id = c.getLong(c.getColumnIndex("userID"));
+        c.close();
+        return id;
+    }
+
+    public boolean isTrainer(long userID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT isTrainer FROM User WHERE userID=?", new String[]{String.valueOf(userID)});
+        c.moveToFirst();
+        boolean res = c.getInt(0) == 1;
+        c.close();
+        return res;
+    }
+
+    /* ====================== Trainer Profile ====================== */
+    public boolean updateTrainerProfile(long trainerId, String name, String specialization,
+                                        int handleNum, String about) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("trainerName", name);
-        cv.put("trainerSpecialization", specialization);
-        cv.put("trainerHandleNumber", handleNum);
-        cv.put("trainerAboutMe", about);
-
+        if (name != null) cv.put("name", name);
+        if (specialization != null) cv.put("trainerSpecialization", specialization);
+        cv.put("trainerHandleNum", handleNum);
+        if (about != null) cv.put("trainerAbout", about);
         int rows = db.update("User", cv, "userID = ?", new String[]{String.valueOf(trainerId)});
         db.close();
         return rows > 0;
@@ -158,182 +192,206 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int countTrainees(long trainerId) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery(
-                "SELECT COUNT(*) FROM User WHERE trainerID = ?",
+        Cursor c = db.rawQuery("SELECT COUNT(*) FROM User WHERE trainerID = ?",
                 new String[]{String.valueOf(trainerId)});
-        int count = 0;
-        if (c.moveToFirst()) count = c.getInt(0);
+        int cnt = c.moveToFirst() ? c.getInt(0) : 0;
         c.close();
-        db.close();
-        return count;
-    }
-    @SuppressLint("Range")
-    public long login(String email, String password) {
-        // returns -1 if invalid. returns userID if valid.
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM User WHERE email=?",new String[]{email});
-        if (result.getCount()==0) { // user with given email address does not exist
-            result.close();
-            return -1;
-        }
-        result.moveToFirst();
-        String hashedPassword = result.getString(result.getColumnIndex("passwordHash"));
-        if (!hashPassword(password).equals(hashedPassword)) { // passwords must be equal
-            result.close();
-            return -1;
-        }
-        else {
-            long id = result.getLong(result.getColumnIndex("userID"));
-            result.close();
-            return id;
-        }
+        return cnt;
     }
 
-    public boolean isTrainer(long userID) { // check whether user is trainer. assumes valid user id.
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM User WHERE userID=?",new String[]{String.valueOf(userID)});
-        result.moveToFirst();
-        @SuppressLint("Range") boolean trainer = result.getInt(result.getColumnIndex("isTrainer"))==1;
-        result.close();
-        return trainer;
-    }
-
+    /* ====================== Weight ====================== */
     public boolean addWeightSnapshot(long trainee, int weight) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("traineeID",trainee);
-        values.put("weight",weight);
-        values.put("time", System.currentTimeMillis());
-        long r = sqLiteDatabase.insert("WeightSnapshot",null,values);
-        sqLiteDatabase.close();
-        return r>0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("traineeID", trainee);
+        cv.put("weight", weight);
+        cv.put("time", System.currentTimeMillis());
+        long r = db.insert("WeightSnapshot", null, cv);
+        db.close();
+        return r > 0;
     }
 
-    private static String hashPassword(String password) { // we don't want to store the password raw in the database
-        String normalized = java.text.Normalizer.normalize(password, Normalizer.Form.NFKD);
-        byte[] digest = md.digest(normalized.getBytes(StandardCharsets.UTF_8));
-        return android.util.Base64.encodeToString(digest,0);
+    public int getLatestWeight(long trainee) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT weight FROM WeightSnapshot WHERE traineeID=? ORDER BY time DESC LIMIT 1",
+                new String[]{String.valueOf(trainee)});
+        int w = 0;
+        if (c.moveToFirst()) w = c.getInt(0);
+        c.close();
+        return w;
     }
 
+    /* ====================== Plan 相關 ====================== */
     public boolean addPlan(String exerciseName, String exerciseContent) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COL_EXERCISE_NAME, exerciseName);
-        values.put(COL_EXERCISE_CONTENT, exerciseContent);
-        long r = sqLiteDatabase.insert(TABLE_PLAN, null, values);
-        sqLiteDatabase.close();
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL_EXERCISE_NAME, exerciseName);
+        cv.put(COL_EXERCISE_CONTENT, exerciseContent);
+        long r = db.insert(TABLE_PLAN, null, cv);
+        db.close();
         return r > 0;
     }
 
     public Cursor getAllPlans() {
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        return sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_PLAN, null);
+        return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_PLAN, null);
+    }
+
+    public Cursor getPlanById(long planId) {
+        return this.getReadableDatabase().rawQuery(
+                "SELECT * FROM " + TABLE_PLAN + " WHERE " + COL_PLAN_ID + " = ?",
+                new String[]{String.valueOf(planId)});
     }
 
     public boolean updatePlan(long planId, String exerciseName, String exerciseContent) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COL_EXERCISE_NAME, exerciseName);
-        values.put(COL_EXERCISE_CONTENT, exerciseContent);
-        int r = sqLiteDatabase.update(TABLE_PLAN, values, COL_PLAN_ID + " = ?",
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        if (exerciseName != null) cv.put(COL_EXERCISE_NAME, exerciseName);
+        if (exerciseContent != null) cv.put(COL_EXERCISE_CONTENT, exerciseContent);
+        int r = db.update(TABLE_PLAN, cv, COL_PLAN_ID + " = ?",
                 new String[]{String.valueOf(planId)});
-        sqLiteDatabase.close();
+        db.close();
         return r > 0;
     }
 
     public boolean deletePlan(long planId) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        int r = sqLiteDatabase.delete(TABLE_PLAN, COL_PLAN_ID + " = ?",
-                new String[]{String.valueOf(planId)});
-        sqLiteDatabase.close();
+        SQLiteDatabase db = this.getWritableDatabase();
+        int r = db.delete(TABLE_PLAN, COL_PLAN_ID + " = ?", new String[]{String.valueOf(planId)});
+        db.close();
         return r > 0;
     }
 
-    public boolean addReminder(String remindDate, String remindContent) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COL_REMIND_DATE, remindDate);
-        values.put(COL_REMIND_CONTENT, remindContent);
-        long r = sqLiteDatabase.insert(TABLE_REMIND, null, values);
-        sqLiteDatabase.close();
-        return r > 0;
-    }
-
-    public Cursor getAllReminders() {
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        return sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_REMIND, null);
-    }
-
-    public boolean updateReminder(long remindId, String remindDate, String remindContent) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COL_REMIND_DATE, remindDate);
-        values.put(COL_REMIND_CONTENT, remindContent);
-        int r = sqLiteDatabase.update(TABLE_REMIND, values, COL_REMIND_ID + " = ?",
-                new String[]{String.valueOf(remindId)});
-        sqLiteDatabase.close();
-        return r > 0;
-    }
-
-    public boolean deleteReminder(long remindId) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        int r = sqLiteDatabase.delete(TABLE_REMIND, COL_REMIND_ID + " = ?",
-                new String[]{String.valueOf(remindId)});
-        sqLiteDatabase.close();
-        return r > 0;
-    }
-
-    public Cursor getTraineesByTrainer(long trainerId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery(
-                "SELECT userID, name FROM User WHERE trainerID = ? AND isTrainer = 0",
-                new String[]{String.valueOf(trainerId)}
-        );
-    }
-
-    public Cursor getAllTrainees() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT userID, name FROM User WHERE isTrainer = 0", null);
-    }
-
-    public int getLatestWeight(long traineeId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery(
-                "SELECT weight FROM WeightSnapshot WHERE traineeID = ? ORDER BY time DESC LIMIT 1",
-                new String[]{String.valueOf(traineeId)}
-        );
-        int weight = 0;
-        if (c.moveToFirst()) {
-            weight = c.getInt(0);
-        }
-        c.close();
-        return weight;
-    }
-
-    public Cursor getTraineeDetails(long traineeId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery(
-                "SELECT u.name, u.traineeAge, u.traineeHeight, " +
-                        "(SELECT weight FROM WeightSnapshot WHERE traineeID = u.userID ORDER BY time DESC LIMIT 1) as latestWeight " +
-                        "FROM User u WHERE u.userID = ?",
-                new String[]{String.valueOf(traineeId)}
-        );
-    }
-
+    /* ====================== 指派計畫給學員 ====================== */
     public boolean assignPlanToTrainee(long planId, long traineeId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("planID", planId);
         cv.put("traineeID", traineeId);
         cv.put("assignedDate", getCurrentDateTime());
-
-        long result = db.insert(TABLE_ASSIGNED_PLAN, null, cv);
+        long r = db.insert(TABLE_ASSIGNED_PLAN, null, cv);
         db.close();
-        return result != -1;
+        return r != -1;
     }
 
     private String getCurrentDateTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         return sdf.format(new Date());
+    }
+
+    /* ====================== Reminder（可選） ====================== */
+    public boolean addReminder(String remindDate, String remindContent) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL_REMIND_DATE, remindDate);
+        cv.put(COL_REMIND_CONTENT, remindContent);
+        long r = db.insert(TABLE_REMIND, null, cv);
+        db.close();
+        return r > 0;
+    }
+
+    public Cursor getAllReminders() {
+        return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_REMIND, null);
+    }
+
+    /* ====================== 其他常用方法 ====================== */
+    public String getName(long userID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT name FROM User WHERE userID=?", new String[]{String.valueOf(userID)});
+        c.moveToFirst();
+        String name = c.getString(0);
+        c.close();
+        return name;
+    }
+
+    public boolean setName(long userID, String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("name", name);
+        int r = db.update("User", cv, "userID=?", new String[]{String.valueOf(userID)});
+        db.close();
+        return r > 0;
+    }
+
+    public long getTraineeTrainer(long userID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT trainerID FROM User WHERE userID=?", new String[]{String.valueOf(userID)});
+        c.moveToFirst();
+        long trainerID = c.isNull(0) ? -1 : c.getLong(0);
+        c.close();
+        return trainerID;
+    }
+
+    public boolean setTraineeTrainer(long userID, long trainerID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("trainerID", trainerID);
+        int r = db.update("User", cv, "userID=?", new String[]{String.valueOf(userID)});
+        db.close();
+        return r > 0;
+    }
+
+    public int getTraineeHeight(long trainee) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT traineeHeight FROM User WHERE userID=?", new String[]{String.valueOf(trainee)});
+        c.moveToFirst();
+        int h = c.getInt(0);
+        c.close();
+        return h;
+    }
+
+    public boolean setTraineeHeight(long trainee, int height) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("traineeHeight", height);
+        int r = db.update("User", cv, "userID=?", new String[]{String.valueOf(trainee)});
+        db.close();
+        return r > 0;
+    }
+
+    public int getTraineeAge(long trainee) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT traineeAge FROM User WHERE userID=?", new String[]{String.valueOf(trainee)});
+        c.moveToFirst();
+        int age = c.getInt(0);
+        c.close();
+        return age;
+    }
+
+    public boolean setTraineeAge(long trainee, int age) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("traineeAge", age);
+        int r = db.update("User", cv, "userID=?", new String[]{String.valueOf(trainee)});
+        db.close();
+        return r > 0;
+    }
+
+    public Cursor listViewTrainers() {
+        return this.getReadableDatabase()
+                .rawQuery("SELECT userID AS _id, userID, name, email, trainerSpecialization FROM User WHERE isTrainer=1 ORDER BY name", null);
+    }
+
+    public Cursor getTraineesByTrainer(long trainerId) {
+        return this.getReadableDatabase().rawQuery(
+                "SELECT userID AS _id, userID, name FROM User WHERE trainerID = ? AND isTrainer = 0",
+                new String[]{String.valueOf(trainerId)});
+    }
+
+    /* ====================== 密碼雜湊 ====================== */
+    private static String hashPassword(String password) {
+        String normalized = Normalizer.normalize(password, Normalizer.Form.NFKD);
+        byte[] digest = md.digest(normalized.getBytes(StandardCharsets.UTF_8));
+        return android.util.Base64.encodeToString(digest, android.util.Base64.NO_WRAP);
+    }
+
+    public Cursor getAllTrainees() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT userID AS _id, * FROM User WHERE isTrainer = 0";
+        return db.rawQuery(query, null);
+    }
+
+    public Cursor getTraineeDetails(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM User WHERE userID = ?";
+        return db.rawQuery(query, new String[]{String.valueOf(id)});
     }
 }

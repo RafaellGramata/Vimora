@@ -23,6 +23,7 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
     private ListView listViewTrainees;
+    private long currentTrainerId;
     private long planId;
     private ArrayList<Long> traineeIds;
     private ArrayList<String> traineeNames;
@@ -33,18 +34,21 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         dbHelper = new DatabaseHelper(this);
         setContentView(R.layout.activity_trainer_plan3);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.listViewTrainees), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        planId = getIntent().getLongExtra("planId", -1);
+        Intent intent = getIntent();
+        planId = intent.getLongExtra("planId", -1);
+        currentTrainerId = intent.getLongExtra("userID", -1);
+
         if (planId == -1) {
             finish();
             return;
         }
 
-        ListView listViewTrainees = findViewById(R.id.listViewTrainees);
+        listViewTrainees = findViewById(R.id.listViewTrainees);
 
         traineeIds = new ArrayList<>();
         traineeNames = new ArrayList<>();
@@ -53,8 +57,11 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
         btnBack2.setOnClickListener(v -> finish());
 
         ImageButton btnReminder = findViewById(R.id.btnReminder);
-        btnReminder.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity2.class)));
+        btnReminder.setOnClickListener(v -> {
+            Intent i = new Intent(this, TrainerProfileActivity2.class);
+            i.putExtra("userID", currentTrainerId);
+            startActivity(i);
+        });
 
         ImageButton btnSave2 = findViewById(R.id.btnSave2);
         btnSave2.setOnClickListener(v -> {
@@ -70,36 +77,48 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
             }
         });
 
+
         Button btnProfileOfProfile1 = findViewById(R.id.btnProfileOfProfile1);
-        btnProfileOfProfile1.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity1.class)));
+        btnProfileOfProfile1.setOnClickListener(v -> {
+            Intent i = new Intent(this, TrainerProfileActivity1.class);
+            i.putExtra("userID", currentTrainerId);
+            startActivity(i);
+        });
 
         Button btnTrackOfProfile1 = findViewById(R.id.btnTrackOfProfile1);
-        btnTrackOfProfile1.setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerTrackActivity.class)));
+        btnTrackOfProfile1.setOnClickListener(v -> {
+            Intent i = new Intent(this, TrainerProfileActivity1.class);
+            i.putExtra("userID", currentTrainerId);
+            startActivity(i);
+        });
 
         loadTrainees();
-        setupButtons();
     }
 
 
     private void loadTrainees() {
         Cursor cursor = dbHelper.getAllTrainees();
+
         traineeIds.clear();
         traineeNames.clear();
 
-        while (cursor.moveToNext()) {
-            long id = cursor.getLong(cursor.getColumnIndexOrThrow("userID"));
-            String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
-            traineeIds.add(id);
-            traineeNames.add(name + "\nTrainee");
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                try {
+                    long id = cursor.getLong(cursor.getColumnIndexOrThrow("userID"));
+                    String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                    traineeIds.add(id);
+                    traineeNames.add(name + "\nTrainee");
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                }
+            }
+            cursor.close();
         }
-        cursor.close();
 
         listViewTrainees.setAdapter(new android.widget.ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_single_choice, traineeNames));
-    }
-    private void setupButtons() {
 
+        listViewTrainees.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 }

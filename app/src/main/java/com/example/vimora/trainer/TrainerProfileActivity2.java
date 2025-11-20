@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,9 +42,15 @@ public class TrainerProfileActivity2 extends AppCompatActivity {
             return insets;
         });
 
-        SharedPreferences pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        currentTrainerId = pref.getLong(KEY_TRAINER_ID, -1);
+        Intent intent = getIntent();
+        currentTrainerId = intent.getLongExtra("userID", -1);
         if (currentTrainerId == -1) {
+            SharedPreferences pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+            currentTrainerId = pref.getLong(KEY_TRAINER_ID, -1);
+        }
+
+        if (currentTrainerId == -1) {
+            Toast.makeText(this, "User ID missing", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -61,16 +68,25 @@ public class TrainerProfileActivity2 extends AppCompatActivity {
 
     private void setupButtons() {
         findViewById(R.id.btnReminder).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity2.class)));
-
-        findViewById(R.id.toTrainerProfile1).setOnClickListener(v ->
                 startActivity(new Intent(this, TrainerProfileActivity1.class)));
 
-        findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerTrackActivity.class)));
+        findViewById(R.id.toTrainerProfile1).setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerProfileActivity1.class);
+            intent.putExtra("userID", currentTrainerId); // 帶上 ID
+            startActivity(intent);
+        });
 
-        findViewById(R.id.btnPlanOfProfile1).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerPlanActivity1.class)));
+        findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerTrackActivity.class);
+            intent.putExtra("userID", currentTrainerId); // 帶上 ID
+            startActivity(intent);
+        });
+
+        findViewById(R.id.btnPlanOfProfile1).setOnClickListener(v -> {
+            Intent intent = new Intent(this, TrainerPlanActivity1.class);
+            intent.putExtra("userID", currentTrainerId); // 帶上 ID
+            startActivity(intent);
+        });
     }
 
     private void loadTraineeData() {

@@ -35,24 +35,33 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_trainer_profile1);
         dbHelper = new DatabaseHelper(this);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> { // 注意：請確認 tvName ID 是否存在於 xml，若無可改用 main
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        SharedPreferences pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        currentTrainerId = pref.getLong(KEY_TRAINER_ID, -1);
+        Intent intent = getIntent();
+        currentTrainerId = intent.getLongExtra("userID", -1);
         if (currentTrainerId == -1) {
-            Toast.makeText(this, "Please log in!", Toast.LENGTH_SHORT).show();
+            SharedPreferences pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+            currentTrainerId = pref.getLong(KEY_TRAINER_ID, -1);
+        }
+
+        if (currentTrainerId == -1) {
+            Toast.makeText(this, "User ID not found, please log in again.", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
-        EditText etSpec = findViewById(R.id.inputTrainerSpec);
-        EditText etName = findViewById(R.id.outputTraineeName);
-        EditText etHandleNum = findViewById(R.id.inputHandleNum);
-        EditText etAbout = findViewById(R.id.inputTrainerInfo);
+        SharedPreferences pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        pref.edit().putLong(KEY_TRAINER_ID, currentTrainerId).apply();
+
+        etSpec = findViewById(R.id.inputTrainerSpec);
+        etName = findViewById(R.id.outputTraineeName);
+        etHandleNum = findViewById(R.id.inputHandleNum);
+        etAbout = findViewById(R.id.inputTrainerInfo);
         TextView tvTraineeCount = findViewById(R.id.outputAssignNum);
         tvTraineeCount.setEnabled(false);
 
@@ -65,6 +74,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TrainerProfileActivity1.this, TrainerProfileActivity2.class);
+                intent.putExtra("userID", currentTrainerId);
                 startActivity(intent);
             }
         });
@@ -73,6 +83,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TrainerProfileActivity1.this, TrainerProfileActivity2.class);
+                intent.putExtra("userID", currentTrainerId);
                 startActivity(intent);
             }
         });
@@ -81,6 +92,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TrainerProfileActivity1.this, TrainerTrackActivity.class);
+                intent.putExtra("userID", currentTrainerId);
                 startActivity(intent);
             }
         });
@@ -89,16 +101,21 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TrainerProfileActivity1.this, TrainerPlanActivity1.class);
+                intent.putExtra("userID", currentTrainerId);
                 startActivity(intent);
             }
         });
 
         Cursor c = dbHelper.getTrainerProfile(currentTrainerId);
         if (c.moveToFirst()) {
+            try {
             etName.setText(c.getString(c.getColumnIndexOrThrow("name")));
             etSpec.setText(c.getString(c.getColumnIndexOrThrow("trainerSpecialization")));
             etHandleNum.setText(String.valueOf(c.getInt(c.getColumnIndexOrThrow("trainerHandleNum"))));
             etAbout.setText(c.getString(c.getColumnIndexOrThrow("trainerAbout")));
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
         }
         c.close();
 
@@ -109,16 +126,23 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
 
 
     private void saveProfile() {
+
+        if (etName == null || etSpec == null || etAbout == null || etHandleNum == null) {
+            return;
+        }
         String name   = etName.getText().toString().trim();
         String spec   = etSpec.getText().toString().trim();
         String about  = etAbout.getText().toString().trim();
+        String handleStr = etHandleNum.getText().toString().trim();
 
         int handleNum = 0;
-        try {
-            handleNum = Integer.parseInt(etHandleNum.getText().toString().trim());
-        } catch (NumberFormatException e) {
-            Toast.makeText(this, "Handle Number should be a number", Toast.LENGTH_SHORT).show();
-            return;
+        if (!handleStr.isEmpty()) {
+            try {
+                handleNum = Integer.parseInt(handleStr);
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Invalid Handle Number", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
 
         boolean success = dbHelper.updateTrainerProfile(
