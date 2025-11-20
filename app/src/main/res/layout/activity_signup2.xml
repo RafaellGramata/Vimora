@@ -14,8 +14,8 @@
         android:layout_width="0dp"
         android:layout_height="583dp"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="148dp"
         android:layout_marginEnd="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:id="@+id/signupLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="48dp"
         android:text="Join the Vimora family!"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imgLoginBack" />
 
     <TextView
         android:id="@+id/signupAgeLabel"
@@ -62,12 +62,12 @@
         android:id="@+id/signupNext"
         android:layout_width="120dp"
         android:layout_height="72dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="68dp"
         android:contentDescription="@string/signupSubmitDesc"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittxtWeight"
         app:srcCompat="@drawable/signup" />
 
     <TextView
@@ -85,51 +85,48 @@
         android:id="@+id/edittxtWeight"
         android:layout_width="300dp"
         android:layout_height="48dp"
+        android:layout_marginTop="32dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="@string/inputWeight"
         android:inputType="number"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739" />
+        app:layout_constraintTop_toBottomOf="@+id/edittxtHeight" />
 
     <EditText
         android:id="@+id/edittxtAge"
         android:layout_width="300dp"
         android:layout_height="48dp"
+        android:layout_marginTop="128dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="Age"
         android:inputType="number"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.465" />
+        app:layout_constraintTop_toTopOf="@+id/imgLoginBack" />
 
     <EditText
         android:id="@+id/edittxtHeight"
         android:layout_width="300dp"
         android:layout_height="48dp"
+        android:layout_marginTop="32dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="@string/inputHeight"
         android:inputType="number"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.597" />
+        app:layout_constraintTop_toBottomOf="@+id/edittxtAge" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
