@@ -376,6 +376,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(trainerId)});
     }
 
+    public int getTraineeCount(long trainerID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT COUNT(*) FROM User WHERE trainerID=?",new String[]{Long.toString(trainerID)});
+        c.moveToFirst();
+        int count = c.getInt(0);
+        c.close();
+        return count;
+    }
+
     /* ====================== 密碼雜湊 ====================== */
     private static String hashPassword(String password) {
         String normalized = Normalizer.normalize(password, Normalizer.Form.NFKD);
