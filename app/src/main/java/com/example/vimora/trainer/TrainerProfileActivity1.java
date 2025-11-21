@@ -36,7 +36,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         setContentView(R.layout.activity_trainer_profile1);
         dbHelper = new DatabaseHelper(this);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> { // 注意：請確認 tvName ID 是否存在於 xml，若無可改用 main
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -73,7 +73,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         btnReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TrainerProfileActivity1.this, TrainerProfileActivity2.class);
+                Intent intent = new Intent(TrainerProfileActivity1.this, TrainerReminder1.class);
                 intent.putExtra("userID", currentTrainerId);
                 startActivity(intent);
             }

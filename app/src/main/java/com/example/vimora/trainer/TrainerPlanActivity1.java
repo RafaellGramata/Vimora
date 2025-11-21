@@ -64,7 +64,7 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
 
         ImageButton btnReminder = findViewById(R.id.btnReminder);
         btnReminder.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerProfileActivity2.class);
+            Intent intent = new Intent(this, TrainerReminder1.class);
             intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
@@ -78,42 +78,42 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
 
         Button btnTrackOfProfile1 = findViewById(R.id.btnTrackOfProfile1);
         btnTrackOfProfile1.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerProfileActivity1.class);
+            Intent intent = new Intent(this, TrainerTrackActivity.class);
             intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
 
         Button btnPlanOfProfile1 = findViewById(R.id.btnPlanOfProfile1);
         btnPlanOfProfile1.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerPlanActivity1.class);
+            loadExercises();
+        });
+
+        btnAdd.setOnClickListener(v -> showAddDialog());
+        listViewExercises.setOnItemClickListener((parent, view, position, id) -> {
+            long planId = exerciseIds.get(position);
+
+            Intent intent = new Intent(TrainerPlanActivity1.this, TrainerPlanActivity2.class);
+            intent.putExtra("planId", planId);
             intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
 
-        btnAdd.setOnClickListener(v -> showAddDialog());
         listViewExercises.setOnItemLongClickListener((parent, view, position, id) -> {
             long planId = exerciseIds.get(position);
             String name = exerciseNames.get(position);
 
-            new AlertDialog.Builder(this)
-                    .setTitle("Delete")
-                    .setMessage("Delete \"" + name + "\"?")
-                    .setPositiveButton("Yes", (d, w) -> {
+            new AlertDialog.Builder(TrainerPlanActivity1.this)
+                    .setTitle("Delete Plan")
+                    .setMessage("Sure for deleting paln \"" + name + "\"？")
+                    .setPositiveButton("Delete", (d, w) -> {
                         dbHelper.deletePlan(planId);
                         loadExercises();
-                        Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TrainerPlanActivity1.this, "Have deleted", Toast.LENGTH_SHORT).show();
                     })
-                    .setNegativeButton("No", null)
+                    .setNegativeButton("Cancel", null)
                     .show();
-            return true;
-        });
 
-        listViewExercises.setOnItemClickListener((parent, view, position, id) -> {
-            long planId = exerciseIds.get(position);
-            Intent intent = new Intent(this, TrainerPlanActivity2.class);
-            intent.putExtra("planId", planId);
-            intent.putExtra("userID", currentTrainerId);
-            startActivity(intent);
+            return true;
         });
 
         loadExercises();
@@ -184,7 +184,7 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
                 .setPositiveButton("Add", (dialog, which) -> {
                     String name = input.getText().toString().trim();
                     if (!name.isEmpty()) {
-                        if (dbHelper.addPlan(name, "")) { // content 留空，之後編輯
+                        if (dbHelper.addPlan(name, "")) {
                             loadExercises();
                             Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show();
                         }

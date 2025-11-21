@@ -27,21 +27,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 6;   // 你的原始版本號
+    private static final int DATABASE_VERSION = 7;
 
-    // Plan Table
+
     private static final String TABLE_PLAN = "PlanTable";
     private static final String COL_PLAN_ID = "PlanID";
     private static final String COL_EXERCISE_NAME = "ExerciseName";
     private static final String COL_EXERCISE_CONTENT = "ExerciseContent";
 
-    // Reminder Table (可選)
-    private static final String TABLE_REMIND = "RemindTable";
-    private static final String COL_REMIND_ID = "RemindID";
-    private static final String COL_REMIND_DATE = "RemindDate";
-    private static final String COL_REMIND_CONTENT = "RemindContent";
 
-    // AssignedPlan Table
+    private static final String TABLE_REMIND = "RemindTable";
+    private static final String TABLE_EXERCISE_ITEM = "ExerciseItem";
+    private static final String COL_ITEM_ID = "ItemID";
+    private static final String COL_PLAN_ID_FK = "PlanID";
+    private static final String COL_EXERCISE_NAME_ITEM = "ExerciseName";
+    private static final String COL_SETS = "Sets";
+    private static final String COL_REPS = "Reps";
+    private static final String COL_REST_MINUTES = "RestMinutes";
+    private static final String COL_ORDER_INDEX = "OrderIndex";
+
+
     private static final String TABLE_ASSIGNED_PLAN = "AssignedPlan";
 
     public DatabaseHelper(@Nullable Context context) {
@@ -56,7 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // User 表（已包含所有欄位）
+
         db.execSQL("CREATE TABLE User (" +
                 "userID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT NOT NULL, " +
@@ -79,16 +84,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "weight INTEGER," +
                 "FOREIGN KEY (traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
 
-        // 三張新表
+
         db.execSQL("CREATE TABLE " + TABLE_PLAN + " (" +
                 COL_PLAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_EXERCISE_NAME + " TEXT NOT NULL," +
                 COL_EXERCISE_CONTENT + " TEXT NOT NULL)");
 
-        db.execSQL("CREATE TABLE " + TABLE_REMIND + " (" +
-                COL_REMIND_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COL_REMIND_DATE + " TEXT NOT NULL," +
-                COL_REMIND_CONTENT + " TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE Reminder (" +
+                "RemindID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "trainerID INTEGER, " +
+                "traineeID INTEGER, " +
+                "time INTEGER, " +
+                "message TEXT, " +
+                "FOREIGN KEY(trainerID) REFERENCES User(userID), " +
+                "FOREIGN KEY(traineeID) REFERENCES User(userID))");
 
         db.execSQL("CREATE TABLE " + TABLE_ASSIGNED_PLAN + " (" +
                 "assignmentID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -97,6 +106,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "assignedDate TEXT NOT NULL, " +
                 "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
+
+        db.execSQL("CREATE TABLE " + TABLE_EXERCISE_ITEM + " (" +
+                COL_ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_PLAN_ID_FK + " INTEGER NOT NULL, " +
+                COL_EXERCISE_NAME_ITEM + " TEXT NOT NULL, " +
+                COL_SETS + " INTEGER DEFAULT 0, " +
+                COL_REPS + " INTEGER DEFAULT 0, " +
+                COL_REST_MINUTES + " INTEGER DEFAULT 0, " +
+                COL_ORDER_INDEX + " INTEGER DEFAULT 0, " +
+                "FOREIGN KEY(" + COL_PLAN_ID_FK + ") REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE)");
     }
 
     @Override
@@ -110,10 +129,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COL_PLAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_EXERCISE_NAME + " TEXT NOT NULL," +
                     COL_EXERCISE_CONTENT + " TEXT NOT NULL)");
-            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_REMIND + " (" +
-                    COL_REMIND_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    COL_REMIND_DATE + " TEXT NOT NULL," +
-                    COL_REMIND_CONTENT + " TEXT NOT NULL)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS Reminder (" +
+                    "RemindID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "trainerID INTEGER, " +
+                    "traineeID INTEGER, " +
+                    "time INTEGER, " +
+                    "message TEXT, " +
+                    "FOREIGN KEY(trainerID) REFERENCES User(userID), " +
+                    "FOREIGN KEY(traineeID) REFERENCES User(userID))");
             db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_ASSIGNED_PLAN + " (" +
                     "assignmentID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "planID INTEGER NOT NULL, " +
@@ -122,10 +145,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
         }
-        // 如之後還有新欄位再繼續加 if (oldVersion < X) {}
+        if (oldVersion < 7) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_EXERCISE_ITEM + " (" +
+                    COL_ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COL_PLAN_ID_FK + " INTEGER NOT NULL, " +
+                    COL_EXERCISE_NAME_ITEM + " TEXT NOT NULL, " +
+                    COL_SETS + " INTEGER DEFAULT 0, " +
+                    COL_REPS + " INTEGER DEFAULT 0, " +
+                    COL_REST_MINUTES + " INTEGER DEFAULT 0, " +
+                    COL_ORDER_INDEX + " INTEGER DEFAULT 0, " +
+                    "FOREIGN KEY(" + COL_PLAN_ID_FK + ") REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE)");
+        }
+
     }
 
-    /* ====================== 註冊 & 登入 ====================== */
+
     public boolean signUp(String name, String phone, String email, String password, boolean isTrainer,
                           int height, int weight, int age) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -169,7 +203,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    /* ====================== Trainer Profile ====================== */
+
     public boolean updateTrainerProfile(long trainerId, String name, String specialization,
                                         int handleNum, String about) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -199,7 +233,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cnt;
     }
 
-    /* ====================== Weight ====================== */
+
     public boolean addWeightSnapshot(long trainee, int weight) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -221,7 +255,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return w;
     }
 
-    /* ====================== Plan 相關 ====================== */
+
     public boolean addPlan(String exerciseName, String exerciseContent) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -260,7 +294,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return r > 0;
     }
 
-    /* ====================== 指派計畫給學員 ====================== */
+
     public boolean assignPlanToTrainee(long planId, long traineeId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -277,22 +311,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sdf.format(new Date());
     }
 
-    /* ====================== Reminder（可選） ====================== */
-    public boolean addReminder(String remindDate, String remindContent) {
+    public boolean addReminder(long trainerId, long traineeId, String message) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COL_REMIND_DATE, remindDate);
-        cv.put(COL_REMIND_CONTENT, remindContent);
-        long r = db.insert(TABLE_REMIND, null, cv);
+        cv.put("trainerID", trainerId);
+        cv.put("traineeID", traineeId);
+        cv.put("time", System.currentTimeMillis());
+        cv.put("message", message);
+        long result = db.insert("Reminder", null, cv);
         db.close();
-        return r > 0;
+        return result != -1;
+    }
+
+    public Cursor getRemindersForTrainee(long traineeId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery(
+                "SELECT r.*, u.name AS trainerName FROM Reminder r " +
+                        "LEFT JOIN User u ON r.trainerID = u.userID " +
+                        "WHERE r.traineeID = ? ORDER BY r.time DESC",
+                new String[]{String.valueOf(traineeId)}
+        );
     }
 
     public Cursor getAllReminders() {
         return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_REMIND, null);
     }
 
-    /* ====================== 其他常用方法 ====================== */
     public String getName(long userID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT name FROM User WHERE userID=?", new String[]{String.valueOf(userID)});
@@ -371,12 +415,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getTraineesByTrainer(long trainerId) {
-        return this.getReadableDatabase().rawQuery(
-                "SELECT userID AS _id, userID, name FROM User WHERE trainerID = ? AND isTrainer = 0",
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery(
+                "SELECT userID AS _id, userID, name FROM User WHERE trainerID = ? AND isTrainer = 0 ORDER BY name",
                 new String[]{String.valueOf(trainerId)});
     }
 
-    /* ====================== 密碼雜湊 ====================== */
     private static String hashPassword(String password) {
         String normalized = Normalizer.normalize(password, Normalizer.Form.NFKD);
         byte[] digest = md.digest(normalized.getBytes(StandardCharsets.UTF_8));
@@ -393,5 +437,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM User WHERE userID = ?";
         return db.rawQuery(query, new String[]{String.valueOf(id)});
+    }
+
+    public long addExerciseItem(long planId, String exerciseName, int sets, int reps, int restMinutes, int orderIndex) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL_PLAN_ID_FK, planId);
+        cv.put(COL_EXERCISE_NAME_ITEM, exerciseName);
+        cv.put(COL_SETS, sets);
+        cv.put(COL_REPS, reps);
+        cv.put(COL_REST_MINUTES, restMinutes);
+        cv.put(COL_ORDER_INDEX, orderIndex);
+        long id = db.insert(TABLE_EXERCISE_ITEM, null, cv);
+        db.close();
+        return id;
+    }
+
+    public Cursor getExerciseItemsByPlanId(long planId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery(
+                "SELECT * FROM " + TABLE_EXERCISE_ITEM +
+                        " WHERE " + COL_PLAN_ID_FK + " = ? ORDER BY " + COL_ORDER_INDEX + " ASC",
+                new String[]{String.valueOf(planId)}
+        );
+    }
+
+    public boolean updateExerciseItem(long itemId, String name, int sets, int reps, int restMinutes) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL_EXERCISE_NAME_ITEM, name);
+        cv.put(COL_SETS, sets);
+        cv.put(COL_REPS, reps);
+        cv.put(COL_REST_MINUTES, restMinutes);
+        int rows = db.update(TABLE_EXERCISE_ITEM, cv, COL_ITEM_ID + " = ?", new String[]{String.valueOf(itemId)});
+        db.close();
+        return rows > 0;
     }
 }

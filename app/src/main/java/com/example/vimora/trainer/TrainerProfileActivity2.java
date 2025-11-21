@@ -68,23 +68,23 @@ public class TrainerProfileActivity2 extends AppCompatActivity {
 
     private void setupButtons() {
         findViewById(R.id.btnReminder).setOnClickListener(v ->
-                startActivity(new Intent(this, TrainerProfileActivity1.class)));
+                startActivity(new Intent(this, TrainerReminder1.class)));
 
         findViewById(R.id.toTrainerProfile1).setOnClickListener(v -> {
             Intent intent = new Intent(this, TrainerProfileActivity1.class);
-            intent.putExtra("userID", currentTrainerId); // 帶上 ID
+            intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
 
         findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v -> {
             Intent intent = new Intent(this, TrainerTrackActivity.class);
-            intent.putExtra("userID", currentTrainerId); // 帶上 ID
+            intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
 
         findViewById(R.id.btnPlanOfProfile1).setOnClickListener(v -> {
             Intent intent = new Intent(this, TrainerPlanActivity1.class);
-            intent.putExtra("userID", currentTrainerId); // 帶上 ID
+            intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
     }

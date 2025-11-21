@@ -135,7 +135,7 @@ public class TraineeProfileActivity extends AppCompatActivity {
         btnReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newIntent = new Intent(TraineeProfileActivity.this, TraineeRemindActivity.class);
+                Intent newIntent = new Intent(TraineeProfileActivity.this, TraineeRemindActivity02.class);
                 newIntent.putExtra("userID",userID);
                 startActivity(newIntent);
             }

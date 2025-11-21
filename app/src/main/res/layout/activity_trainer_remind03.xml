@@ -6,14 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
-    tools:context=".trianee.TraineeRemindActivity">
+    tools:context=".trainer.TrainerReminder3">
 
     <ImageView
         android:id="@+id/reminderBack"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="112dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/reminderbackground" />
@@ -22,36 +21,49 @@
         android:id="@+id/txtReminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginBottom="548dp"
         android:text="Notifications"
         android:textColor="#000000"
         android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reminderBack" />
-
-    <ImageButton
-        android:id="@+id/btnCloseOfReminder"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="56dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="back"
-        android:scaleType="fitCenter"
-        android:src="@drawable/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ListView
-        android:id="@+id/traineeListOfRemind"
-        android:layout_width="274dp"
-        android:layout_height="368dp"
-        android:layout_marginTop="32dp"
+    <TextView
+        android:id="@+id/readReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="492dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/readReminderContent"
+        android:layout_width="270dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/black"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtReminder" />
+        app:layout_constraintTop_toBottomOf="@+id/readReminder" />
+
+    <ImageButton
+        android:id="@+id/btnCloseOfReminder"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="52dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="close"
+        android:scaleType="fitCenter"
+        android:src="@drawable/close"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

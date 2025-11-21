@@ -11,22 +11,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vimora">
-
-         <activity
+        <activity
+            android:name=".trainer.TrainerReminder3"
+            android:exported="false" />
+        <activity
+            android:name=".trainer.TrainerReminder1"
+            android:exported="false" />
+        <activity
+            android:name=".trainer.TrainerReminder2"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity android:name=".SignupActivity" />
-        <activity android:name=".Signup2Activity" android:exported="false" />
-        <activity android:name=".WelcomeActivity" android:exported="true" />
+        <activity
+            android:name=".Signup2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="true" />
         <activity android:name=".LoginActivity" />
-
         <activity
             android:name=".trainer.TrainerPlanActivity1"
             android:exported="true"
@@ -49,8 +59,6 @@
         <activity
             android:name=".trainer.TrainerTrackActivity"
             android:exported="true" />
-
-
         <activity
             android:name=".trainee.TraineeLoginActivity"
             android:exported="true" />
@@ -64,7 +72,10 @@
             android:name=".trainee.TraineePlanActivity01"
             android:exported="true" />
         <activity
-            android:name=".trainee.TraineeRemindActivity"
+            android:name=".trainee.TraineeRemindActivity01"
+            android:exported="false" />
+        <activity
+            android:name=".trainee.TraineeRemindActivity02"
             android:exported="true" />
         <activity
             android:name=".trainee.TraineeTrackActivity01"
@@ -81,7 +92,6 @@
         <activity
             android:name=".trainee.TraineeTrackActivity01$TraineeTrackActivity00"
             android:exported="true" />
-
     </application>
 
 </manifest>

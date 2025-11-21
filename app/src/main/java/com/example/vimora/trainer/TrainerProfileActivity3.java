@@ -60,7 +60,7 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
     private void setupButtons() {
         findViewById(R.id.toTrainerProfile2).setOnClickListener(v -> finish());
         findViewById(R.id.btnReminder).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerProfileActivity2.class);
+            Intent intent = new Intent(this, TrainerReminder1.class);
             intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
