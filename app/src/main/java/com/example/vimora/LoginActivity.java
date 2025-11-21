@@ -9,9 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.vimora.trainee.TraineePlanActivity01;
 import com.example.vimora.trainee.TraineeProfileActivity;
-import com.example.vimora.trainer.TrainerPlanActivity1;
 import com.example.vimora.trainer.TrainerProfileActivity1;
 
 
@@ -24,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         TextView txtemail = findViewById(R.id.edittxtEmail);
         TextView txtpassword = findViewById(R.id.edittxtPassword);
-        ImageView buttonLogin = findViewById(R.id.imageButton2);
+        ImageView buttonLogin = findViewById(R.id.btnLogIn);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

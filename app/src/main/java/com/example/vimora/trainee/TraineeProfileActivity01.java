@@ -1,10 +1,13 @@
 package com.example.vimora.trainee;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +20,7 @@ import com.example.vimora.R;
 
 public class TraineeProfileActivity01 extends AppCompatActivity {
     DatabaseHelper databaseHelper;
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,15 +40,36 @@ public class TraineeProfileActivity01 extends AppCompatActivity {
         ImageButton btnChoose = findViewById(R.id.btnChoose);
         ImageButton btnBack = findViewById(R.id.btnBack);
         TextView txtName = findViewById(R.id.txtName);
-        txtName.setText(databaseHelper.getName(trainerID));
+        TextView txtTrainerName = findViewById(R.id.txtTrainerName);
+        TextView trainerSpecialization = findViewById(R.id.traineeTrainerSpecialization);
+        TextView trainerDescription = findViewById(R.id.traineeTrainerDescription);
+        TextView traineeCount = findViewById(R.id.traineeTrainerCount);
+
+        Cursor trainerProfile = databaseHelper.getTrainerProfile(trainerID);
+        trainerProfile.moveToFirst();
+        String trainerName = trainerProfile.getString(trainerProfile.getColumnIndex("name"));
+        int trainerHandleNum = trainerProfile.getInt(trainerProfile.getColumnIndex("trainerHandleNum"));
+        int trainees = databaseHelper.getTraineeCount(trainerID);
+        boolean trainerCanAcceptTrainees = trainees<trainerHandleNum;
+        txtName.setText(trainerName);
+        txtTrainerName.setText(trainerName); // don't know why we have two of these but here we are
+        trainerSpecialization.setText(trainerProfile.getString(trainerProfile.getColumnIndex("trainerSpecialization")));
+        trainerDescription.setText(trainerProfile.getString(trainerProfile.getColumnIndex("trainerAbout")));
+        traineeCount.setText(trainees+"/"+trainerHandleNum);
 
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseHelper.setTraineeTrainer(userID,trainerID);
-                Intent newIntent = new Intent(TraineeProfileActivity01.this, TraineeProfileActivity.class);
-                newIntent.putExtra("userID",userID);
-                startActivity(newIntent);
+                if (databaseHelper.getTraineeTrainer(userID)==trainerID) {
+                    Toast.makeText(TraineeProfileActivity01.this,"This is already your trainer.",Toast.LENGTH_LONG).show();
+                }
+                else if (trainerCanAcceptTrainees) {
+                    databaseHelper.setTraineeTrainer(userID, trainerID);
+                    Intent newIntent = new Intent(TraineeProfileActivity01.this, TraineeProfileActivity.class);
+                    newIntent.putExtra("userID", userID);
+                    startActivity(newIntent);
+                }
+                else Toast.makeText(TraineeProfileActivity01.this,"Trainer cannot accept more trainees.",Toast.LENGTH_LONG).show();
             }
         });
 

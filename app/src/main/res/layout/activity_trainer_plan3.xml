@@ -9,7 +9,7 @@
     tools:context=".trainer.TrainerProfileActivity1">
 
     <ImageView
-        android:id="@+id/imageTrackBack"
+        android:id="@+id/imageProfileBack"
         android:layout_width="380dp"
         android:layout_height="680dp"
         android:layout_marginTop="88dp"
@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/profile" />
 
     <ImageView
-        android:id="@+id/imagePlanBack"
+        android:id="@+id/imageTrackBack"
         android:layout_width="380dp"
         android:layout_height="680dp"
         android:layout_marginTop="64dp"
@@ -29,11 +29,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
+        app:layout_constraintTop_toTopOf="@+id/imageProfileBack"
         app:srcCompat="@drawable/track" />
 
     <ImageView
-        android:id="@+id/imageprofileBack"
+        android:id="@+id/imagePlanBack"
         android:layout_width="0dp"
         android:layout_height="680dp"
         android:layout_marginStart="15dp"
@@ -43,11 +43,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
         app:srcCompat="@drawable/plan" />
 
     <Button
-        android:id="@+id/btnTrackOfProfile1"
+        android:id="@+id/btnProfileOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -57,10 +57,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
+        app:layout_constraintTop_toTopOf="@+id/imageProfileBack" />
 
     <Button
-        android:id="@+id/btnPlanOfProfile1"
+        android:id="@+id/btnTrackOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -71,10 +71,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
 
     <Button
-        android:id="@+id/btnProfileOfProfile1"
+        android:id="@+id/btnPlanOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -86,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
@@ -112,7 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile1" />
+        app:layout_constraintTop_toBottomOf="@+id/btnPlanOfProfile1" />
 
     <ImageButton
         android:id="@+id/btnBack2"
@@ -122,10 +122,10 @@
         android:background="#00FFFFFF"
         android:contentDescription="back"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile1"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlanOfProfile1"
         app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnProfileOfProfile1"
+        app:layout_constraintTop_toTopOf="@+id/btnPlanOfProfile1"
         app:srcCompat="@drawable/backhome"
         tools:ignore="TouchTargetSizeCheck" />
 
