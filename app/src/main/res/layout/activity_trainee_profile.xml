@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
-    tools:context=".trianee.TraineeProfileActivity">
+    tools:context=".trainee.TraineeProfileActivity">
 
     <ImageView
         android:id="@+id/imageTrackBack"
@@ -237,7 +237,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTraineeNum" />
+        app:layout_constraintTop_toBottomOf="@+id/txtHeight" />
 
     <EditText
         android:id="@+id/editTxtTraineeWeight"
@@ -252,10 +252,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAboutme" />
+        app:layout_constraintTop_toBottomOf="@+id/txtWeight" />
 
     <TextView
-        android:id="@+id/txtAboutme"
+        android:id="@+id/txtWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -270,7 +270,7 @@
         app:layout_constraintVertical_bias="0.522" />
 
     <TextView
-        android:id="@+id/txtTraineeNum"
+        android:id="@+id/txtHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/inputHeight"

@@ -47,7 +47,7 @@
         app:srcCompat="@drawable/profile" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/labelBMI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BMI"
@@ -55,15 +55,15 @@
         app:layout_constraintTop_toBottomOf="@+id/tvHeight" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/labelHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Weight"
+        android:text="Height"
         app:layout_constraintStart_toStartOf="@+id/tvWeight"
         app:layout_constraintTop_toBottomOf="@+id/tvWeight" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/labelAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Age"
@@ -85,7 +85,7 @@
         app:layout_constraintVertical_bias="0.182" />
 
     <TextView
-        android:id="@+id/txtAboutme"
+        android:id="@+id/txtPlan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Exercise Plan"
@@ -95,10 +95,10 @@
         app:layout_constraintTop_toBottomOf="@+id/outputTraineeName" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/labelWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Height"
+        android:text="Weight"
         app:layout_constraintBottom_toTopOf="@+id/tvWeight"
         app:layout_constraintStart_toStartOf="@+id/tvWeight" />
 
@@ -170,10 +170,10 @@
         android:contentDescription="back to profile1"
         android:scaleType="fitCenter"
         android:src="@drawable/backhome"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile1"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlanOfProfile1"
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnProfileOfProfile1"
+        app:layout_constraintTop_toTopOf="@+id/btnPlanOfProfile1"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView

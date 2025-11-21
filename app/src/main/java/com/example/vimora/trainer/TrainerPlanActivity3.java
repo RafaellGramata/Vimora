@@ -85,7 +85,7 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
             startActivity(i);
         });
 
-        Button btnTrackOfProfile1 = findViewById(R.id.btnTrackOfProfile1);
+        Button btnTrackOfProfile1 = findViewById(R.id.btnProfileOfProfile1);
         btnTrackOfProfile1.setOnClickListener(v -> {
             Intent i = new Intent(this, TrainerProfileActivity1.class);
             i.putExtra("userID", currentTrainerId);

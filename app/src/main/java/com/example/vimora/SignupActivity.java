@@ -18,9 +18,9 @@ public class SignupActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
 
         ImageView signupButton = findViewById(R.id.signupNext);
-        TextView name = findViewById(R.id.edittxtAge);
-        TextView phone = findViewById(R.id.edittxtHeight);
-        TextView email = findViewById(R.id.edittxtWeight);
+        TextView name = findViewById(R.id.edittxtName);
+        TextView phone = findViewById(R.id.edittxtPhone);
+        TextView email = findViewById(R.id.edittxtEmailSignup);
         TextView password = findViewById(R.id.edittxtPassword2);
         Spinner trainerTrainee = findViewById(R.id.spnType);
         signupButton.setOnClickListener(v -> {

@@ -117,7 +117,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageTrackBlack"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="230dp"
@@ -128,7 +128,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtInforamtionWork"
+        android:id="@+id/txtInformationWork"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

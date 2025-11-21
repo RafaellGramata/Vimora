@@ -38,6 +38,12 @@
             android:exported="true" />
         <activity android:name=".LoginActivity" />
         <activity
+            android:name=".trainee.TraineeProfileActivity01"
+            android:exported="false" />
+        <activity
+            android:name=".trainee.TraineeListTrainersActivity"
+            android:exported="false" />
+        <activity
             android:name=".trainer.TrainerPlanActivity1"
             android:exported="true"
             android:theme="@style/Theme.Vimora" />
@@ -64,9 +70,6 @@
             android:exported="true" />
         <activity
             android:name=".trainee.TraineeProfileActivity"
-            android:exported="true" />
-        <activity
-            android:name=".trainee.TraineeProfileActivity02"
             android:exported="true" />
         <activity
             android:name=".trainee.TraineePlanActivity01"

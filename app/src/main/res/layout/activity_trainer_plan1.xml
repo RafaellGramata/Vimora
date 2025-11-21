@@ -9,7 +9,7 @@
     tools:context=".trainer.TrainerProfileActivity1">
 
     <ImageView
-        android:id="@+id/imageTrackBack"
+        android:id="@+id/imageProfileBack"
         android:layout_width="380dp"
         android:layout_height="680dp"
         android:layout_marginTop="88dp"
@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/profile" />
 
     <ImageView
-        android:id="@+id/imagePlanBack"
+        android:id="@+id/imageTrackBack"
         android:layout_width="380dp"
         android:layout_height="680dp"
         android:layout_marginTop="64dp"
@@ -29,11 +29,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
+        app:layout_constraintTop_toTopOf="@+id/imageProfileBack"
         app:srcCompat="@drawable/track" />
 
     <ImageView
-        android:id="@+id/imageprofileBack"
+        android:id="@+id/imagePlanBack"
         android:layout_width="0dp"
         android:layout_height="680dp"
         android:layout_marginStart="15dp"
@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
         app:srcCompat="@drawable/plan" />
 
     <EditText
@@ -76,7 +76,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
+        app:layout_constraintTop_toTopOf="@+id/imageProfileBack" />
 
     <Button
         android:id="@+id/btnTrackOfProfile1"
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
 
     <Button
         android:id="@+id/btnPlanOfProfile1"
@@ -105,7 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
