@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/reminderBack" />
 
     <EditText
-        android:id="@+id/editTxtTraineeName"
+        android:id="@+id/txtReminder2"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:layout_marginTop="320dp"
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTxtTraineeName4"
+        android:id="@+id/txtReminder3"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:layout_marginTop="380dp"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTxtTraineeName5"
+        android:id="@+id/txtReminder5"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:layout_marginTop="496dp"
@@ -79,7 +79,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTxtTraineeName6"
+        android:id="@+id/txtReminder4"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:layout_marginTop="440dp"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTxtTraineeName3"
+        android:id="@+id/txtReminder1"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:layout_marginTop="260dp"

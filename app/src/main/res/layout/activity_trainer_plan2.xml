@@ -9,7 +9,7 @@
     tools:context=".trainer.TrainerProfileActivity1">
 
     <ImageView
-        android:id="@+id/imageTrackBack"
+        android:id="@+id/imageProfileBack"
         android:layout_width="380dp"
         android:layout_height="680dp"
         android:layout_marginTop="88dp"
@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/profile" />
 
     <ImageView
-        android:id="@+id/imagePlanBack"
+        android:id="@+id/imageTrackBack"
         android:layout_width="380dp"
         android:layout_height="680dp"
         android:layout_marginTop="64dp"
@@ -29,11 +29,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
+        app:layout_constraintTop_toTopOf="@+id/imageProfileBack"
         app:srcCompat="@drawable/track" />
 
     <ImageView
-        android:id="@+id/imageprofileBack"
+        android:id="@+id/imagePlanBack"
         android:layout_width="0dp"
         android:layout_height="680dp"
         android:layout_marginStart="15dp"
@@ -43,11 +43,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
         app:srcCompat="@drawable/plan" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/txtPlan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -56,11 +56,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnProfileOfProfile1"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlanOfProfile1"
         tools:textSize="14sp" />
 
     <Button
-        android:id="@+id/btnTrackOfProfile1"
+        android:id="@+id/btnProfileOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -70,10 +70,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
+        app:layout_constraintTop_toTopOf="@+id/imageProfileBack" />
 
     <Button
-        android:id="@+id/btnPlanOfProfile1"
+        android:id="@+id/btnTrackOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -84,10 +84,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
 
     <Button
-        android:id="@+id/btnProfileOfProfile1"
+        android:id="@+id/btnPlanOfProfile1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -98,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack" />
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
 
     <ImageButton
         android:id="@+id/btnReminder"
@@ -116,7 +116,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtPlanInstructions"
         android:layout_width="305dp"
         android:layout_height="33dp"
         android:layout_marginTop="24dp"
@@ -125,10 +125,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPlan" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/txtWarmUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -136,11 +136,11 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/txtPlanInstructions"
         tools:textSize="14sp" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/txtStretch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="184dp"
@@ -149,7 +149,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/txtWarmUp"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -160,10 +160,10 @@
         android:background="#00FFFFFF"
         android:contentDescription="back"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile1"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlanOfProfile1"
         app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnProfileOfProfile1"
+        app:layout_constraintTop_toTopOf="@+id/btnPlanOfProfile1"
         app:srcCompat="@drawable/backhome"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -177,7 +177,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/txtStretch"
         app:srcCompat="@drawable/assign" />
 
     <EditText
@@ -188,11 +188,11 @@
         android:hint="  Exercise Plan"
         android:inputType="text"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintBottom_toTopOf="@+id/txtStretch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/txtWarmUp"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="TouchTargetSizeCheck" />
 

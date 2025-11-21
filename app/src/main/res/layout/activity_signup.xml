@@ -11,7 +11,7 @@
     <!-- Decorative / background image -->
 
     <ImageView
-        android:id="@+id/imgLoginBack"
+        android:id="@+id/imgSignupBack"
         android:layout_width="0dp"
         android:layout_height="583dp"
         android:layout_marginStart="14dp"
@@ -35,16 +35,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgLoginBack" />
+        app:layout_constraintTop_toTopOf="@+id/imgSignupBack" />
 
     <TextView
-        android:id="@+id/signupAgeLabel"
+        android:id="@+id/signupNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
         android:text="@string/signupNameLabel"
-        app:layout_constraintBottom_toTopOf="@+id/edittxtAge"
-        app:layout_constraintEnd_toEndOf="@+id/edittxtAge"
+        app:layout_constraintBottom_toTopOf="@+id/edittxtName"
+        app:layout_constraintEnd_toEndOf="@+id/edittxtName"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -60,13 +60,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/signupHeightLabel"
+        android:id="@+id/signupPhoneLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:text="@string/signupPhone"
-        app:layout_constraintBottom_toTopOf="@+id/edittxtHeight"
-        app:layout_constraintEnd_toEndOf="@+id/edittxtHeight"
+        app:layout_constraintBottom_toTopOf="@+id/edittxtPhone"
+        app:layout_constraintEnd_toEndOf="@+id/edittxtPhone"
         app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -83,13 +83,13 @@
         app:srcCompat="@drawable/next" />
 
     <TextView
-        android:id="@+id/signupWeightLabel"
+        android:id="@+id/signupEmailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
         android:text="@string/signupEmail"
-        app:layout_constraintBottom_toTopOf="@+id/edittxtWeight"
-        app:layout_constraintEnd_toEndOf="@+id/edittxtWeight"
+        app:layout_constraintBottom_toTopOf="@+id/edittxtEmailSignup"
+        app:layout_constraintEnd_toEndOf="@+id/edittxtEmailSignup"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -107,7 +107,7 @@
         tools:ignore="TextSizeCheck,VisualLintOverlap" />
 
     <EditText
-        android:id="@+id/edittxtWeight"
+        android:id="@+id/edittxtEmailSignup"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
@@ -120,10 +120,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittxtHeight" />
+        app:layout_constraintTop_toBottomOf="@+id/edittxtPhone" />
 
     <EditText
-        android:id="@+id/edittxtAge"
+        android:id="@+id/edittxtName"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
@@ -139,7 +139,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spnType" />
 
     <EditText
-        android:id="@+id/edittxtHeight"
+        android:id="@+id/edittxtPhone"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
@@ -152,7 +152,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittxtAge" />
+        app:layout_constraintTop_toBottomOf="@+id/edittxtName" />
 
     <EditText
         android:id="@+id/edittxtPassword2"
@@ -168,7 +168,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittxtWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/edittxtEmailSignup" />
 
     <Spinner
         android:id="@+id/spnType"

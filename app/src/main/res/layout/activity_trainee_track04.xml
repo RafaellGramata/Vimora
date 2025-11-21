@@ -118,7 +118,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack6" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageTrackBlack"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="230dp"
@@ -129,7 +129,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtInforamtion2"
+        android:id="@+id/txtInformation2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
@@ -155,7 +155,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/trainerDateMonthly2"
+        android:id="@+id/traineeCaloriesAverage"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
@@ -169,10 +169,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInforamtion2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInformation2" />
 
     <EditText
-        android:id="@+id/trainerCaloriesMonthly2"
+        android:id="@+id/traineeProteinAverage"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -185,10 +185,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainerDateMonthly2" />
+        app:layout_constraintTop_toBottomOf="@+id/traineeCaloriesAverage" />
 
     <EditText
-        android:id="@+id/trainerDurationMonthly2"
+        android:id="@+id/traineeFatAverage"
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -201,6 +201,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainerCaloriesMonthly2" />
+        app:layout_constraintTop_toBottomOf="@+id/traineeProteinAverage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@
     tools:context=".Signup2Activity">
 
     <ImageView
-        android:id="@+id/imgLoginBack"
+        android:id="@+id/imgSignupBack"
         android:layout_width="0dp"
         android:layout_height="583dp"
         android:layout_marginStart="14dp"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgLoginBack" />
+        app:layout_constraintTop_toTopOf="@+id/imgSignupBack" />
 
     <TextView
         android:id="@+id/signupAgeLabel"
@@ -111,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgLoginBack" />
+        app:layout_constraintTop_toTopOf="@+id/imgSignupBack" />
 
     <EditText
         android:id="@+id/edittxtHeight"
