@@ -32,10 +32,12 @@ public class TraineeRemindActivity01 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_trainee_remind01);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        findViewById(R.id.tvName).post(() -> {
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
         });
         db = new DatabaseHelper(this);
         listReminders = findViewById(R.id.listReminders);
@@ -96,7 +98,7 @@ public class TraineeRemindActivity01 extends AppCompatActivity {
         listReminders.setOnItemClickListener((parent, view, position, id) -> {
             Cursor c = (Cursor) parent.getItemAtPosition(position);
 
-            long reminderId = c.getLong(c.getColumnIndexOrThrow("RemindID"));
+            long reminderId = c.getLong(c.getColumnIndexOrThrow("_id"));
             String message = c.getString(c.getColumnIndexOrThrow("message"));
             String trainerName = c.getString(c.getColumnIndexOrThrow("trainerName"));
             long timeMillis = c.getLong(c.getColumnIndexOrThrow("time"));
@@ -106,7 +108,7 @@ public class TraineeRemindActivity01 extends AppCompatActivity {
             String timeStr = DateFormat.format("yyyy-MM-dd HH:mm", cal).toString();
 
             Intent intent = new Intent(TraineeRemindActivity01.this, TraineeRemindActivity02.class);
-            intent.putExtra("reminderId", reminderId);
+            intent.putExtra("_id", reminderId);
             intent.putExtra("message", message);
             intent.putExtra("trainerName", trainerName);
             intent.putExtra("time", timeStr);

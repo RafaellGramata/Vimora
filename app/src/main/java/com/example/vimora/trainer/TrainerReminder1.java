@@ -3,6 +3,7 @@ package com.example.vimora.trainer;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -28,12 +29,15 @@ public class TrainerReminder1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("Test", "Button clicked");
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_trainer_remind01);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        findViewById(R.id.main).post(() -> {
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
         });
 
         db = new DatabaseHelper(this);
@@ -87,7 +91,7 @@ public class TrainerReminder1 extends AppCompatActivity {
             Intent intent = new Intent(TrainerReminder1.this, TrainerReminder2.class);
             intent.putExtra("traineeId", traineeId);
             intent.putExtra("traineeName", traineeName);
-            intent.putExtra("trainerId", currentTrainerId);
+            intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
 

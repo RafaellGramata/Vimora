@@ -114,7 +114,7 @@ public class TraineeProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent newIntent = new Intent(TraineeProfileActivity.this, TraineePlanActivity01.class);
-                newIntent.putExtra("userID",userID);
+                newIntent.putExtra("traineeId",userID);
                 startActivity(newIntent);
             }
         });
@@ -122,7 +122,7 @@ public class TraineeProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent newIntent = new Intent(TraineeProfileActivity.this, TraineeTrackActivity01.class);
-                newIntent.putExtra("userID",userID);
+                newIntent.putExtra("traineeId",userID);
                 startActivity(newIntent);
             }
         });
@@ -135,8 +135,8 @@ public class TraineeProfileActivity extends AppCompatActivity {
         btnReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newIntent = new Intent(TraineeProfileActivity.this, TraineeRemindActivity02.class);
-                newIntent.putExtra("userID",userID);
+                Intent newIntent = new Intent(TraineeProfileActivity.this, TraineeRemindActivity01.class);
+                newIntent.putExtra("traineeId",userID);
                 startActivity(newIntent);
             }
         });
@@ -144,7 +144,7 @@ public class TraineeProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent newIntent = new Intent(TraineeProfileActivity.this, TraineeListTrainersActivity.class);
-                newIntent.putExtra("userID",userID);
+                newIntent.putExtra("traineeId",userID);
                 startActivity(newIntent);
             }
         });

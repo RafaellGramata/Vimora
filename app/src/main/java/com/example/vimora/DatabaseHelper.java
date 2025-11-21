@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 10;
 
 
     private static final String TABLE_PLAN = "PlanTable";
@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_EXERCISE_CONTENT = "ExerciseContent";
 
 
-    private static final String TABLE_REMIND = "RemindTable";
+    private static final String TABLE_REMIND = "Reminder";
     private static final String TABLE_EXERCISE_ITEM = "ExerciseItem";
     private static final String COL_ITEM_ID = "ItemID";
     private static final String COL_PLAN_ID_FK = "PlanID";
@@ -91,7 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_EXERCISE_CONTENT + " TEXT NOT NULL)");
 
         db.execSQL("CREATE TABLE Reminder (" +
-                "RemindID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "trainerID INTEGER, " +
                 "traineeID INTEGER, " +
                 "time INTEGER, " +
@@ -130,7 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COL_EXERCISE_NAME + " TEXT NOT NULL," +
                     COL_EXERCISE_CONTENT + " TEXT NOT NULL)");
             db.execSQL("CREATE TABLE IF NOT EXISTS Reminder (" +
-                    "RemindID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "trainerID INTEGER, " +
                     "traineeID INTEGER, " +
                     "time INTEGER, " +
@@ -155,6 +155,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COL_REST_MINUTES + " INTEGER DEFAULT 0, " +
                     COL_ORDER_INDEX + " INTEGER DEFAULT 0, " +
                     "FOREIGN KEY(" + COL_PLAN_ID_FK + ") REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE)");
+        }
+        if (oldVersion < 8) {
+            db.execSQL("DROP TABLE IF EXISTS Reminder");
+            db.execSQL("CREATE TABLE Reminder (" +
+                    "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "trainerID INTEGER, " +
+                    "traineeID INTEGER, " +
+                    "time INTEGER, " +
+                    "message TEXT, " +
+                    "FOREIGN KEY(trainerID) REFERENCES User(userID), " +
+                    "FOREIGN KEY(traineeID) REFERENCES User(userID))");
+        }
+        if (oldVersion < 10) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS Reminder (" +
+                    "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "trainerID INTEGER, " +
+                    "traineeID INTEGER, " +
+                    "time INTEGER, " +
+                    "message TEXT, " +
+                    "FOREIGN KEY(trainerID) REFERENCES User(userID), " +
+                    "FOREIGN KEY(traineeID) REFERENCES User(userID))");
         }
 
     }

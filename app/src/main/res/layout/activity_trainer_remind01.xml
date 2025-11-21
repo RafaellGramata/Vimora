@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
-    tools:context=".trianee.TraineeRemindActivity">
+    tools:context=".trainee.TraineeRemindActivity01">
 
     <ImageView
         android:id="@+id/reminderBack"
@@ -26,16 +26,17 @@
         android:text="Notifications"
         android:textColor="#000000"
         android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reminderBack" />
+        app:layout_constraintTop_toTopOf="@+id/reminderBack"
+        app:layout_constraintVertical_bias="0.06" />
 
     <ImageButton
         android:id="@+id/btnCloseOfReminder"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="40dp"
         android:background="#00FFFFFF"
         android:contentDescription="back"
         android:scaleType="fitCenter"

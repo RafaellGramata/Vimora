@@ -49,7 +49,7 @@ public class TraineeProfileActivity01 extends AppCompatActivity {
         trainerProfile.moveToFirst();
         String trainerName = trainerProfile.getString(trainerProfile.getColumnIndex("name"));
         int trainerHandleNum = trainerProfile.getInt(trainerProfile.getColumnIndex("trainerHandleNum"));
-        int trainees = databaseHelper.getTraineeCount(trainerID);
+        int trainees = databaseHelper.countTrainees(trainerID);
         boolean trainerCanAcceptTrainees = trainees<trainerHandleNum;
         txtName.setText(trainerName);
         txtTrainerName.setText(trainerName); // don't know why we have two of these but here we are

@@ -3,6 +3,7 @@ package com.example.vimora.trainer;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -39,18 +40,21 @@ public class TrainerReminder2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("Test", "TrainerReminder2 started");
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_trainer_remind02);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        findViewById(R.id.main).post(() -> {
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
         });
         db = new DatabaseHelper(this);
 
         traineeId = getIntent().getLongExtra("traineeId", -1);
         traineeName = getIntent().getStringExtra("traineeName");
-        trainerId = getIntent().getLongExtra("trainerId", -1);
+        trainerId = getIntent().getLongExtra("userID", -1);
 
         if (traineeId == -1 || trainerId == -1) {
             Toast.makeText(this, "Error, choose another trainee", Toast.LENGTH_SHORT).show();
@@ -75,7 +79,7 @@ public class TrainerReminder2 extends AppCompatActivity {
         lvRecentReminders.setOnItemClickListener((parent, view, position, id) -> {
             Cursor c = (Cursor) parent.getItemAtPosition(position);
 
-            long reminderId = c.getLong(c.getColumnIndexOrThrow("RemindID"));
+            long reminderId = c.getLong(c.getColumnIndexOrThrow("_id"));
             String message = c.getString(c.getColumnIndexOrThrow("message"));
             long timeMillis = c.getLong(c.getColumnIndexOrThrow("time"));
 
@@ -83,7 +87,7 @@ public class TrainerReminder2 extends AppCompatActivity {
             String timeStr = sdf.format(new Date(timeMillis));
 
             Intent intent = new Intent(TrainerReminder2.this, TrainerReminder3.class);
-            intent.putExtra("reminderId", reminderId);
+            intent.putExtra("_id", reminderId);
             intent.putExtra("message", message);
             intent.putExtra("time", timeStr);
             intent.putExtra("traineeName", traineeName);
