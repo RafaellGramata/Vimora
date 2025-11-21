@@ -16,11 +16,14 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.vimora.DatabaseHelper;
 import com.example.vimora.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class TraineePlanActivity01 extends AppCompatActivity {
     DatabaseHelper databaseHelper;
     Calendar date;
+    TextView txtDate;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,26 @@ public class TraineePlanActivity01 extends AppCompatActivity {
         ImageButton btnReminder = findViewById(R.id.btnReminder);
         Button btnTrack = findViewById(R.id.btnTrackOfPlan);
         Button btnProfile = findViewById(R.id.btnProfileOfPlan);
-        TextView txtDate = findViewById(R.id.txtDate);
+        txtDate = findViewById(R.id.txtDate);
+        updateDate();
+        Button previousDay = findViewById(R.id.btnPlanYesterday);
+        Button nextDay = findViewById(R.id.btnPlanNextday);
+
+        previousDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date.add(Calendar.DAY_OF_MONTH,-1);
+                updateDate();
+            }
+        });
+
+        nextDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                date.add(Calendar.DAY_OF_MONTH,1);
+                updateDate();
+            }
+        });
 
         btnTrack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,5 +90,8 @@ public class TraineePlanActivity01 extends AppCompatActivity {
                 startActivity(newIntent);
             }
         });
+    }
+    private void updateDate() {
+        txtDate.setText(sdf.format(date.getTime()));
     }
 }
