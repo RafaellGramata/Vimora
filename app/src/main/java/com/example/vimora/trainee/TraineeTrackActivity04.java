@@ -19,6 +19,7 @@ import com.example.vimora.DatabaseHelper;
 import com.example.vimora.NutritionDatabaseHelper;
 import com.example.vimora.NutritionEntry;
 import com.example.vimora.R;
+import com.example.vimora.WelcomeActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -142,16 +143,25 @@ public class TraineeTrackActivity04 extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Info/Back button
-        btnInfo.setOnClickListener(v -> finish());
+        // Info/Back button - go back to workout tracking
+        btnInfo.setOnClickListener(v -> {
+            Intent intent = new Intent(TraineeTrackActivity04.this, TraineeTrackActivity01.class);
+            intent.putExtra("userID", traineeID);
+            startActivity(intent);
+            finish();
+        });
 
         // Navigation buttons
         btnPlan.setOnClickListener(v -> {
-            Toast.makeText(this, "Navigate to Plan", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TraineeTrackActivity04.this, TraineePlanActivity01.class);
+            intent.putExtra("userID", traineeID);
+            startActivity(intent);
         });
 
         btnProfile.setOnClickListener(v -> {
-            Toast.makeText(this, "Navigate to Profile", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TraineeTrackActivity04.this, TraineeProfileActivity.class);
+            intent.putExtra("userID", traineeID);
+            startActivity(intent);
         });
 
         // Logout button
@@ -159,12 +169,17 @@ public class TraineeTrackActivity04 extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences("VimoraPrefs", MODE_PRIVATE);
             prefs.edit().clear().apply();
             Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TraineeTrackActivity04.this, WelcomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             finish();
         });
 
         // Reminder button
         btnReminder.setOnClickListener(v -> {
-            Toast.makeText(this, "Reminder feature", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TraineeTrackActivity04.this, TraineeRemindActivity.class);
+            intent.putExtra("userID", traineeID);
+            startActivity(intent);
         });
     }
 
@@ -307,7 +322,7 @@ public class TraineeTrackActivity04 extends AppCompatActivity {
             Toast.makeText(this, "Nutrition data saved for " + selectedDate, Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
-            Toast.makeText(this, "Error saving data", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error saving data: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 

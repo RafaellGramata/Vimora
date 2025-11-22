@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.vimora.DatabaseHelper;
 import com.example.vimora.NutritionDatabaseHelper;
 import com.example.vimora.R;
+import com.example.vimora.WelcomeActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -96,17 +97,19 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
 
         // Navigation buttons
         btnPlan.setOnClickListener(v -> {
-            // Navigate to Plan activity
-            Toast.makeText(this, "Navigate to Plan", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TraineeTrackActivity05.this, TraineePlanActivity01.class);
+            intent.putExtra("userID", traineeID);
+            startActivity(intent);
         });
 
         btnProfile.setOnClickListener(v -> {
-            // Navigate to Profile activity
-            Toast.makeText(this, "Navigate to Profile", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TraineeTrackActivity05.this, TraineeProfileActivity.class);
+            intent.putExtra("userID", traineeID);
+            startActivity(intent);
         });
 
         btnTrack.setOnClickListener(v -> {
-            // Already on track page, maybe go back to daily view
+            // Go back to daily meal tracking view
             Intent intent = new Intent(TraineeTrackActivity05.this, TraineeTrackActivity04.class);
             startActivity(intent);
             finish();
@@ -117,12 +120,17 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
             SharedPreferences prefs = getSharedPreferences("VimoraPrefs", MODE_PRIVATE);
             prefs.edit().clear().apply();
             Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TraineeTrackActivity05.this, WelcomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
             finish();
         });
 
         // Reminder button
         btnReminder.setOnClickListener(v -> {
-            Toast.makeText(this, "Reminder feature", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(TraineeTrackActivity05.this, TraineeRemindActivity.class);
+            intent.putExtra("userID", traineeID);
+            startActivity(intent);
         });
     }
 

@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 11;   // Updated for nutrition tracking
+    private static final int DATABASE_VERSION = 11;   // incremented for nutrition tracking
 
     // Plan Table
     private static final String TABLE_PLAN = "PlanTable";

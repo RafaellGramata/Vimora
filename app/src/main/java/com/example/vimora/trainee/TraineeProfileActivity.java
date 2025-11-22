@@ -126,7 +126,7 @@ public class TraineeProfileActivity extends AppCompatActivity {
             }
         });
 
-        // UPDATED: Navigate to TraineeTrackActivity04 (Daily Meal Tracking)
+        // Navigate to TraineeTrackActivity04 (Daily Meal Tracking)
         btnTrack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
