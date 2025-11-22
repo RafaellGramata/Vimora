@@ -335,6 +335,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_REMIND, null);
     }
 
+    public Cursor getRemindersForTrainee(long traineeID) {
+        return this.getReadableDatabase().rawQuery("SELECT RemindID as _id,* FROM RemindTable WHERE traineeID = ? ORDER BY RemindDate DESC",new String[]{Long.toString(traineeID)});
+    }
+
     /* ====================== Other Common Methods ====================== */
     public String getName(long userID) {
         SQLiteDatabase db = this.getReadableDatabase();
