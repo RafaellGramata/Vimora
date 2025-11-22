@@ -110,7 +110,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnTrackOfProfile"
+        android:id="@+id/btnPlanOfTrack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="576dp"
@@ -124,7 +124,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnPlanOfProfile"
+        android:id="@+id/btnProfileOfTrack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="552dp"
@@ -137,7 +137,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnProfileOfProfile"
+        android:id="@+id/btnTrackOfTrack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="448dp"
@@ -184,7 +184,7 @@
         android:layout_height="30dp"
         android:layout_marginBottom="456dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfileOfProfile"
+        app:layout_constraintEnd_toStartOf="@+id/btnTrackOfTrack"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/backhome" />
 
