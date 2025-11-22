@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 7;   // 你的原始版本號
+    private static final int DATABASE_VERSION = 11;   // incremented for nutrition tracking
 
     // Plan Table
     private static final String TABLE_PLAN = "PlanTable";
@@ -35,7 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_EXERCISE_NAME = "ExerciseName";
     private static final String COL_EXERCISE_CONTENT = "ExerciseContent";
 
-    // Reminder Table (可選)
+    // Reminder Table
     private static final String TABLE_REMIND = "RemindTable";
     private static final String COL_REMIND_ID = "RemindID";
     private static final String COL_REMIND_DATE = "RemindDate";
@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // User 表（已包含所有欄位）
+        // User Table
         db.execSQL("CREATE TABLE User (" +
                 "userID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT NOT NULL, " +
@@ -79,7 +79,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "weight INTEGER," +
                 "FOREIGN KEY (traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
 
-        // 三張新表
         db.execSQL("CREATE TABLE " + TABLE_PLAN + " (" +
                 COL_PLAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_EXERCISE_NAME + " TEXT NOT NULL," +
@@ -101,6 +100,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "assignedDate TEXT NOT NULL, " +
                 "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
+
+        // Nutrition tracking table
+        db.execSQL("CREATE TABLE NutritionLog (" +
+                "entryID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "traineeID INTEGER NOT NULL, " +
+                "date TEXT NOT NULL, " +
+                "mealType TEXT NOT NULL, " +
+                "calories INTEGER DEFAULT 0, " +
+                "protein INTEGER DEFAULT 0, " +
+                "totalFat INTEGER DEFAULT 0, " +
+                "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                "UNIQUE(traineeID, date, mealType))");
     }
 
     @Override
@@ -126,12 +137,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
         }
-        // 如之後還有新欄位再繼續加 if (oldVersion < X) {}
+        if (oldVersion < 7) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS NutritionLog (" +
+                    "entryID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "traineeID INTEGER NOT NULL, " +
+                    "date TEXT NOT NULL, " +
+                    "mealType TEXT NOT NULL, " +
+                    "calories INTEGER DEFAULT 0, " +
+                    "protein INTEGER DEFAULT 0, " +
+                    "totalFat INTEGER DEFAULT 0, " +
+                    "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                    "UNIQUE(traineeID, date, mealType))");
+        }
+        // Add nutrition tracking table for versions 7-10
+        if (oldVersion < 11 && oldVersion >= 7) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS NutritionLog (" +
+                    "entryID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "traineeID INTEGER NOT NULL, " +
+                    "date TEXT NOT NULL, " +
+                    "mealType TEXT NOT NULL, " +
+                    "calories INTEGER DEFAULT 0, " +
+                    "protein INTEGER DEFAULT 0, " +
+                    "totalFat INTEGER DEFAULT 0, " +
+                    "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                    "UNIQUE(traineeID, date, mealType))");
+        }
         db.execSQL("DROP TABLE IF EXISTS RemindTable");
         onCreate(db);
     }
 
-    /* ====================== 註冊 & 登入 ====================== */
+    /* ====================== Sign Up & Login ====================== */
     public boolean signUp(String name, String phone, String email, String password, boolean isTrainer,
                           int height, int weight, int age) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -227,7 +262,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return w;
     }
 
-    /* ====================== Plan 相關 ====================== */
+    /* ====================== Plan Related ====================== */
     public boolean addPlan(String exerciseName, String exerciseContent) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -266,7 +301,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return r > 0;
     }
 
-    /* ====================== 指派計畫給學員 ====================== */
+    /* ====================== Assign Plan to Trainee ====================== */
     public boolean assignPlanToTrainee(long planId, long traineeId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -283,7 +318,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sdf.format(new Date());
     }
 
-    /* ====================== Reminder（可選） ====================== */
+    /* ====================== Reminder ====================== */
     public boolean addReminder(String remindDate, String remindContent) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -298,7 +333,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_REMIND, null);
     }
 
-    /* ====================== 其他常用方法 ====================== */
+    /* ====================== Other Common Methods ====================== */
     public String getName(long userID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT name FROM User WHERE userID=?", new String[]{String.valueOf(userID)});
@@ -391,7 +426,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    /* ====================== 密碼雜湊 ====================== */
+    /* ====================== Password Hashing ====================== */
     private static String hashPassword(String password) {
         String normalized = Normalizer.normalize(password, Normalizer.Form.NFKD);
         byte[] digest = md.digest(normalized.getBytes(StandardCharsets.UTF_8));

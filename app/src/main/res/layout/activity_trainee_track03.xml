@@ -6,7 +6,139 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
-    tools:context=".trianee.TraineeTrackActivity03">
+    tools:context=".trainee.TraineeTrackActivity03">
+
+    <ImageView
+        android:id="@+id/imagePlanBack3"
+        android:layout_width="380dp"
+        android:layout_height="680dp"
+        android:layout_marginTop="88dp"
+        android:contentDescription="PlanBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/plan" />
+
+    <ImageView
+        android:id="@+id/imageprofileBack3"
+        android:layout_width="0dp"
+        android:layout_height="680dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="15dp"
+        android:contentDescription="ProfileBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack3"
+        app:srcCompat="@drawable/profile" />
+
+    <ImageView
+        android:id="@+id/imageTrackBack3"
+        android:layout_width="380dp"
+        android:layout_height="680dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="TrackBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack3"
+        app:srcCompat="@drawable/track" />
+
+    <Button
+        android:id="@+id/btnPlanOfTrack2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="PLAN"
+        android:textColor="#040000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack3" />
+
+    <Button
+        android:id="@+id/btnProfileOfTrack2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="PROFILE"
+        android:textColor="#040000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack3" />
+
+    <Button
+        android:id="@+id/btnTrackOfTrack2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="TRACK"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack3" />
+
+    <ImageView
+        android:id="@+id/imageTrackBlack"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230dp"
+        android:src="@drawable/blackcard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="Monthly Workout Summary"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack2" />
+
+    <ImageButton
+        android:id="@+id/btnMeal"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="4dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="meal"
+        android:scaleType="fitCenter"
+        android:src="@drawable/meal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack2"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/btnInfo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="-5dp"
+        android:layout_marginTop="4dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="back"
+        android:scaleType="fitCenter"
+        android:src="@drawable/backhome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack2"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/btnLogout"
@@ -38,229 +170,52 @@
         app:srcCompat="@drawable/reminder"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <ImageView
-        android:id="@+id/imagePlanBack5"
-        android:layout_width="380dp"
-        android:layout_height="680dp"
-        android:layout_marginTop="88dp"
-        android:contentDescription="PlanBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/plan" />
-
-    <ImageView
-        android:id="@+id/imageprofileBack5"
-        android:layout_width="0dp"
-        android:layout_height="680dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="15dp"
-        android:contentDescription="ProfileBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack5"
-        app:srcCompat="@drawable/profile" />
-
-    <ImageView
-        android:id="@+id/imageTrackBack5"
-        android:layout_width="380dp"
-        android:layout_height="680dp"
-        android:layout_marginTop="64dp"
-        android:contentDescription="TrackBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack5"
-        app:srcCompat="@drawable/track" />
-
-    <ImageView
-        android:id="@+id/imageTrackBlack"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
-        android:src="@drawable/blackcard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnPlanOfTrack3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="#00FFFFFF"
-        android:text="PLAN"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack5" />
-
-    <Button
-        android:id="@+id/btnProfileOfTrack3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#00FFFFFF"
-        android:text="PROFILE"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack5" />
-
-    <Button
-        android:id="@+id/btnTrackOfTrack3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="#00FFFFFF"
-        android:text="TRACK"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTrackBack5" />
-
-    <ImageButton
-        android:id="@+id/btnSaveMealTrack"
-        android:layout_width="85dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="16dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="save"
-        android:scaleType="fitCenter"
-        android:src="@drawable/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnMoreMealTrack"
-        android:layout_width="120dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="16dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="view more"
-        android:scaleType="fitCenter"
-        android:src="@drawable/viewmore"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.771"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
-        android:id="@+id/editTotalCal"
+        android:id="@+id/trainerDurationMonthly"
         android:layout_width="270dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="center"
-        android:hint="Total / Kcal"
+        android:hint="Duration per day"
         android:inputType="text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDinnerCal" />
+        app:layout_constraintTop_toBottomOf="@+id/trainerCaloriesMonthly" />
 
     <EditText
-        android:id="@+id/editDinnerCal"
+        android:id="@+id/trainerDateMonthly"
         android:layout_width="270dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="center"
-        android:hint="Dinner / Kcal"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLunchCal" />
-
-    <EditText
-        android:id="@+id/editTextDateMeal"
-        android:layout_width="270dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="64dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Date"
+        android:hint="Workout per day(minute)"
         android:inputType="date"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInformation" />
 
     <EditText
-        android:id="@+id/editBreakCal"
+        android:id="@+id/trainerCaloriesMonthly"
         android:layout_width="270dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:gravity="center"
-        android:hint="Breakfast / Kcal"
+        android:hint="Calories Bured per day"
         android:inputType="text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDateMeal" />
-
-    <EditText
-        android:id="@+id/editLunchCal"
-        android:layout_width="270dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Lunch / Kcal"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editBreakCal" />
-
-    <TextView
-        android:id="@+id/txtInformationMeal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Daily Meal Track"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack3" />
-
-    <ImageButton
-        android:id="@+id/btnInfo3"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="meal"
-        android:scaleType="fitCenter"
-        android:src="@drawable/backhome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.192"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack3"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/trainerDateMonthly" />
 </androidx.constraintlayout.widget.ConstraintLayout>
