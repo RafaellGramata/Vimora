@@ -5,17 +5,19 @@
     android:id="@+id/tvName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF6501"
     tools:context=".WelcomeActivity">
 
 
     <ImageView
         android:id="@+id/welcomeLogo"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
-        android:layout_marginTop="196dp"
+        android:layout_width="362dp"
+        android:layout_height="274dp"
+        android:layout_marginTop="200dp"
         android:contentDescription="@string/welcomeLogoDesc"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.673"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/splash" />
@@ -25,7 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="32dp"
         android:contentDescription="@string/loginButtonDesc"
         android:scaleType="fitCenter"
@@ -39,7 +41,7 @@
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/signupButtonDesc"
         android:scaleType="fitCenter"
@@ -48,17 +50,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcomeLogo"
         app:srcCompat="@drawable/signup" />
-
-    <TextView
-        android:id="@+id/welcomeTagline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:text="@string/splashTagline"
-        android:textColor="#FF5722"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
