@@ -31,7 +31,7 @@ public class TraineeRemindActivity extends AppCompatActivity {
         long userID = intent.getLongExtra("userID",-1);
 
         TextView trainerName = findViewById(R.id.txtCoach);
-
-        trainerName.setText(databaseHelper.getName(databaseHelper.getTraineeTrainer(userID)));
+        long trainerID = databaseHelper.getTraineeTrainer(userID);
+        trainerName.setText(trainerID==-1?"Must select trainer.":databaseHelper.getName(trainerID));
     }
 }
