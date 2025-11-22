@@ -49,7 +49,7 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
     }
 
     private void initViews() {
-        tvName = findViewById(R.id.tvName);
+        tvName = findViewById(R.id.outputTraineeName);
         tvAssignedPlan = findViewById(R.id.tvAssignedPlan);
         tvAge = findViewById(R.id.tvAge);
         tvWeight = findViewById(R.id.tvWeight);
@@ -58,7 +58,7 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        findViewById(R.id.toTrainerProfile2).setOnClickListener(v -> finish());
+        findViewById(R.id.toTrainerProfile01).setOnClickListener(v -> finish());
         findViewById(R.id.btnReminder).setOnClickListener(v -> {
             Intent intent = new Intent(this, TrainerProfileActivity2.class);
             intent.putExtra("userID", currentTrainerId);
