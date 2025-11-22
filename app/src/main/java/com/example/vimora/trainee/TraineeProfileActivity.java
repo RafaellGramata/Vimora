@@ -1,6 +1,7 @@
 package com.example.vimora.trainee;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,6 +25,8 @@ public class TraineeProfileActivity extends AppCompatActivity {
     int height;
     int weight;
     TextView txtBMI;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -36,6 +39,10 @@ public class TraineeProfileActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(this);
         Intent intent = getIntent();
         long userID = intent.getLongExtra("userID",-1); // must exist!
+
+        // Save userID to SharedPreferences for nutrition tracking activities
+        SharedPreferences prefs = getSharedPreferences("VimoraPrefs", MODE_PRIVATE);
+        prefs.edit().putLong("userID", userID).apply();
 
         Button btnPlan = findViewById(R.id.btnPlanOfProfile);
         Button btnTrack = findViewById(R.id.btnTrackOfProfile);
@@ -118,6 +125,8 @@ public class TraineeProfileActivity extends AppCompatActivity {
                 startActivity(newIntent);
             }
         });
+
+        // UPDATED: Navigate to TraineeTrackActivity04 (Daily Meal Tracking)
         btnTrack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,6 +135,7 @@ public class TraineeProfileActivity extends AppCompatActivity {
                 startActivity(newIntent);
             }
         });
+
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,6 +159,7 @@ public class TraineeProfileActivity extends AppCompatActivity {
             }
         });
     }
+
     private void updateBMI() {
         float BMI = ((float)weight*10000)/((float)height*(float)height); // formula for kg and cm. change if we change units.
         txtBMI.setText(Float.toString(BMI));

@@ -82,8 +82,8 @@
             android:name=".trainee.TraineeTrackActivity04"
             android:exported="true" />
         <activity
-            android:name=".trainee.TraineeTrackActivity01$TraineeTrackActivity00"
-            android:exported="true" />
+            android:name=".trainee.TraineeTrackActivity05"
+            android:exported="false" />
 
     </application>
 

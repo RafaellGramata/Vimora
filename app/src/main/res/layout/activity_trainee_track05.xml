@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
-    tools:context=".trainee.TraineeTrackActivity02">
+    tools:context=".trainee.TraineeTrackActivity05">
 
     <ImageButton
         android:id="@+id/btnLogout"
@@ -39,9 +39,9 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
-        android:id="@+id/imagePlanBack4"
-        android:layout_width="380dp"
-        android:layout_height="680dp"
+        android:id="@+id/imagePlanBack6"
+        android:layout_width="374dp"
+        android:layout_height="667dp"
         android:layout_marginTop="88dp"
         android:contentDescription="PlanBackground"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,33 +51,32 @@
         app:srcCompat="@drawable/plan" />
 
     <ImageView
-        android:id="@+id/imageprofileBack4"
-        android:layout_width="0dp"
-        android:layout_height="680dp"
+        android:id="@+id/imageprofileBack6"
+        android:layout_width="484dp"
+        android:layout_height="653dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="15dp"
         android:contentDescription="ProfileBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack4"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack6"
         app:srcCompat="@drawable/profile" />
 
     <ImageView
-        android:id="@+id/imageTrackBack4"
-        android:layout_width="380dp"
-        android:layout_height="680dp"
+        android:id="@+id/imageTrackBack6"
+        android:layout_width="466dp"
+        android:layout_height="657dp"
         android:layout_marginTop="64dp"
         android:contentDescription="TrackBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack4"
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack6"
         app:srcCompat="@drawable/track" />
 
     <Button
-        android:id="@+id/btnPlanOfTrack00"
+        android:id="@+id/btnPlanOfTrack4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -88,10 +87,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack4" />
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBack6" />
+
+    <ImageView
+        android:id="@+id/imageTrackBlack2"
+        android:layout_width="342dp"
+        android:layout_height="460dp"
+        android:layout_marginBottom="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/blackcard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInformation2" />
 
     <Button
-        android:id="@+id/btnProfileOfTrack00"
+        android:id="@+id/btnProfileOfTrack4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -101,10 +113,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack4" />
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack6" />
 
     <Button
-        android:id="@+id/btnTrackOfTrack00"
+        android:id="@+id/btnTrackOfTrack4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -115,138 +127,97 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTrackBack4" />
-
-    <ImageView
-        android:id="@+id/imageTrackBlack"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
-        android:src="@drawable/blackcard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBack6" />
 
     <TextView
-        android:id="@+id/txtInformationWork"
+        android:id="@+id/txtInformation2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Daily Workout Track"
+        android:layout_marginTop="12dp"
+        android:text="Monthly Nutrition Summary"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack4" />
 
     <ImageButton
-        android:id="@+id/btnMeal"
+        android:id="@+id/btnInfo4"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="meal"
-        android:scaleType="fitCenter"
-        android:src="@drawable/meal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/btnInfo"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="532dp"
         android:background="#00FFFFFF"
         android:contentDescription="back"
         android:scaleType="fitCenter"
         android:src="@drawable/backhome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintBottom_toBottomOf="@+id/imageprofileBack6"
+        app:layout_constraintEnd_toStartOf="@+id/btnTrackOfTrack4"
+        app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <ImageButton
-        android:id="@+id/btnSaveMealTrack"
-        android:layout_width="85dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="16dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="save"
-        android:scaleType="fitCenter"
-        android:src="@drawable/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnMoreMealTrack"
-        android:layout_width="120dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="16dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="view more"
-        android:scaleType="fitCenter"
-        android:src="@drawable/viewmore"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.771"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/editTextDateWorkout"
+    <EditText
+        android:id="@+id/traineeCaloriesAverage"
         android:layout_width="270dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="324dp"
-        android:background="@drawable/date_selector_background"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_marginTop="48dp"
+        android:background="#EEEEEE"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:focusable="false"
         android:gravity="center"
-        android:padding="12dp"
-        android:text="📅 Select Date"
+        android:hint="Avg Calories per day"
+        android:inputType="none"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInformation2" />
 
     <EditText
-        android:id="@+id/editCalories"
+        android:id="@+id/traineeProteinAverage"
         android:layout_width="270dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="240dp"
-        android:background="#FFFFFF"
+        android:layout_marginTop="20dp"
+        android:background="#EEEEEE"
         android:ems="10"
         android:gravity="center"
-        android:hint="Calories Burned"
-        android:inputType="number"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="Avg protein per day"
+        android:inputType="none"
+        android:focusable="false"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/traineeCaloriesAverage" />
 
     <EditText
-        android:id="@+id/editDuration"
+        android:id="@+id/traineeFatAverage"
         android:layout_width="270dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="140dp"
-        android:background="#FFFFFF"
+        android:layout_marginTop="20dp"
+        android:background="#EEEEEE"
         android:ems="10"
         android:gravity="center"
-        android:hint="Duration (minutes)"
-        android:inputType="number"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="Avg fat per day"
+        android:inputType="none"
+        android:focusable="false"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/traineeProteinAverage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
