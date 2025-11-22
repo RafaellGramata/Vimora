@@ -3,8 +3,10 @@ package com.example.vimora.trainer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +37,22 @@ public class TrainerRemindActivity02 extends AppCompatActivity {
 
         TextView txtTrainee = findViewById(R.id.txtTrainee);
         txtTrainee.setText(databaseHelper.getName(traineeID));
+
+        EditText textRemind = findViewById(R.id.txtRemindInput);
+        EditText txtDate = findViewById(R.id.editTextDate2);
+
+        ImageButton btnSend = findViewById(R.id.btnSendReminder);
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!txtDate.getText().toString().isBlank() && !textRemind.getText().toString().isBlank()) {
+                    databaseHelper.addReminder(txtDate.getText().toString(), textRemind.getText().toString(), traineeID, userID);
+                }
+                else {
+                    Toast.makeText(TrainerRemindActivity02.this,"Date and message must both be present",Toast.LENGTH_LONG);
+                }
+            }
+        });
 
         ImageButton back = findViewById(R.id.btnCloseOfReminder);
         back.setOnClickListener(new View.OnClickListener() {

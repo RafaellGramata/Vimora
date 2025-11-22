@@ -29,8 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/txtRemindOutput"
+    <EditText
+        android:id="@+id/txtRemindInput"
         android:layout_width="287dp"
         android:layout_height="111dp"
         android:layout_marginBottom="348dp"
@@ -78,11 +78,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/btnSendReminder"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="260dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -104,7 +105,7 @@
         android:layout_height="39dp"
         android:layout_marginBottom="468dp"
         android:ems="10"
-        android:hint="Date"
+        android:hint="YYYY-MM-DD"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

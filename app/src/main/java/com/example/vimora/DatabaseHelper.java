@@ -319,11 +319,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /* ====================== Reminder ====================== */
-    public boolean addReminder(String remindDate, String remindContent) {
+    public boolean addReminder(String remindDate, String remindContent, long trainee, long trainer) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COL_REMIND_DATE, remindDate);
         cv.put(COL_REMIND_CONTENT, remindContent);
+        cv.put("traineeID",trainee);
+        cv.put("trainerID",trainer);
         long r = db.insert(TABLE_REMIND, null, cv);
         db.close();
         return r > 0;
