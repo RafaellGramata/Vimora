@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 6;   // 你的原始版本號
+    private static final int DATABASE_VERSION = 7;   // 你的原始版本號
 
     // Plan Table
     private static final String TABLE_PLAN = "PlanTable";
@@ -88,7 +88,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_REMIND + " (" +
                 COL_REMIND_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_REMIND_DATE + " TEXT NOT NULL," +
-                COL_REMIND_CONTENT + " TEXT NOT NULL)");
+                COL_REMIND_CONTENT + " TEXT NOT NULL," +
+                "trainerID INTEGER NOT NULL," +
+                "traineeID INTEGER NOT NULL," +
+                "FOREIGN KEY (trainerID) REFERENCES User(userID) ON DELETE CASCADE," +
+                "FOREIGN KEY (traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
 
         db.execSQL("CREATE TABLE " + TABLE_ASSIGNED_PLAN + " (" +
                 "assignmentID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -123,6 +127,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
         }
         // 如之後還有新欄位再繼續加 if (oldVersion < X) {}
+        db.execSQL("DROP TABLE IF EXISTS RemindTable");
+        onCreate(db);
     }
 
     /* ====================== 註冊 & 登入 ====================== */
