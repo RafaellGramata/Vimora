@@ -335,8 +335,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_REMIND, null);
     }
 
-    public Cursor getRemindersForTrainee(long traineeID) {
-        return this.getReadableDatabase().rawQuery("SELECT RemindID as _id,* FROM RemindTable WHERE traineeID = ? ORDER BY RemindDate DESC",new String[]{Long.toString(traineeID)});
+    public Cursor getRemindersForTraineeTrainer(long traineeID, long trainerID) {
+        return this.getReadableDatabase().rawQuery("SELECT RemindID as _id,* FROM RemindTable WHERE traineeID = ? AND trainerID=? ORDER BY RemindDate DESC",new String[]{Long.toString(traineeID),Long.toString(trainerID)});
+    }
+
+    public String getTrainerNameFromReminder(long reminderID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT name FROM User WHERE userID=(SELECT trainerID FROM RemindTable WHERE RemindID=?)", new String[]{String.valueOf(reminderID)});
+        c.moveToFirst();
+        String name = c.getString(0);
+        c.close();
+        return name;
+    }
+
+    public String getDateFromReminder(long reminderID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT RemindDate FROM RemindTable WHERE RemindID=?", new String[]{String.valueOf(reminderID)});
+        c.moveToFirst();
+        String date = c.getString(0);
+        c.close();
+        return date;
+    }
+    public String getMessageFromReminder(long reminderID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT RemindContent FROM RemindTable WHERE RemindID=?", new String[]{String.valueOf(reminderID)});
+        c.moveToFirst();
+        String message = c.getString(0);
+        c.close();
+        return message;
     }
 
     /* ====================== Other Common Methods ====================== */

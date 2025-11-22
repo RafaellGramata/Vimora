@@ -48,7 +48,7 @@ public class TrainerRemindActivity02 extends AppCompatActivity {
         SimpleCursorAdapter remindersAdapter = new SimpleCursorAdapter(
                 TrainerRemindActivity02.this,
                 R.layout.list_reminders_entry,
-                databaseHelper.getRemindersForTrainee(traineeID),
+                databaseHelper.getRemindersForTraineeTrainer(traineeID,userID),
                 new String[]{"RemindDate","RemindContent"},
                 new int[]{R.id.reminderDate,R.id.reminderMessage},0
         );
@@ -62,7 +62,7 @@ public class TrainerRemindActivity02 extends AppCompatActivity {
                     databaseHelper.addReminder(txtDate.getText().toString(), textRemind.getText().toString(), traineeID, userID);
                     txtDate.setText("");
                     textRemind.setText("");
-                    remindersAdapter.changeCursor(databaseHelper.getRemindersForTrainee(traineeID));
+                    remindersAdapter.changeCursor(databaseHelper.getRemindersForTraineeTrainer(traineeID,userID));
                 }
                 else {
                     Toast.makeText(TrainerRemindActivity02.this,"Date and message must both be present",Toast.LENGTH_LONG);

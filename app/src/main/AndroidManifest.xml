@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vimora">
         <activity
+            android:name=".trainee.TraineeRemindActivity02"
+            android:exported="false" />
+        <activity
             android:name=".trainer.TrainerRemindActivity02"
             android:exported="false" />
         <activity
