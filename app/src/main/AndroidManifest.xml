@@ -11,22 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Vimora">
-
-         <activity
+        <activity
+            android:name=".trainer.TrainerRemindActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity android:name=".SignupActivity" />
-        <activity android:name=".Signup2Activity" android:exported="false" />
-        <activity android:name=".WelcomeActivity" android:exported="true" />
+        <activity
+            android:name=".Signup2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="true" />
         <activity android:name=".LoginActivity" />
-
         <activity
             android:name=".trainee.TraineeProfileActivity01"
             android:exported="false" />
@@ -55,8 +59,6 @@
         <activity
             android:name=".trainer.TrainerTrackActivity"
             android:exported="true" />
-
-
         <activity
             android:name=".trainee.TraineeLoginActivity"
             android:exported="true" />
@@ -84,7 +86,6 @@
         <activity
             android:name=".trainee.TraineeTrackActivity05"
             android:exported="false" />
-
     </application>
 
 </manifest>
