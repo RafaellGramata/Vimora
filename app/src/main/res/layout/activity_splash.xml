@@ -5,32 +5,30 @@
     android:id="@+id/tvName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splashbg"
     tools:context=".SplashActivity">
 
     <ImageView
-        android:id="@+id/splashLogo"
-        android:layout_width="186dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="243dp"
-        android:contentDescription="@string/appTitleDesc"
-        android:src="@drawable/splash"
-        app:layout_constraintBottom_toTopOf="@+id/splashTagline"
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splashbg"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/splashTagline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginBottom="225dp"
-        android:text="@string/splashTagline"
-        android:textColor="#FF5722"
-        android:textStyle="bold|italic"
+    <ImageView
+        android:id="@+id/splashLogo"
+        android:layout_width="214dp"
+        android:layout_height="222dp"
+        android:contentDescription="@string/appTitleDesc"
+        android:src="@drawable/splashtransparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/splashLogo"
-        app:layout_constraintTop_toBottomOf="@+id/splashLogo" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

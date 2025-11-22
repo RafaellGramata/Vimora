@@ -5,9 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF6501"
-    tools:ignore="ExtraText">
     tools:context=".Signup2Activity">
+
+    <ImageView
+        android:id="@+id/imgFullBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/signup2bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imgSignupBack"
@@ -15,6 +25,8 @@
         android:layout_height="583dp"
         android:layout_marginStart="14dp"
         android:layout_marginEnd="14dp"
+        android:contentDescription="Signup Card"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -47,6 +59,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <EditText
+        android:id="@+id/edittxtAge"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="128dp"
+        android:background="#F4F4F4"
+        android:ems="10"
+        android:hint="Age"
+        android:inputType="number"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgSignupBack" />
+
     <TextView
         android:id="@+id/signupHeightLabel"
         android:layout_width="wrap_content"
@@ -58,17 +87,22 @@
         app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/signupNext"
-        android:layout_width="120dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="68dp"
-        android:contentDescription="@string/signupSubmitDesc"
+    <EditText
+        android:id="@+id/edittxtHeight"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="#F4F4F4"
+        android:ems="10"
+        android:hint="@string/inputHeight"
+        android:inputType="number"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittxtWeight"
-        app:srcCompat="@drawable/signup" />
+        app:layout_constraintTop_toBottomOf="@+id/edittxtAge" />
 
     <TextView
         android:id="@+id/signupWeightLabel"
@@ -90,6 +124,7 @@
         android:ems="10"
         android:hint="@string/inputWeight"
         android:inputType="number"
+        android:padding="12dp"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,36 +132,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edittxtHeight" />
 
-    <EditText
-        android:id="@+id/edittxtAge"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="128dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Age"
-        android:inputType="number"
-        android:textColor="#000000"
-        android:textSize="16sp"
+    <ImageView
+        android:id="@+id/signupNext"
+        android:layout_width="120dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="68dp"
+        android:contentDescription="@string/signupSubmitDesc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgSignupBack" />
-
-    <EditText
-        android:id="@+id/edittxtHeight"
-        android:layout_width="300dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="@string/inputHeight"
-        android:inputType="number"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittxtAge" />
+        app:layout_constraintTop_toBottomOf="@+id/edittxtWeight"
+        app:srcCompat="@drawable/signup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

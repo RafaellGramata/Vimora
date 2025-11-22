@@ -5,8 +5,22 @@
     android:id="@+id/tvName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF6501"
-    tools:context=".trianee.TraineeLoginActivity">
+    tools:context=".trainee.TraineeLoginActivity">
+
+    <!-- Full Screen Background Image - REPLACE "your_image_name" with your actual image name -->
+    <ImageView
+        android:id="@+id/imgFullBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/loginbg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Login Card Background -->
 
     <ImageView
         android:id="@+id/imgLoginBack"
@@ -15,9 +29,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="268dp"
         android:layout_marginEnd="15dp"
+        android:contentDescription="Login Card"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
@@ -36,23 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imgLoginBack" />
 
-    <EditText
-        android:id="@+id/edittxtEmail"
-        android:layout_width="280dp"
-        android:layout_height="48dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.412"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/greeting"
-        app:layout_constraintVertical_bias="0.192" />
-
     <TextView
         android:id="@+id/email"
         android:layout_width="wrap_content"
@@ -67,20 +66,22 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/edittxtPassword"
+        android:id="@+id/edittxtEmail"
         android:layout_width="280dp"
         android:layout_height="48dp"
-        android:layout_marginTop="60dp"
         android:background="#F4F4F4"
         android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
+        android:hint="Email"
+        android:inputType="text"
+        android:padding="12dp"
         android:textColor="#000000"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittxtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/greeting"
+        app:layout_constraintVertical_bias="0.192" />
 
     <TextView
         android:id="@+id/password"
@@ -94,6 +95,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edittxtPassword"
+        android:layout_width="280dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="60dp"
+        android:background="#F4F4F4"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.412"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittxtEmail" />
 
     <ImageButton
         android:id="@+id/btnLogIn"
