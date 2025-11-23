@@ -172,7 +172,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "UNIQUE(traineeID, date, mealType))");
         }
 
-        // CHANGE #3: UPGRADE LOGIC
+        // UPGRADE LOGIC
         if (oldVersion < 12) {
             db.execSQL("CREATE TABLE IF NOT EXISTS WorkoutCompletion (" +
                     "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
