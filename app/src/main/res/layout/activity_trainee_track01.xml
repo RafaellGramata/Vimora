@@ -105,22 +105,25 @@
         app:srcCompat="@drawable/reminder"
         tools:ignore="TouchTargetSizeCheck" />
 
+    <!-- Meal Button - FIXED -->
+
+    <!-- Black Card Background for Calendar -->
     <ImageButton
         android:id="@+id/btnMeal"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="4dp"
         android:background="#00FFFFFF"
         android:contentDescription="meal"
         android:scaleType="fitCenter"
         android:src="@drawable/meal"
+        app:layout_constraintBottom_toBottomOf="@+id/btnTrackOfTrack00"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack00"
+        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintStart_toEndOf="@+id/btnTrackOfTrack00"
+        app:layout_constraintTop_toTopOf="@+id/btnTrackOfTrack00"
+        app:layout_constraintVertical_bias="0.454"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <!-- Black Card Background for Calendar -->
     <ImageView
         android:id="@+id/imageTrackBlack"
         android:layout_width="310dp"
@@ -270,33 +273,19 @@
 
     </LinearLayout>
 
-    <!-- Bottom Navigation Buttons -->
-    <Button
-        android:id="@+id/btnNext1"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="56dp"
-        android:text="Next"
-        android:textSize="12sp"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#1976D2"
+    <!-- Bottom Navigation Button - Single centered ImageButton -->
+    <ImageButton
+        android:id="@+id/btnNext"
+        android:layout_width="94dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="28dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="Next"
+        android:scaleType="fitCenter"
+        android:src="@drawable/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnNext2"
-        android:layout_width="70dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="56dp"
-        android:text="Next"
-        android:textSize="12sp"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#1976D2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

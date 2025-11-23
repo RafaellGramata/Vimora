@@ -85,8 +85,7 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
         Button btnProfile = findViewById(R.id.btnProfileOfTrack00);
         ImageButton btnMeal = findViewById(R.id.btnMeal);
         ImageButton btnReminder = findViewById(R.id.btnReminder);
-        Button btnNext1 = findViewById(R.id.btnNext1);
-        Button btnNext2 = findViewById(R.id.btnNext2);
+        ImageButton btnNext = findViewById(R.id.btnNext);
 
         btnPlan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,22 +140,11 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
             }
         });
 
-        // Bottom Next buttons - Navigate to Track02 and Track03
-        btnNext1.setOnClickListener(new View.OnClickListener() {
+        // Single Next button - Navigate to TraineeTrackActivity02
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to Track Activity 2 (Activity details)
                 Intent newIntent = new Intent(TraineeTrackActivity01.this, TraineeTrackActivity02.class);
-                newIntent.putExtra("userID", userID);
-                startActivity(newIntent);
-            }
-        });
-
-        btnNext2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to Track Activity 3 (Monthly statistics)
-                Intent newIntent = new Intent(TraineeTrackActivity01.this, TraineeTrackActivity03.class);
                 newIntent.putExtra("userID", userID);
                 startActivity(newIntent);
             }
