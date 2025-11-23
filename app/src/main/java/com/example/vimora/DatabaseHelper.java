@@ -500,8 +500,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, new String[]{String.valueOf(id)});
     }
 
-    // NEW METHODS
-
     /* Workout Completion Tracking */
 
     /**
@@ -572,5 +570,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(traineeID), date});
         db.close();
         return rows > 0;
+    }
+
+    /**
+     * Search trainees by trainer with name filter
+     * @param trainerId The trainer's user ID
+     * @param searchQuery The search query to filter trainee names
+     * @return Cursor with filtered trainees
+     */
+    public Cursor searchTraineesByTrainer(long trainerId, String searchQuery) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (searchQuery == null || searchQuery.trim().isEmpty()) {
+            // Return all trainees if no search query
+            return db.rawQuery(
+                    "SELECT userID AS _id, userID, name FROM User WHERE trainerID = ? AND isTrainer = 0 ORDER BY name",
+                    new String[]{String.valueOf(trainerId)}
+            );
+        } else {
+            // Filter by name using LIKE
+            return db.rawQuery(
+                    "SELECT userID AS _id, userID, name FROM User WHERE trainerID = ? AND isTrainer = 0 AND name LIKE ? ORDER BY name",
+                    new String[]{String.valueOf(trainerId), "%" + searchQuery + "%"}
+            );
+        }
     }
 }

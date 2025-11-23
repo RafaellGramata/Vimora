@@ -59,7 +59,7 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
 
         ImageButton btnReminder = findViewById(R.id.btnReminder);
         btnReminder.setOnClickListener(v -> {
-            Intent i = new Intent(this, TrainerRemindActivity.class);
+            Intent i = new Intent(this, TrainerRemindActivity01.class);
             i.putExtra("userID", currentTrainerId);
             startActivity(i);
         });
@@ -83,7 +83,7 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
 
         Button btnTrackOfProfile1 = findViewById(R.id.btnTrackOfProfile1);
         btnTrackOfProfile1.setOnClickListener(v -> {
-            Intent i = new Intent(this, TrainerTrackActivity.class);
+            Intent i = new Intent(this, TrainerTrackActivity01.class);
             i.putExtra("userID", currentTrainerId);
             startActivity(i);
         });

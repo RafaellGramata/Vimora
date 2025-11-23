@@ -19,7 +19,7 @@ import com.example.vimora.R;
 
 import java.util.ArrayList;
 
-public class TrainerRemindActivity extends AppCompatActivity {
+public class TrainerRemindActivity01 extends AppCompatActivity {
     DatabaseHelper databaseHelper;
 
     @Override
@@ -66,7 +66,7 @@ public class TrainerRemindActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newIntent = new Intent(TrainerRemindActivity.this,TrainerProfileActivity1.class);
+                Intent newIntent = new Intent(TrainerRemindActivity01.this,TrainerProfileActivity1.class);
                 newIntent.putExtra("userID",userID);
                 startActivity(newIntent);
             }

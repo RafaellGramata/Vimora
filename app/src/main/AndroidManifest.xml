@@ -18,7 +18,7 @@
             android:name=".trainer.TrainerRemindActivity02"
             android:exported="false" />
         <activity
-            android:name=".trainer.TrainerRemindActivity"
+            android:name=".trainer.TrainerRemindActivity01"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -63,7 +63,19 @@
             android:name=".trainer.TrainerProfileActivity3"
             android:exported="true" />
         <activity
-            android:name=".trainer.TrainerTrackActivity"
+            android:name=".trainer.TrainerTrackActivity01"
+            android:exported="true" />
+        <activity
+            android:name=".trainer.TrainerTrackActivity02"
+            android:exported="true" />
+        <activity
+            android:name=".trainer.TrainerTrackActivity03"
+            android:exported="true" />
+        <activity
+            android:name=".trainer.TrainerTrackActivity04"
+            android:exported="true" />
+        <activity
+            android:name=".trainer.TrainerTrackActivity05"
             android:exported="true" />
         <activity
             android:name=".trainee.TraineeProfileActivity"
@@ -72,7 +84,7 @@
             android:name=".trainee.TraineePlanActivity01"
             android:exported="true" />
         <activity
-            android:name=".trainee.TraineeRemindActivity"
+            android:name=".trainee.TraineeRemindActivity01"
             android:exported="true" />
         <activity
             android:name=".trainee.TraineeTrackActivity01"
