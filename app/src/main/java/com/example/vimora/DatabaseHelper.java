@@ -27,10 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    // ==================== CHANGE #1: VERSION NUMBER ====================
-    // CHANGE THIS LINE FROM 11 TO 12:
     private static final int DATABASE_VERSION = 12;   // ← CHANGED from 11 to 12
-    // ===================================================================
 
     // Plan Table
     private static final String TABLE_PLAN = "PlanTable";
@@ -116,8 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                 "UNIQUE(traineeID, date, mealType))");
 
-        // ==================== CHANGE #2: NEW TABLE ====================
-        // ADD THIS NEW TABLE FOR WORKOUT COMPLETION TRACKING:
+        // TABLE FOR WORKOUT COMPLETION TRACKING:
         db.execSQL("CREATE TABLE WorkoutCompletion (" +
                 "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "traineeID INTEGER NOT NULL, " +
@@ -126,7 +122,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                 "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
                 "UNIQUE(traineeID, planID, completionDate))");
-        // ==============================================================
     }
 
     @Override
@@ -177,8 +172,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "UNIQUE(traineeID, date, mealType))");
         }
 
-        // ==================== CHANGE #3: UPGRADE LOGIC ====================
-        // ADD THIS NEW UPGRADE CHECK FOR VERSION 12:
+        // CHANGE #3: UPGRADE LOGIC
         if (oldVersion < 12) {
             db.execSQL("CREATE TABLE IF NOT EXISTS WorkoutCompletion (" +
                     "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -189,13 +183,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(planID) REFERENCES PlanTable(PlanID) ON DELETE CASCADE, " +
                     "UNIQUE(traineeID, planID, completionDate))");
         }
-        // ==================================================================
 
         db.execSQL("DROP TABLE IF EXISTS RemindTable");
         onCreate(db);
     }
 
-    /* ====================== Sign Up & Login ====================== */
+    /* Sign Up & Login */
     public boolean signUp(String name, String phone, String email, String password, boolean isTrainer,
                           int height, int weight, int age) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -239,7 +232,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    /* ====================== Trainer Profile ====================== */
+    /* Trainer Profile */
     public boolean updateTrainerProfile(long trainerId, String name, String specialization,
                                         int handleNum, String about) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -269,7 +262,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cnt;
     }
 
-    /* ====================== Weight ====================== */
+    /* Weight */
     public boolean addWeightSnapshot(long trainee, int weight) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -291,7 +284,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return w;
     }
 
-    /* ====================== Plan Related ====================== */
+    /* Plan Related */
     public boolean addPlan(String exerciseName, String exerciseContent) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -330,7 +323,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return r > 0;
     }
 
-    /* ====================== Assign Plan to Trainee ====================== */
+    /* Assign Plan to Trainee */
     public boolean assignPlanToTrainee(long planId, long traineeId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -347,7 +340,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sdf.format(new Date());
     }
 
-    /* ====================== Reminder ====================== */
+    /* Reminder */
     public boolean addReminder(String remindDate, String remindContent, long trainee, long trainer) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -395,7 +388,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return message;
     }
 
-    /* ====================== Other Common Methods ====================== */
+    /* Other Common Methods */
     public String getName(long userID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT name FROM User WHERE userID=?", new String[]{String.valueOf(userID)});
@@ -488,7 +481,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    /* ====================== Password Hashing ====================== */
+    /* Password Hashing */
     private static String hashPassword(String password) {
         String normalized = Normalizer.normalize(password, Normalizer.Form.NFKD);
         byte[] digest = md.digest(normalized.getBytes(StandardCharsets.UTF_8));
@@ -507,10 +500,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, new String[]{String.valueOf(id)});
     }
 
-    // ==================== CHANGE #4: NEW METHODS ====================
-    // ADD THESE 4 NEW METHODS AT THE END (before the final closing brace):
+    // NEW METHODS
 
-    /* ====================== Workout Completion Tracking ====================== */
+    /* Workout Completion Tracking */
 
     /**
      * Mark a workout as completed for a specific date
@@ -581,5 +573,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return rows > 0;
     }
-    // ================================================================
 }
