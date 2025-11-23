@@ -27,7 +27,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 11;   // incremented for nutrition tracking
+    // ==================== CHANGE #1: VERSION NUMBER ====================
+    // CHANGE THIS LINE FROM 11 TO 12:
+    private static final int DATABASE_VERSION = 12;   // ← CHANGED from 11 to 12
+    // ===================================================================
 
     // Plan Table
     private static final String TABLE_PLAN = "PlanTable";
@@ -112,6 +115,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "totalFat INTEGER DEFAULT 0, " +
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                 "UNIQUE(traineeID, date, mealType))");
+
+        // ==================== CHANGE #2: NEW TABLE ====================
+        // ADD THIS NEW TABLE FOR WORKOUT COMPLETION TRACKING:
+        db.execSQL("CREATE TABLE WorkoutCompletion (" +
+                "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "traineeID INTEGER NOT NULL, " +
+                "planID INTEGER NOT NULL, " +
+                "completionDate TEXT NOT NULL, " +
+                "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
+                "UNIQUE(traineeID, planID, completionDate))");
+        // ==============================================================
     }
 
     @Override
@@ -149,7 +164,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                     "UNIQUE(traineeID, date, mealType))");
         }
-        // Add nutrition tracking table for versions 7-10
         if (oldVersion < 11 && oldVersion >= 7) {
             db.execSQL("CREATE TABLE IF NOT EXISTS NutritionLog (" +
                     "entryID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -162,6 +176,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                     "UNIQUE(traineeID, date, mealType))");
         }
+
+        // ==================== CHANGE #3: UPGRADE LOGIC ====================
+        // ADD THIS NEW UPGRADE CHECK FOR VERSION 12:
+        if (oldVersion < 12) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS WorkoutCompletion (" +
+                    "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "traineeID INTEGER NOT NULL, " +
+                    "planID INTEGER NOT NULL, " +
+                    "completionDate TEXT NOT NULL, " +
+                    "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                    "FOREIGN KEY(planID) REFERENCES PlanTable(PlanID) ON DELETE CASCADE, " +
+                    "UNIQUE(traineeID, planID, completionDate))");
+        }
+        // ==================================================================
+
         db.execSQL("DROP TABLE IF EXISTS RemindTable");
         onCreate(db);
     }
@@ -356,6 +385,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return date;
     }
+
     public String getMessageFromReminder(long reminderID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT RemindContent FROM RemindTable WHERE RemindID=?", new String[]{String.valueOf(reminderID)});
@@ -476,4 +506,80 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM User WHERE userID = ?";
         return db.rawQuery(query, new String[]{String.valueOf(id)});
     }
+
+    // ==================== CHANGE #4: NEW METHODS ====================
+    // ADD THESE 4 NEW METHODS AT THE END (before the final closing brace):
+
+    /* ====================== Workout Completion Tracking ====================== */
+
+    /**
+     * Mark a workout as completed for a specific date
+     * @param traineeID The trainee's user ID
+     * @param planID The plan ID that was completed
+     * @param date The date of completion in format "yyyy-MM-dd"
+     * @return true if successfully recorded, false if already exists or error
+     */
+    public boolean markWorkoutComplete(long traineeID, long planID, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("traineeID", traineeID);
+        cv.put("planID", planID);
+        cv.put("completionDate", date);
+        long result = db.insert("WorkoutCompletion", null, cv);
+        db.close();
+        return result != -1;
+    }
+
+    /**
+     * Check if a workout was completed on a specific date
+     * @param traineeID The trainee's user ID
+     * @param date The date to check in format "yyyy-MM-dd"
+     * @return true if any workout was completed on that date
+     */
+    public boolean isWorkoutCompletedOnDate(long traineeID, String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT COUNT(*) FROM WorkoutCompletion WHERE traineeID = ? AND completionDate = ?",
+                new String[]{String.valueOf(traineeID), date}
+        );
+        boolean completed = false;
+        if (c.moveToFirst()) {
+            completed = c.getInt(0) > 0;
+        }
+        c.close();
+        db.close();
+        return completed;
+    }
+
+    /**
+     * Get all completion dates for a trainee in a specific month
+     * @param traineeID The trainee's user ID
+     * @param yearMonth The year-month in format "yyyy-MM"
+     * @return Cursor with all completion dates
+     */
+    public Cursor getCompletedDatesForMonth(long traineeID, String yearMonth) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery(
+                "SELECT DISTINCT completionDate FROM WorkoutCompletion " +
+                        "WHERE traineeID = ? AND completionDate LIKE ? " +
+                        "ORDER BY completionDate",
+                new String[]{String.valueOf(traineeID), yearMonth + "%"}
+        );
+    }
+
+    /**
+     * Remove a workout completion record
+     * @param traineeID The trainee's user ID
+     * @param date The date of the completion to remove
+     * @return true if successfully removed
+     */
+    public boolean unmarkWorkoutComplete(long traineeID, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rows = db.delete("WorkoutCompletion",
+                "traineeID = ? AND completionDate = ?",
+                new String[]{String.valueOf(traineeID), date});
+        db.close();
+        return rows > 0;
+    }
+    // ================================================================
 }
