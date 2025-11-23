@@ -273,7 +273,7 @@
 
     </LinearLayout>
 
-    <!-- Bottom Navigation Button - Single centered ImageButton -->
+    <!-- Bottom Navigation Button -->
     <ImageButton
         android:id="@+id/btnNext"
         android:layout_width="94dp"

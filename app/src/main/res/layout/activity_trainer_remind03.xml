@@ -22,13 +22,12 @@
         android:id="@+id/btnBackOfReminder"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="48dp"
         android:background="#00FFFFFF"
         android:contentDescription="Back to previous page"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/back" />
 
@@ -63,13 +62,13 @@
         android:id="@+id/txtReminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="664dp"
-        android:text="Notifications"
+        android:text="Notify Your Trainee"
         android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.039" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

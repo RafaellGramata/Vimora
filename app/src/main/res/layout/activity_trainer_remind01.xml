@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="153dp"
-        android:text="Notifications"
+        android:text="Notify Your Trainee"
         android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/listViewTrainees"
@@ -36,14 +36,15 @@
         android:id="@+id/btnCloseOfReminder"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginTop="628dp"
         android:background="#00FFFFFF"
         android:contentDescription="back"
         android:scaleType="fitCenter"
         android:src="@drawable/back"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.944" />
 
     <ListView
         android:id="@+id/listViewTrainees"
