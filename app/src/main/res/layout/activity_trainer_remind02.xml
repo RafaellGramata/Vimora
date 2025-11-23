@@ -22,40 +22,41 @@
         android:id="@+id/txtReminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="664dp"
-        android:text="Notifications"
+        android:text="Notify Your Trainee"
         android:textColor="#000000"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036" />
 
     <TextView
         android:id="@+id/txtTrainee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="596dp"
+        android:layout_marginBottom="608dp"
         android:text="Trainee Name"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtReminder" />
 
     <ImageButton
         android:id="@+id/btnCloseOfReminder"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="36dp"
         android:background="#00FFFFFF"
         android:contentDescription="close"
         android:scaleType="fitCenter"
         android:src="@drawable/close"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -63,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="332dp"
-        android:text="Sent Reminders"
+        android:text="Reminders Sent:"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,15 +81,16 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtRemindInput"
+        app:layout_constraintVertical_bias="0.77"
         app:srcCompat="@drawable/sendreminder" />
 
     <ListView
         android:id="@+id/listReminders"
         android:layout_width="290dp"
         android:layout_height="112dp"
-        android:layout_marginBottom="220dp"
+        android:layout_marginBottom="192dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.479"
@@ -98,7 +100,7 @@
         android:id="@+id/editTextDate2"
         android:layout_width="132dp"
         android:layout_height="39dp"
-        android:layout_marginBottom="580dp"
+        android:layout_marginBottom="600dp"
         android:ems="10"
         android:hint="YYYY-MM-DD"
         android:inputType="date"
@@ -106,6 +108,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.774"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtReminder"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -114,11 +117,12 @@
         android:layout_height="111dp"
         android:layout_marginBottom="460dp"
         android:background="#FFFFFF"
-        android:hint="Reminder..."
+        android:hint="Input your Reminder here..."
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtReminder" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
