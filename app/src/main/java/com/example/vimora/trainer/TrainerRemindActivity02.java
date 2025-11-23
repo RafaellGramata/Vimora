@@ -1,9 +1,11 @@
 package com.example.vimora.trainer;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -19,6 +21,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.vimora.DatabaseHelper;
 import com.example.vimora.R;
+import com.example.vimora.trainee.TraineeRemindActivity;
+import com.example.vimora.trainee.TraineeRemindActivity02;
 
 public class TrainerRemindActivity02 extends AppCompatActivity {
     DatabaseHelper databaseHelper;
@@ -53,6 +57,22 @@ public class TrainerRemindActivity02 extends AppCompatActivity {
                 new int[]{R.id.reminderDate,R.id.reminderMessage},0
         );
         listReminders.setAdapter(remindersAdapter);
+
+        listReminders.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @SuppressLint("Range")
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Cursor cursor = (Cursor) adapterView.getItemAtPosition(i);
+                int idIndex = cursor.getColumnIndex("RemindID");
+                if (idIndex != -1) {
+                    long remindID = cursor.getLong(idIndex);
+                    Intent newIntent = new Intent(TrainerRemindActivity02.this, TrainerRemindActivity03.class);
+                    newIntent.putExtra("userID", userID);
+                    newIntent.putExtra("remindID", remindID);
+                    startActivity(newIntent);
+                }
+            }
+        });
 
         ImageButton btnSend = findViewById(R.id.btnSendReminder);
         btnSend.setOnClickListener(new View.OnClickListener() {

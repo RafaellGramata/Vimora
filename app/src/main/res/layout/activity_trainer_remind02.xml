@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
-    tools:context=".trianee.TraineeRemindActivity">
+    tools:context=".trainee.TraineeRemindActivity">
 
     <ImageView
         android:id="@+id/reminderBack"
@@ -81,10 +81,11 @@
 
     <ImageButton
         android:id="@+id/btnSendReminder"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="260dp"
+        android:layout_width="135dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="270dp"
         android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Send Reminder"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +100,7 @@
         android:layout_marginBottom="104dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -113,5 +114,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
