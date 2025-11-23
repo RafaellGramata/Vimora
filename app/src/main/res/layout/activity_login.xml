@@ -5,7 +5,7 @@
     android:id="@+id/tvName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".trainee.TraineeLoginActivity">
+    tools:context=".LoginActivity">
 
     <!-- Full Screen Background Image - REPLACE "your_image_name" with your actual image name -->
     <ImageView

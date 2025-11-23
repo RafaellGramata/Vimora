@@ -27,7 +27,7 @@
         android:layout_marginTop="64dp"
         android:contentDescription="PlanBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageProfileBack"
         app:srcCompat="@drawable/track" />

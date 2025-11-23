@@ -27,7 +27,7 @@
         android:layout_marginTop="64dp"
         android:contentDescription="PlanBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack"
         app:srcCompat="@drawable/profile" />
@@ -151,31 +151,17 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnLogout"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="664dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="logout"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.746"
-        app:layout_constraintStart_toEndOf="@+id/btnReminder"
-        app:srcCompat="@drawable/logout" />
-
-    <ImageButton
         android:id="@+id/btnReminder"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="664dp"
+        android:layout_marginTop="36dp"
         android:background="#00FFFFFF"
         android:contentDescription="reminder"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
+        app:layout_constraintHorizontal_bias="0.963"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/reminder" />
 
     <ImageView

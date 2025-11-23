@@ -66,7 +66,7 @@ public class TrainerRemindActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newIntent = new Intent(TrainerRemindActivity.this,TrainerTrackActivity.class);
+                Intent newIntent = new Intent(TrainerRemindActivity.this,TrainerProfileActivity1.class);
                 newIntent.putExtra("userID",userID);
                 startActivity(newIntent);
             }

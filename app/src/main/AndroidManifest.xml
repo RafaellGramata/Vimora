@@ -66,9 +66,6 @@
             android:name=".trainer.TrainerTrackActivity"
             android:exported="true" />
         <activity
-            android:name=".trainee.TraineeLoginActivity"
-            android:exported="true" />
-        <activity
             android:name=".trainee.TraineeProfileActivity"
             android:exported="true" />
         <activity

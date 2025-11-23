@@ -23,7 +23,7 @@ import java.util.Map;
 public class TraineeTrackActivity05 extends AppCompatActivity {
 
     private EditText traineeCaloriesAverage, traineeProteinAverage, traineeFatAverage;
-    private ImageButton btnInfo, btnLogout, btnReminder;
+    private ImageButton btnInfo, btnReminder;
     private Button btnPlan, btnProfile, btnTrack;
 
     private DatabaseHelper dbHelper;
@@ -69,7 +69,6 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
         traineeFatAverage = findViewById(R.id.traineeFatAverage);
 
         btnInfo = findViewById(R.id.btnInfo4);
-        btnLogout = findViewById(R.id.btnLogout);
         btnReminder = findViewById(R.id.btnReminder);
 
         btnPlan = findViewById(R.id.btnPlanOfTrack4);
@@ -115,16 +114,6 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
             finish();
         });
 
-        // Logout button
-        btnLogout.setOnClickListener(v -> {
-            SharedPreferences prefs = getSharedPreferences("VimoraPrefs", MODE_PRIVATE);
-            prefs.edit().clear().apply();
-            Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(TraineeTrackActivity05.this, WelcomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        });
 
         // Reminder button
         btnReminder.setOnClickListener(v -> {

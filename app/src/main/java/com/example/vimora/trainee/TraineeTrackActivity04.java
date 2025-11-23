@@ -31,7 +31,7 @@ public class TraineeTrackActivity04 extends AppCompatActivity {
     private EditText editBreakCal, editBreakProtein, editBreakFat;
     private EditText editLunchCal, editLunchProtein, editLunchFat;
     private EditText editDinnerCal, editDinnerProtein, editDinnerFat;
-    private ImageButton btnSave, btnViewMore, btnInfo, btnLogout, btnReminder;
+    private ImageButton btnSave, btnViewMore, btnInfo, btnReminder;
     private TextView btnPreviousDate, btnNextDate;
     private Button btnPlan, btnProfile, btnTrack;
 
@@ -104,7 +104,6 @@ public class TraineeTrackActivity04 extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSaveMealTrack);
         btnViewMore = findViewById(R.id.btnMoreMealTrack);
         btnInfo = findViewById(R.id.btnInfo3);
-        btnLogout = findViewById(R.id.btnLogout);
         btnReminder = findViewById(R.id.btnReminder);
 
         btnPlan = findViewById(R.id.btnPlanOfTrack3);
@@ -164,16 +163,6 @@ public class TraineeTrackActivity04 extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Logout button
-        btnLogout.setOnClickListener(v -> {
-            SharedPreferences prefs = getSharedPreferences("VimoraPrefs", MODE_PRIVATE);
-            prefs.edit().clear().apply();
-            Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(TraineeTrackActivity04.this, WelcomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        });
 
         // Reminder button
         btnReminder.setOnClickListener(v -> {
