@@ -21,7 +21,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.vimora.DatabaseHelper;
 import com.example.vimora.R;
 import com.example.vimora.WelcomeActivity;
-import com.example.vimora.trainee.TraineeProfileActivity;
 
 public class TrainerProfileActivity1 extends AppCompatActivity {
 
@@ -76,7 +75,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         btnReminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TrainerProfileActivity1.this, TrainerRemindActivity.class);
+                Intent intent = new Intent(TrainerProfileActivity1.this, TrainerRemindActivity01.class);
                 intent.putExtra("userID", currentTrainerId);
                 startActivity(intent);
             }
@@ -94,7 +93,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         btnTrack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TrainerProfileActivity1.this, TrainerTrackActivity.class);
+                Intent intent = new Intent(TrainerProfileActivity1.this, TrainerTrackActivity01.class);
                 intent.putExtra("userID", currentTrainerId);
                 startActivity(intent);
             }

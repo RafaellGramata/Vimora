@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,7 +18,6 @@ import com.example.vimora.DatabaseHelper;
 import com.example.vimora.NutritionDatabaseHelper;
 import com.example.vimora.NutritionEntry;
 import com.example.vimora.R;
-import com.example.vimora.WelcomeActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -166,7 +164,7 @@ public class TraineeTrackActivity04 extends AppCompatActivity {
 
         // Reminder button
         btnReminder.setOnClickListener(v -> {
-            Intent intent = new Intent(TraineeTrackActivity04.this, TraineeRemindActivity.class);
+            Intent intent = new Intent(TraineeTrackActivity04.this, TraineeRemindActivity01.class);
             intent.putExtra("userID", traineeID);
             startActivity(intent);
         });

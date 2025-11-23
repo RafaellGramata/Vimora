@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.vimora.DatabaseHelper;
 import com.example.vimora.NutritionDatabaseHelper;
 import com.example.vimora.R;
-import com.example.vimora.WelcomeActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -117,7 +116,7 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
 
         // Reminder button
         btnReminder.setOnClickListener(v -> {
-            Intent intent = new Intent(TraineeTrackActivity05.this, TraineeRemindActivity.class);
+            Intent intent = new Intent(TraineeTrackActivity05.this, TraineeRemindActivity01.class);
             intent.putExtra("userID", traineeID);
             startActivity(intent);
         });
