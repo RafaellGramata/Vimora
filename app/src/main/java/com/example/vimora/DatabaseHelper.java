@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 11;   // incremented for nutrition tracking
+    private static final int DATABASE_VERSION = 12;   // ← CHANGED from 11 to 12
 
     // Plan Table
     private static final String TABLE_PLAN = "PlanTable";
@@ -112,6 +112,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "totalFat INTEGER DEFAULT 0, " +
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                 "UNIQUE(traineeID, date, mealType))");
+
+        // TABLE FOR WORKOUT COMPLETION TRACKING:
+        db.execSQL("CREATE TABLE WorkoutCompletion (" +
+                "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "traineeID INTEGER NOT NULL, " +
+                "planID INTEGER NOT NULL, " +
+                "completionDate TEXT NOT NULL, " +
+                "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
+                "UNIQUE(traineeID, planID, completionDate))");
     }
 
     @Override
@@ -149,7 +159,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                     "UNIQUE(traineeID, date, mealType))");
         }
-        // Add nutrition tracking table for versions 7-10
         if (oldVersion < 11 && oldVersion >= 7) {
             db.execSQL("CREATE TABLE IF NOT EXISTS NutritionLog (" +
                     "entryID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -162,11 +171,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                     "UNIQUE(traineeID, date, mealType))");
         }
+
+        // UPGRADE LOGIC
+        if (oldVersion < 12) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS WorkoutCompletion (" +
+                    "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "traineeID INTEGER NOT NULL, " +
+                    "planID INTEGER NOT NULL, " +
+                    "completionDate TEXT NOT NULL, " +
+                    "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                    "FOREIGN KEY(planID) REFERENCES PlanTable(PlanID) ON DELETE CASCADE, " +
+                    "UNIQUE(traineeID, planID, completionDate))");
+        }
+
         db.execSQL("DROP TABLE IF EXISTS RemindTable");
         onCreate(db);
     }
 
-    /* ====================== Sign Up & Login ====================== */
+    /* Sign Up & Login */
     public boolean signUp(String name, String phone, String email, String password, boolean isTrainer,
                           int height, int weight, int age) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -210,7 +232,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    /* ====================== Trainer Profile ====================== */
+    /* Trainer Profile */
     public boolean updateTrainerProfile(long trainerId, String name, String specialization,
                                         int handleNum, String about) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -240,7 +262,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cnt;
     }
 
-    /* ====================== Weight ====================== */
+    /* Weight */
     public boolean addWeightSnapshot(long trainee, int weight) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -262,7 +284,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return w;
     }
 
-    /* ====================== Plan Related ====================== */
+    /* Plan Related */
     public boolean addPlan(String exerciseName, String exerciseContent) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -301,7 +323,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return r > 0;
     }
 
-    /* ====================== Assign Plan to Trainee ====================== */
+    /* Assign Plan to Trainee */
     public boolean assignPlanToTrainee(long planId, long traineeId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -318,7 +340,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sdf.format(new Date());
     }
 
-    /* ====================== Reminder ====================== */
+    /* Reminder */
     public boolean addReminder(String remindDate, String remindContent, long trainee, long trainer) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -356,6 +378,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.close();
         return date;
     }
+
     public String getMessageFromReminder(long reminderID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT RemindContent FROM RemindTable WHERE RemindID=?", new String[]{String.valueOf(reminderID)});
@@ -365,7 +388,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return message;
     }
 
-    /* ====================== Other Common Methods ====================== */
+    /* Other Common Methods */
     public String getName(long userID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT name FROM User WHERE userID=?", new String[]{String.valueOf(userID)});
@@ -458,7 +481,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    /* ====================== Password Hashing ====================== */
+    /* Password Hashing */
     private static String hashPassword(String password) {
         String normalized = Normalizer.normalize(password, Normalizer.Form.NFKD);
         byte[] digest = md.digest(normalized.getBytes(StandardCharsets.UTF_8));
@@ -475,5 +498,100 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM User WHERE userID = ?";
         return db.rawQuery(query, new String[]{String.valueOf(id)});
+    }
+
+    /* Workout Completion Tracking */
+
+    /**
+     * Mark a workout as completed for a specific date
+     * @param traineeID The trainee's user ID
+     * @param planID The plan ID that was completed
+     * @param date The date of completion in format "yyyy-MM-dd"
+     * @return true if successfully recorded, false if already exists or error
+     */
+    public boolean markWorkoutComplete(long traineeID, long planID, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("traineeID", traineeID);
+        cv.put("planID", planID);
+        cv.put("completionDate", date);
+        long result = db.insert("WorkoutCompletion", null, cv);
+        db.close();
+        return result != -1;
+    }
+
+    /**
+     * Check if a workout was completed on a specific date
+     * @param traineeID The trainee's user ID
+     * @param date The date to check in format "yyyy-MM-dd"
+     * @return true if any workout was completed on that date
+     */
+    public boolean isWorkoutCompletedOnDate(long traineeID, String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT COUNT(*) FROM WorkoutCompletion WHERE traineeID = ? AND completionDate = ?",
+                new String[]{String.valueOf(traineeID), date}
+        );
+        boolean completed = false;
+        if (c.moveToFirst()) {
+            completed = c.getInt(0) > 0;
+        }
+        c.close();
+        db.close();
+        return completed;
+    }
+
+    /**
+     * Get all completion dates for a trainee in a specific month
+     * @param traineeID The trainee's user ID
+     * @param yearMonth The year-month in format "yyyy-MM"
+     * @return Cursor with all completion dates
+     */
+    public Cursor getCompletedDatesForMonth(long traineeID, String yearMonth) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery(
+                "SELECT DISTINCT completionDate FROM WorkoutCompletion " +
+                        "WHERE traineeID = ? AND completionDate LIKE ? " +
+                        "ORDER BY completionDate",
+                new String[]{String.valueOf(traineeID), yearMonth + "%"}
+        );
+    }
+
+    /**
+     * Remove a workout completion record
+     * @param traineeID The trainee's user ID
+     * @param date The date of the completion to remove
+     * @return true if successfully removed
+     */
+    public boolean unmarkWorkoutComplete(long traineeID, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rows = db.delete("WorkoutCompletion",
+                "traineeID = ? AND completionDate = ?",
+                new String[]{String.valueOf(traineeID), date});
+        db.close();
+        return rows > 0;
+    }
+
+    /**
+     * Search trainees by trainer with name filter
+     * @param trainerId The trainer's user ID
+     * @param searchQuery The search query to filter trainee names
+     * @return Cursor with filtered trainees
+     */
+    public Cursor searchTraineesByTrainer(long trainerId, String searchQuery) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (searchQuery == null || searchQuery.trim().isEmpty()) {
+            // Return all trainees if no search query
+            return db.rawQuery(
+                    "SELECT userID AS _id, userID, name FROM User WHERE trainerID = ? AND isTrainer = 0 ORDER BY name",
+                    new String[]{String.valueOf(trainerId)}
+            );
+        } else {
+            // Filter by name using LIKE
+            return db.rawQuery(
+                    "SELECT userID AS _id, userID, name FROM User WHERE trainerID = ? AND isTrainer = 0 AND name LIKE ? ORDER BY name",
+                    new String[]{String.valueOf(trainerId), "%" + searchQuery + "%"}
+            );
+        }
     }
 }

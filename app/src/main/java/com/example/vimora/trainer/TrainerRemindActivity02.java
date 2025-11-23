@@ -2,7 +2,6 @@ package com.example.vimora.trainer;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -95,7 +94,7 @@ public class TrainerRemindActivity02 extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newIntent = new Intent(TrainerRemindActivity02.this,TrainerRemindActivity.class);
+                Intent newIntent = new Intent(TrainerRemindActivity02.this, TrainerRemindActivity01.class);
                 newIntent.putExtra("userID",userID);
                 startActivity(newIntent);
             }

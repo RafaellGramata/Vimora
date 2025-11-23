@@ -19,17 +19,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.vimora.DatabaseHelper;
 import com.example.vimora.R;
-import com.example.vimora.trainer.TrainerRemindActivity02;
-import com.example.vimora.trainer.TrainerTrackActivity;
 
-public class TraineeRemindActivity extends AppCompatActivity {
+public class TraineeRemindActivity01 extends AppCompatActivity {
     DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_trainee_remind01);
+        setContentView(R.layout.activity_trainee_remind02);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -47,7 +45,7 @@ public class TraineeRemindActivity extends AppCompatActivity {
             ListView listReminders = findViewById(R.id.listReminders);
 
             SimpleCursorAdapter remindersAdapter = new SimpleCursorAdapter(
-                    TraineeRemindActivity.this,
+                    TraineeRemindActivity01.this,
                     R.layout.list_reminders_entry,
                     databaseHelper.getRemindersForTraineeTrainer(userID, trainerID),
                     new String[]{"RemindDate", "RemindContent"},
@@ -63,7 +61,7 @@ public class TraineeRemindActivity extends AppCompatActivity {
                     int idIndex = cursor.getColumnIndex("RemindID");
                     if (idIndex != -1) {
                         long remindID = cursor.getLong(idIndex);
-                        Intent newIntent = new Intent(TraineeRemindActivity.this, TraineeRemindActivity02.class);
+                        Intent newIntent = new Intent(TraineeRemindActivity01.this, TraineeRemindActivity02.class);
                         newIntent.putExtra("userID", userID);
                         newIntent.putExtra("remindID", remindID);
                         startActivity(newIntent);
@@ -77,7 +75,7 @@ public class TraineeRemindActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newIntent = new Intent(TraineeRemindActivity.this, TraineeProfileActivity.class);
+                Intent newIntent = new Intent(TraineeRemindActivity01.this, TraineeProfileActivity.class);
                 newIntent.putExtra("userID", userID);
                 startActivity(newIntent);
             }

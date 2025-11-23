@@ -6,7 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
+<<<<<<< HEAD
     tools:context=".trainee.TraineeRemindActivity">
+=======
+    tools:context=".trainer.TrainerRemindActivity02">
+>>>>>>> 3ce07b538ac32e1983f3ffabb9b208e86e13a86f
 
     <ImageView
         android:id="@+id/reminderBack"

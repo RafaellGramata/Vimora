@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
-    tools:context=".trianee.TraineePlanActivity01">
+    tools:context=".trainee.TraineePlanActivity01">
 
     <ImageView
         android:id="@+id/imageprofileBack2"

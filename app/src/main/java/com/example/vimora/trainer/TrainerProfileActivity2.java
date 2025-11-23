@@ -68,7 +68,7 @@ public class TrainerProfileActivity2 extends AppCompatActivity {
 
     private void setupButtons() {
         findViewById(R.id.btnReminder).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerRemindActivity.class);
+            Intent intent = new Intent(this, TrainerRemindActivity01.class);
             intent.putExtra("userID", currentTrainerId); // 帶上 ID
             startActivity(intent);
         });
@@ -80,7 +80,7 @@ public class TrainerProfileActivity2 extends AppCompatActivity {
         });
 
         findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerTrackActivity.class);
+            Intent intent = new Intent(this, TrainerTrackActivity01.class);
             intent.putExtra("userID", currentTrainerId); // 帶上 ID
             startActivity(intent);
         });

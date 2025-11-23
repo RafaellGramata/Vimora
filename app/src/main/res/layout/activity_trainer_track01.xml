@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF6501"
-    tools:context=".trainer.TrainerProfileActivity">
+    tools:context=".trainer.TrainerTrackActivity01">
 
     <ImageView
         android:id="@+id/imageTrackBack"
@@ -45,43 +45,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack"
         app:srcCompat="@drawable/track" />
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
-        android:src="@drawable/blackcard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTxtTrainerName"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="384dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Search Trainee"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="296dp"
-        android:layout_height="253dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnPlanOfTrack"
@@ -139,5 +102,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/reminder" />
+
+    <!-- FIXED BLACK CARD SECTION -->
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/blackcard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack" />
+
+    <EditText
+        android:id="@+id/editTxtTrainerName"
+        android:layout_width="260dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Search Trainee"
+        android:inputType="text"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#999999"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toTopOf="@+id/imageView12" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="260dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintEnd_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtTrainerName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
