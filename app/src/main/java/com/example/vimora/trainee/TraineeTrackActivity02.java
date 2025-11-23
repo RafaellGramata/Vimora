@@ -1,7 +1,6 @@
 package com.example.vimora.trainee;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -169,17 +168,17 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
         try {
             String currentDateString = dateFormat.format(selectedDate.getTime());
 
-            // Get assigned plan for this date
+            // Get assigned plan for this date - FIXED: Use DATE() for proper date comparison
             Cursor planCursor = databaseHelper.getReadableDatabase().rawQuery(
-                    "SELECT p.planName FROM AssignedPlan ap " +
-                            "JOIN PlanTable p ON ap.planID = p.planID " +
-                            "WHERE ap.traineeID = ? AND ap.assignedDate <= ? " +
+                    "SELECT p.ExerciseName FROM AssignedPlan ap " +
+                            "JOIN PlanTable p ON ap.planID = p.PlanID " +
+                            "WHERE ap.traineeID = ? AND DATE(ap.assignedDate) <= DATE(?) " +
                             "ORDER BY ap.assignedDate DESC LIMIT 1",
                     new String[]{String.valueOf(userID), currentDateString}
             );
 
             if (planCursor != null && planCursor.moveToFirst()) {
-                String planName = planCursor.getString(planCursor.getColumnIndex("planName"));
+                String planName = planCursor.getString(planCursor.getColumnIndex("ExerciseName"));
                 txtAssignedPlan.setText(planName != null ? planName : "No plan assigned");
                 planCursor.close();
             } else {
@@ -198,8 +197,19 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
                 int calories = completionCursor.getInt(completionCursor.getColumnIndex("caloriesBurned"));
                 int duration = completionCursor.getInt(completionCursor.getColumnIndex("duration"));
 
-                editCalories.setText(String.valueOf(calories));
-                editDuration.setText(String.valueOf(duration));
+                // Only show values if they're greater than 0
+                if (calories > 0) {
+                    editCalories.setText(String.valueOf(calories));
+                } else {
+                    editCalories.setText("");
+                }
+
+                if (duration > 0) {
+                    editDuration.setText(String.valueOf(duration));
+                } else {
+                    editDuration.setText("");
+                }
+
                 completionCursor.close();
             } else {
                 editCalories.setText("");
@@ -209,7 +219,8 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error loading data", Toast.LENGTH_SHORT).show();
+            android.util.Log.e("TraineeTrackActivity02", "Error loading data: " + e.getMessage());
+            Toast.makeText(this, "Error loading data: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -243,10 +254,10 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
                 cursor.close();
                 Toast.makeText(this, "Workout updated successfully", Toast.LENGTH_SHORT).show();
             } else {
-                // Insert new record
+                // Insert new record (planID can be null)
                 databaseHelper.getWritableDatabase().execSQL(
-                        "INSERT INTO WorkoutCompletion (traineeID, completionDate, caloriesBurned, duration) " +
-                                "VALUES (?, ?, ?, ?)",
+                        "INSERT INTO WorkoutCompletion (traineeID, planID, completionDate, caloriesBurned, duration) " +
+                                "VALUES (?, NULL, ?, ?, ?)",
                         new Object[]{userID, currentDateString, calories, duration}
                 );
                 if (cursor != null) cursor.close();
@@ -257,7 +268,8 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
             Toast.makeText(this, "Please enter valid numbers", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
+            android.util.Log.e("TraineeTrackActivity02", "Error saving data: " + e.getMessage());
+            Toast.makeText(this, "Error saving data: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 13;   // ← CHANGED from 11 to 12
+    private static final int DATABASE_VERSION = 14;   // ← CHANGED from 13 to 14
 
     // Plan Table
     private static final String TABLE_PLAN = "PlanTable";
@@ -47,9 +47,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_SETS3 = "sets3";
     private static final String COL_REST_DURATION = "rest_duration";
     private static final String COL_WORKOUT_DURATION = "workout_duration";
-
-
-
 
     // Reminder Table
     private static final String TABLE_REMIND = "RemindTable";
@@ -140,15 +137,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                 "UNIQUE(traineeID, date, mealType))");
 
-        // TABLE FOR WORKOUT COMPLETION TRACKING:
+        // TABLE FOR WORKOUT COMPLETION TRACKING - VERSION 14 WITH CALORIES & DURATION
         db.execSQL("CREATE TABLE WorkoutCompletion (" +
                 "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "traineeID INTEGER NOT NULL, " +
-                "planID INTEGER NOT NULL, " +
+                "planID INTEGER, " +
                 "completionDate TEXT NOT NULL, " +
+                "caloriesBurned INTEGER DEFAULT 0, " +
+                "duration INTEGER DEFAULT 0, " +
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                 "FOREIGN KEY(planID) REFERENCES " + TABLE_PLAN + "(" + COL_PLAN_ID + ") ON DELETE CASCADE, " +
-                "UNIQUE(traineeID, planID, completionDate))");
+                "UNIQUE(traineeID, completionDate))");
     }
 
     @Override
@@ -199,7 +198,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "UNIQUE(traineeID, date, mealType))");
         }
 
-        // UPGRADE LOGIC
+        // UPGRADE LOGIC for version 12
         if (oldVersion < 12) {
             db.execSQL("CREATE TABLE IF NOT EXISTS WorkoutCompletion (" +
                     "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -211,6 +210,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "UNIQUE(traineeID, planID, completionDate))");
         }
 
+        // UPGRADE LOGIC for version 13 - Add PlanTable columns
         if (oldVersion < 13) {
             db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_ITEM1 + " TEXT");
             db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_REPS1 + " TEXT");
@@ -225,11 +225,103 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_WORKOUT_DURATION + " TEXT");
         }
 
+        // UPGRADE LOGIC for version 14 - SAFE MIGRATION: Add calories & duration to WorkoutCompletion
+        if (oldVersion < 14) {
+            try {
+                android.util.Log.i("DatabaseHelper", "Starting WorkoutCompletion migration to v14");
+
+                // Check if table exists and has data
+                Cursor checkCursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='WorkoutCompletion'", null);
+                boolean tableExists = checkCursor.getCount() > 0;
+                checkCursor.close();
+
+                if (tableExists) {
+                    Cursor dataCursor = db.rawQuery("SELECT COUNT(*) FROM WorkoutCompletion", null);
+                    boolean hasData = dataCursor.moveToFirst() && dataCursor.getInt(0) > 0;
+                    dataCursor.close();
+
+                    if (hasData) {
+
+                        android.util.Log.i("DatabaseHelper", "Migrating existing WorkoutCompletion data");
+
+                        // Rename old table
+                        db.execSQL("ALTER TABLE WorkoutCompletion RENAME TO WorkoutCompletion_backup");
+
+                        // Create new table with updated schema
+                        db.execSQL("CREATE TABLE WorkoutCompletion (" +
+                                "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                "traineeID INTEGER NOT NULL, " +
+                                "planID INTEGER, " +
+                                "completionDate TEXT NOT NULL, " +
+                                "caloriesBurned INTEGER DEFAULT 0, " +
+                                "duration INTEGER DEFAULT 0, " +
+                                "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                                "FOREIGN KEY(planID) REFERENCES PlanTable(PlanID) ON DELETE CASCADE, " +
+                                "UNIQUE(traineeID, completionDate))");
+
+                        // potential duplicates due to new UNIQUE constraint
+                        // Takes the first record per traineeID+date if duplicates exist
+                        db.execSQL("INSERT INTO WorkoutCompletion (traineeID, planID, completionDate, caloriesBurned, duration) " +
+                                "SELECT traineeID, planID, completionDate, 0, 0 " +
+                                "FROM WorkoutCompletion_backup " +
+                                "GROUP BY traineeID, completionDate");
+
+                        // Drop backup table
+                        db.execSQL("DROP TABLE WorkoutCompletion_backup");
+
+                        android.util.Log.i("DatabaseHelper", "WorkoutCompletion migration to v14 completed successfully");
+                    } else {
+                        // No data, safe to drop and recreate
+                        android.util.Log.i("DatabaseHelper", "No data in WorkoutCompletion, recreating table");
+                        db.execSQL("DROP TABLE IF EXISTS WorkoutCompletion");
+                        db.execSQL("CREATE TABLE WorkoutCompletion (" +
+                                "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                "traineeID INTEGER NOT NULL, " +
+                                "planID INTEGER, " +
+                                "completionDate TEXT NOT NULL, " +
+                                "caloriesBurned INTEGER DEFAULT 0, " +
+                                "duration INTEGER DEFAULT 0, " +
+                                "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                                "FOREIGN KEY(planID) REFERENCES PlanTable(PlanID) ON DELETE CASCADE, " +
+                                "UNIQUE(traineeID, completionDate))");
+                    }
+                } else {
+                    // Table doesn't exist, create it
+                    android.util.Log.i("DatabaseHelper", "Creating WorkoutCompletion table for first time");
+                    db.execSQL("CREATE TABLE WorkoutCompletion (" +
+                            "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                            "traineeID INTEGER NOT NULL, " +
+                            "planID INTEGER, " +
+                            "completionDate TEXT NOT NULL, " +
+                            "caloriesBurned INTEGER DEFAULT 0, " +
+                            "duration INTEGER DEFAULT 0, " +
+                            "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                            "FOREIGN KEY(planID) REFERENCES PlanTable(PlanID) ON DELETE CASCADE, " +
+                            "UNIQUE(traineeID, completionDate))");
+                }
+            } catch (Exception e) {
+                // if migration fails, drop and recreate
+                android.util.Log.e("DatabaseHelper", "Migration to v14 failed, recreating table: " + e.getMessage());
+                db.execSQL("DROP TABLE IF EXISTS WorkoutCompletion");
+                db.execSQL("DROP TABLE IF EXISTS WorkoutCompletion_backup");
+                db.execSQL("CREATE TABLE WorkoutCompletion (" +
+                        "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "traineeID INTEGER NOT NULL, " +
+                        "planID INTEGER, " +
+                        "completionDate TEXT NOT NULL, " +
+                        "caloriesBurned INTEGER DEFAULT 0, " +
+                        "duration INTEGER DEFAULT 0, " +
+                        "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
+                        "FOREIGN KEY(planID) REFERENCES PlanTable(PlanID) ON DELETE CASCADE, " +
+                        "UNIQUE(traineeID, completionDate))");
+            }
+        }
+
         db.execSQL("DROP TABLE IF EXISTS RemindTable");
         onCreate(db);
     }
 
-    /* Sign Up & Login */
+    // Sign Up & Login
     public boolean signUp(String name, String phone, String email, String password, boolean isTrainer,
                           int height, int weight, int age) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -273,7 +365,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    /* Trainer Profile */
+    // Trainer Profile
     public boolean updateTrainerProfile(long trainerId, String name, String specialization,
                                         int handleNum, String about) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -303,7 +395,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cnt;
     }
 
-    /* Weight */
+    // Weight
     public boolean addWeightSnapshot(long trainee, int weight) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -325,7 +417,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return w;
     }
 
-    /* Plan Related */
+    // Plan Related
     public boolean addPlan(String exerciseName, String exerciseContent) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -418,7 +510,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return r > 0;
     }
 
-    /* Assign Plan to Trainee */
+    // Assign Plan to Trainee
     public boolean assignPlanToTrainee(long planId, long traineeId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -435,7 +527,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return sdf.format(new Date());
     }
 
-    /* Reminder */
+    // Reminder
     public boolean addReminder(String remindDate, String remindContent, long trainee, long trainer) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -483,7 +575,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return message;
     }
 
-    /* Other Common Methods */
+    // Other Common Methods
     public String getName(long userID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT name FROM User WHERE userID=?", new String[]{String.valueOf(userID)});
@@ -595,12 +687,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, new String[]{String.valueOf(id)});
     }
 
-    /* Workout Completion Tracking */
+    /* Workout Completion Tracking - UPDATED FOR VERSION 14 */
 
-    /**
+    /*
      * Mark a workout as completed for a specific date
      * @param traineeID The trainee's user ID
-     * @param planID The plan ID that was completed
+     * @param planID The plan ID that was completed (can be 0 or -1 for no plan)
      * @param date The date of completion in format "yyyy-MM-dd"
      * @return true if successfully recorded, false if already exists or error
      */
@@ -608,14 +700,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("traineeID", traineeID);
-        cv.put("planID", planID);
+        if (planID > 0) {
+            cv.put("planID", planID);
+        } else {
+            cv.putNull("planID");
+        }
         cv.put("completionDate", date);
         long result = db.insert("WorkoutCompletion", null, cv);
         db.close();
         return result != -1;
     }
 
-    /**
+    /*
      * Check if a workout was completed on a specific date
      * @param traineeID The trainee's user ID
      * @param date The date to check in format "yyyy-MM-dd"
@@ -636,7 +732,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return completed;
     }
 
-    /**
+    /*
      * Get all completion dates for a trainee in a specific month
      * @param traineeID The trainee's user ID
      * @param yearMonth The year-month in format "yyyy-MM"
@@ -652,7 +748,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    /**
+    /*
      * Remove a workout completion record
      * @param traineeID The trainee's user ID
      * @param date The date of the completion to remove
@@ -667,7 +763,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rows > 0;
     }
 
-    /**
+    /*
      * Search trainees by trainer with name filter
      * @param trainerId The trainer's user ID
      * @param searchQuery The search query to filter trainee names

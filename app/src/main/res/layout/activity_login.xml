@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <!-- Full Screen Background Image - REPLACE "your_image_name" with your actual image name -->
     <ImageView
         android:id="@+id/imgFullBackground"
         android:layout_width="0dp"
