@@ -30,9 +30,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 14;   // ← CHANGED from 13 to 14
 
     // Plan Table
-    private static final String TABLE_PLAN = "PlanTable";
-    private static final String COL_PLAN_ID = "PlanID";
-    private static final String COL_EXERCISE_NAME = "ExerciseName";
+    public static final String TABLE_PLAN = "PlanTable";
+    public static final String COL_PLAN_ID = "PlanID";
+    public static final String COL_EXERCISE_NAME = "ExerciseName";
     private static final String COL_EXERCISE_CONTENT = "ExerciseContent";
 
     // Update Plan Table
@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_REMIND_CONTENT = "RemindContent";
 
     // AssignedPlan Table
-    private static final String TABLE_ASSIGNED_PLAN = "AssignedPlan";
+    public static final String TABLE_ASSIGNED_PLAN = "AssignedPlan";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -687,15 +687,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, new String[]{String.valueOf(id)});
     }
 
-    /* Workout Completion Tracking - UPDATED FOR VERSION 14 */
-
-    /*
-     * Mark a workout as completed for a specific date
-     * @param traineeID The trainee's user ID
-     * @param planID The plan ID that was completed (can be 0 or -1 for no plan)
-     * @param date The date of completion in format "yyyy-MM-dd"
-     * @return true if successfully recorded, false if already exists or error
-     */
     public boolean markWorkoutComplete(long traineeID, long planID, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -711,12 +702,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    /*
-     * Check if a workout was completed on a specific date
-     * @param traineeID The trainee's user ID
-     * @param date The date to check in format "yyyy-MM-dd"
-     * @return true if any workout was completed on that date
-     */
     public boolean isWorkoutCompletedOnDate(long traineeID, String date) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(
@@ -732,12 +717,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return completed;
     }
 
-    /*
-     * Get all completion dates for a trainee in a specific month
-     * @param traineeID The trainee's user ID
-     * @param yearMonth The year-month in format "yyyy-MM"
-     * @return Cursor with all completion dates
-     */
     public Cursor getCompletedDatesForMonth(long traineeID, String yearMonth) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery(
@@ -748,12 +727,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    /*
-     * Remove a workout completion record
-     * @param traineeID The trainee's user ID
-     * @param date The date of the completion to remove
-     * @return true if successfully removed
-     */
     public boolean unmarkWorkoutComplete(long traineeID, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         int rows = db.delete("WorkoutCompletion",
@@ -763,12 +736,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rows > 0;
     }
 
-    /*
-     * Search trainees by trainer with name filter
-     * @param trainerId The trainer's user ID
-     * @param searchQuery The search query to filter trainee names
-     * @return Cursor with filtered trainees
-     */
     public Cursor searchTraineesByTrainer(long trainerId, String searchQuery) {
         SQLiteDatabase db = this.getReadableDatabase();
         if (searchQuery == null || searchQuery.trim().isEmpty()) {
@@ -785,4 +752,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
         }
     }
+
 }

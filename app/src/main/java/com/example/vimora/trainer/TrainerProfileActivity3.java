@@ -105,9 +105,32 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
                 Toast.makeText(this, "Error loading data", Toast.LENGTH_SHORT).show();
             }
         }
-        c.close();
-        tvAssignedPlan.setText("Basic Plan");
+        String assignedPlanName = getAssignedPlanName(traineeId);
+        tvAssignedPlan.setText(assignedPlanName);
+    }
+    private String getAssignedPlanName(long traineeId) {
+        String planName = "Unassigned";
+
+        String query = "SELECT p." + DatabaseHelper.COL_EXERCISE_NAME +
+                " FROM " + DatabaseHelper.TABLE_ASSIGNED_PLAN + " a" +
+                " JOIN " + DatabaseHelper.TABLE_PLAN + " p ON a.planID = p." + DatabaseHelper.COL_PLAN_ID +
+                " WHERE a.traineeID = ?" +
+                " ORDER BY a.assignedDate DESC" +
+                " LIMIT 1";
+
+        Cursor cursor = dbHelper.getReadableDatabase().rawQuery(query, new String[]{String.valueOf(traineeId)});
+
+        if (cursor.moveToFirst()) {
+            planName = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_EXERCISE_NAME));
+            if (planName == null || planName.trim().isEmpty()) {
+                planName = "No plan assigned";
+            }
         }
+        cursor.close();
+        return planName;
+    }
+
+
 
     @Override
     protected void onResume() {

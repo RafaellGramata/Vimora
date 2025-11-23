@@ -1,0 +1,224 @@
+[33mcommit b93b04de703fd41d995911dc4c08374bb57e488c[m[33m ([m[1;31morigin/trainer-yungyu[m[33m)[m
+Author: Philip W <158708523+PhilipYYW@users.noreply.github.com>
+Date:   Sun Nov 23 01:54:37 2025 -0800
+
+    edited Trainer plan content with adding name, item, reps, sets, rest duration and workout duration
+
+[33mcommit 8860e982c1284666fe3222266777dc4738120169[m
+Merge: 0f4e442 3ce07b5
+Author: Philip W <158708523+PhilipYYW@users.noreply.github.com>
+Date:   Sun Nov 23 00:32:48 2025 -0800
+
+    Merge branch 'master' of https://github.com/RafaellGramata/Vimora into trainer-yungyu
+
+[33mcommit 3ce07b538ac32e1983f3ffabb9b208e86e13a86f[m
+Merge: 59e6052 b6320bf
+Author: RafaellGramata <70127752+RafaellGramata@users.noreply.github.com>
+Date:   Sun Nov 23 00:31:13 2025 -0800
+
+    Merge pull request #29 from RafaellGramata/master-test
+    
+    created functioning trainer track feature including tracking meals
+
+[33mcommit b6320bfe3d2a09ca2e683f173ed6bccd1eebdc03[m
+Author: RafaellGramata <rafaellgramata01@gmail.com>
+Date:   Sun Nov 23 00:17:47 2025 -0800
+
+    created functioning trainer track feature including tracking meals
+
+[33mcommit 0f4e44277f55dfa6d7cadfc6c15c0ca393980c2f[m
+Author: Philip W <158708523+PhilipYYW@users.noreply.github.com>
+Date:   Sat Nov 22 22:26:01 2025 -0800
+
+    adjust the position of trainer & trainee reminder cards.
+
+[33mcommit 6b09734d4286cc3f0d019aaec901f54a121f6921[m
+Author: Philip W <158708523+PhilipYYW@users.noreply.github.com>
+Date:   Sat Nov 22 21:28:59 2025 -0800
+
+    Trainer can see the massages from the list of reminder02 on trainer_reminder03
+
+[33mcommit 59e6052fe26d021d928001296628f0fd032886e7[m
+Merge: d2f57c3 326e32f
+Author: RafaellGramata <70127752+RafaellGramata@users.noreply.github.com>
+Date:   Sat Nov 22 20:27:44 2025 -0800
+
+    Merge pull request #28 from RafaellGramata/master-test
+    
+    trainee's functional calendar when exercise was marked as completed.
+
+[33mcommit 326e32f636e09a8967088eb63d7ba959e0c684e3[m
+Author: RafaellGramata <rafaellgramata01@gmail.com>
+Date:   Sat Nov 22 20:24:17 2025 -0800
+
+    update for previous commit
+
+[33mcommit b3f5a665b702a22c2e1cf2fcd54eac9c4cc3c433[m
+Author: RafaellGramata <rafaellgramata01@gmail.com>
+Date:   Sat Nov 22 20:23:03 2025 -0800
+
+    update for previous commit
+
+[33mcommit 8462afedac0b1bd2bb1d74b351252e697e04d9f9[m
+Author: RafaellGramata <rafaellgramata01@gmail.com>
+Date:   Sat Nov 22 20:18:33 2025 -0800
+
+    trainee's functional calendar when exercise was marked as completed.
+
+[33mcommit 13ab32fa4615ef5250fafe914d1accc602a99d33[m
+Author: Philip W <158708523+PhilipYYW@users.noreply.github.com>
+Date:   Sat Nov 22 19:56:22 2025 -0800
+
+    adjust the content position of login, signup, signup2 and welcome.xml
+
+[33mcommit d2f57c3495f5aa3a39cc47f53102ff9bd72ba416[m
+Merge: df0dc26 ea0e47c
+Author: RafaellGramata <70127752+RafaellGramata@users.noreply.github.com>
+Date:   Sat Nov 22 17:45:05 2025 -0800
+
+    Merge pull request #27 from RafaellGramata/viatrix-miscfixes
+    
+    Miscellaneous fixes
+
+[33mcommit ea0e47c8864ef84b25b24e37bb9ac94ef618fa11[m[33m ([m[1;31morigin/viatrix-miscfixes[m[33m)[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 17:35:05 2025 -0800
+
+    Visual tweaks I didn't get two commits ago
+    because for some reason dragging and dropping them did not work
+
+[33mcommit 4acecd1dcab118d4f8bcd6d8039811caecbf1c14[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 17:28:58 2025 -0800
+
+    TrainerPlanActivity1 now has correct Track button.
+
+[33mcommit b0a3475c91aa4c1445daffbc1738cd187ede7346[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 17:23:04 2025 -0800
+
+    Visual tweaks
+    Fixed some alignments.
+    Made "Send reminder" button stop having a grey background.
+
+[33mcommit ca254a92257e3f1b991e42525d62aed7be8cc63a[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 17:15:56 2025 -0800
+
+    Misc. fixes:
+    * Removed reminder button from reminder activity.
+    * Removed unused TraineeLoginActivity.
+    * Trainer logout button now works.
+    * Activities without logout button do not try to set its click handler.
+    * TrainerTrackActivity propogates userID
+    * TrainerPlanActivity3 has a working Track button.
+
+[33mcommit 809e610f8a0bc4a9068e43ad6a2006e40ec89f88[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 16:52:18 2025 -0800
+
+    Fixed reminder button destinations. Removed stray logout buttons and added logout button to trainer profile 1.
+
+[33mcommit df0dc26baf241c685262305f9bcf1ea39726a5f8[m
+Merge: f6f3e07 88fc534
+Author: RafaellGramata <70127752+RafaellGramata@users.noreply.github.com>
+Date:   Sat Nov 22 16:30:51 2025 -0800
+
+    Merge pull request #26 from RafaellGramata/trainee-viatrix
+
+[33mcommit 88fc5345a15327e9c429bf7fba49d3ed28fdc600[m[33m ([m[1;31morigin/trainee-viatrix[m[33m)[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 15:44:21 2025 -0800
+
+    Renaming buttons so they make sense
+
+[33mcommit c04d975450f170eb029d4c1bbd832a32001883b4[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 15:26:40 2025 -0800
+
+    Trainee can view reminders from trainer.
+
+[33mcommit b079bdd5370206694ffea29cd99ff4862dbbe743[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 14:51:38 2025 -0800
+
+    Trainer now sees reminders they have sent.
+
+[33mcommit 92ce5b6d5f0b78ba1240b6a2ce02e692a4de4e16[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 13:54:20 2025 -0800
+
+    Trainer can now send reminders.
+    Functionality to view sent reminders not yet implemented.
+
+[33mcommit 24e696940c621f3a290e0a57f15b7ce8931766d3[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 13:29:40 2025 -0800
+
+    Trainer can, from the reminders button, choose a trainee and open the reminder interface. Reminding not yet implemented.
+
+[33mcommit 81401fadc39fc37bd8d54bf5f9967fd737f8627d[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 12:38:21 2025 -0800
+
+    working on reminders. saving progress while i move to another computer
+
+[33mcommit ba6225e3a472a2738fb19007636e39b5435cdffd[m
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 12:29:22 2025 -0800
+
+    TrainerProfileActivity3 actually runs without crashing
+
+[33mcommit dd3d03a5d299ea5a7e8bd7be848e4c54412b1154[m
+Merge: 1f79fe0 f6f3e07
+Author: 300401988 <nullv@student.douglascollege.ca>
+Date:   Sat Nov 22 12:10:45 2025 -0800
+
+    Merge "master"
+
+[33mcommit f6f3e074774a1ef3ebb13eceee99a8bb04aea1ca[m
+Merge: 5c6884b 3467c73
+Author: RafaellGramata <70127752+RafaellGramata@users.noreply.github.com>
+Date:   Sat Nov 22 05:08:34 2025 -0800
+
+    Merge pull request #25 from RafaellGramata/master-test
+    
+    redesigned splash, welcome, signup, login pages
+
+[33mcommit 3467c73cf7a93d59da7856101559b55860f4ee09[m
+Author: RafaellGramata <rafaellgramata01@gmail.com>
+Date:   Sat Nov 22 05:06:46 2025 -0800
+
+    redesigned splash, signup, login page
+
+[33mcommit 510d789ccbb8cb099e2e1b155d8424fd8165d25f[m
+Author: RafaellGramata <rafaellgramata01@gmail.com>
+Date:   Sat Nov 22 04:38:18 2025 -0800
+
+    redesigned welcome page
+
+[33mcommit 5c6884b6f014eb1ed587ba68b9ab87107283361f[m
+Merge: 1133896 43e96e4
+Author: RafaellGramata <70127752+RafaellGramata@users.noreply.github.com>
+Date:   Sat Nov 22 03:41:31 2025 -0800
+
+    Merge pull request #24 from RafaellGramata/master-backup1
+    
+    Trainee's meal plan feature
+    -created functional meal tracking feature of trainee, reflects in db
+    -routing fixes for trainee's meal tracking pages
+
+[33mcommit 43e96e455810ae1320e4785054f35d438bf0f46f[m
+Author: RafaellGramata <rafaellgramata01@gmail.com>
+Date:   Sat Nov 22 03:33:29 2025 -0800
+
+    small routing fixes for trainee's meal tracking pages
+
+[33mcommit 2bfbe1c304aad3fdc3104fec0a7cff7e6c814c2b[m
+Author: RafaellGramata <rafaellgramata01@gmail.com>
+Date:   Sat Nov 22 03:06:18 2025 -0800
+
+    created functional track meal tracking feature of trainee, reflects in db
+
+[33mcommit 1f79fe016bda8b3561998f2d14d538732b7bbf67[m
+Author: 3004019
