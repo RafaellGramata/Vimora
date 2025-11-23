@@ -8,6 +8,23 @@
     android:background="#FF6501"
     tools:context=".trainee.TraineeTrackActivity03">
 
+    <!-- Reminder Button -->
+    <ImageButton
+        android:id="@+id/btnReminder"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="reminder"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reminder"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <!-- Background Cards -->
     <ImageView
         android:id="@+id/imagePlanBack3"
         android:layout_width="380dp"
@@ -29,7 +46,6 @@
         android:layout_marginEnd="15dp"
         android:contentDescription="ProfileBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack3"
         app:srcCompat="@drawable/profile" />
@@ -46,6 +62,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageprofileBack3"
         app:srcCompat="@drawable/track" />
 
+    <!-- Navigation Buttons -->
     <Button
         android:id="@+id/btnPlanOfTrack2"
         android:layout_width="wrap_content"
@@ -53,10 +70,9 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="PLAN"
-        android:textColor="#040000"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack3" />
 
@@ -67,7 +83,7 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="PROFILE"
-        android:textColor="#040000"
+        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,127 +96,201 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="TRACK"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack3" />
 
-    <ImageView
-        android:id="@+id/imageTrackBlack"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
-        android:src="@drawable/blackcard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+    <!-- Back and Meal Buttons -->
+    <ImageButton
+        android:id="@+id/btnInfo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="back"
+        android:scaleType="fitCenter"
+        android:src="@drawable/backhome"
+        app:layout_constraintBottom_toBottomOf="@+id/btnTrackOfTrack2"
+        app:layout_constraintEnd_toStartOf="@+id/btnTrackOfTrack2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtInformation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:text="Monthly Workout Summary"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack2" />
+        app:layout_constraintTop_toTopOf="@+id/btnTrackOfTrack2"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/btnMeal"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginTop="4dp"
         android:background="#00FFFFFF"
         android:contentDescription="meal"
         android:scaleType="fitCenter"
         android:src="@drawable/meal"
+        app:layout_constraintBottom_toBottomOf="@+id/btnTrackOfTrack2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack2"
+        app:layout_constraintStart_toEndOf="@+id/btnTrackOfTrack2"
+        app:layout_constraintTop_toTopOf="@+id/btnTrackOfTrack2"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <ImageButton
-        android:id="@+id/btnInfo"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="-5dp"
-        android:layout_marginTop="4dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="back"
-        android:scaleType="fitCenter"
-        android:src="@drawable/backhome"
+    <!-- Black Card -->
+    <ImageView
+        android:id="@+id/imageTrackBlack"
+        android:layout_width="340dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="24dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/blackcard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack2"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack2" />
 
-    <ImageButton
-        android:id="@+id/btnReminder"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="reminder"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/reminder"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <EditText
-        android:id="@+id/trainerDurationMonthly"
-        android:layout_width="270dp"
+    <!-- Month Navigation -->
+    <TextView
+        android:id="@+id/btnPreviousMonth"
+        android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="#FFFFFF"
-        android:ems="10"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center"
-        android:hint="Duration per day"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        android:text="&lt;"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/txtMonthYear"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/trainerCaloriesMonthly" />
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBlack" />
 
-    <EditText
-        android:id="@+id/trainerDateMonthly"
-        android:layout_width="270dp"
+    <TextView
+        android:id="@+id/txtMonthYear"
+        android:layout_width="180dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:background="#FFFFFF"
-        android:ems="10"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
         android:gravity="center"
-        android:hint="Workout per day(minute)"
-        android:inputType="date"
-        android:textColor="#000000"
-        android:textSize="20sp"
+        android:text="2025-10"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnNextMonth"
+        app:layout_constraintStart_toEndOf="@+id/btnPreviousMonth"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBlack" />
+
+    <TextView
+        android:id="@+id/btnNextMonth"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="&gt;"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toEndOf="@+id/txtMonthYear"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBlack" />
+
+    <!-- Monthly Statistics Title -->
+    <TextView
+        android:id="@+id/txtInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Monthly Statistics"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMonthYear" />
+
+    <!-- Workout Start Date Label -->
+    <TextView
+        android:id="@+id/txtWorkoutStartLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Workout Start Date"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/trainerDateMonthly"
         app:layout_constraintTop_toBottomOf="@+id/txtInformation" />
 
-    <EditText
-        android:id="@+id/trainerCaloriesMonthly"
-        android:layout_width="270dp"
+    <!-- Workout Start Date Value (READ-ONLY) -->
+    <TextView
+        android:id="@+id/trainerDateMonthly"
+        android:layout_width="280dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="6dp"
         android:background="#FFFFFF"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Calories Bured per day"
-        android:inputType="text"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_vertical"
+        android:hint="Start Date"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#999999"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageTrackBlack"
+        app:layout_constraintStart_toStartOf="@+id/imageTrackBlack"
+        app:layout_constraintTop_toBottomOf="@+id/txtWorkoutStartLabel" />
+
+    <!-- Calories Burned Label -->
+    <TextView
+        android:id="@+id/txtCaloriesMonthlyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Calories Burned (AVG/day)"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/trainerCaloriesMonthly"
         app:layout_constraintTop_toBottomOf="@+id/trainerDateMonthly" />
+
+    <!-- Calories Burned Value (READ-ONLY) -->
+    <TextView
+        android:id="@+id/trainerCaloriesMonthly"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:hint="Calories Burned"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#999999"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageTrackBlack"
+        app:layout_constraintStart_toStartOf="@+id/imageTrackBlack"
+        app:layout_constraintTop_toBottomOf="@+id/txtCaloriesMonthlyLabel" />
+
+    <!-- Duration Label -->
+    <TextView
+        android:id="@+id/txtDurationMonthlyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Duration (AVG/day)"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/trainerDurationMonthly"
+        app:layout_constraintTop_toBottomOf="@+id/trainerCaloriesMonthly" />
+
+    <!-- Duration Value (READ-ONLY) -->
+    <TextView
+        android:id="@+id/trainerDurationMonthly"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:background="#FFFFFF"
+        android:gravity="center_vertical"
+        android:hint="Duration"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#999999"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageTrackBlack"
+        app:layout_constraintStart_toStartOf="@+id/imageTrackBlack"
+        app:layout_constraintTop_toBottomOf="@+id/txtDurationMonthlyLabel" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -102,8 +102,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack5" />
 
-    <!-- Black Card Background -->
-
+    <!-- Back Button -->
     <ImageButton
         android:id="@+id/btnInfo3"
         android:layout_width="30dp"
@@ -119,6 +118,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
 
+    <!-- Black Card Background -->
     <ImageView
         android:id="@+id/imageTrackBlack"
         android:layout_width="340dp"
@@ -130,25 +130,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack3" />
 
-    <!-- Content inside black card -->
+    <!-- Title - INSIDE black card -->
     <TextView
         android:id="@+id/txtInformationMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:text="Daily Meal Track"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack3" />
+        app:layout_constraintEnd_toEndOf="@+id/imageTrackBlack"
+        app:layout_constraintStart_toStartOf="@+id/imageTrackBlack"
+        app:layout_constraintTop_toTopOf="@+id/imageTrackBlack" />
 
     <!-- Date Selector with arrows -->
     <TextView
         android:id="@+id/btnPreviousDate"
         android:layout_width="40dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
@@ -158,13 +158,13 @@
         app:layout_constraintEnd_toStartOf="@+id/editTextDateMeal"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInformationMeal" />
 
     <TextView
         android:id="@+id/editTextDateMeal"
         android:layout_width="180dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         android:background="#000000"
         android:clickable="true"
         android:focusable="true"
@@ -175,13 +175,13 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInformationMeal" />
 
     <TextView
         android:id="@+id/btnNextDate"
         android:layout_width="40dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="16dp"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
@@ -191,7 +191,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/editTextDateMeal"
-        app:layout_constraintTop_toBottomOf="@+id/btnTrackOfTrack3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInformationMeal" />
 
     <!-- Breakfast Row -->
 
@@ -199,8 +199,8 @@
         android:id="@+id/txtBreakfastLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="12dp"
         android:text="Breakfast"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
@@ -248,7 +248,6 @@
         app:layout_constraintTop_toTopOf="@+id/editBreakCal" />
 
     <!-- Lunch Row -->
-
     <TextView
         android:id="@+id/txtLunchLabel"
         android:layout_width="wrap_content"
@@ -302,7 +301,6 @@
         app:layout_constraintTop_toTopOf="@+id/editLunchCal" />
 
     <!-- Dinner Row -->
-
     <TextView
         android:id="@+id/txtDinnerLabel"
         android:layout_width="wrap_content"
@@ -367,7 +365,6 @@
         app:layout_constraintTop_toBottomOf="@+id/editDinnerCal" />
 
     <!-- Total Row -->
-
     <TextView
         android:id="@+id/txtTotalLabel"
         android:layout_width="wrap_content"
@@ -428,9 +425,9 @@
 
     <ImageButton
         android:id="@+id/btnSaveMealTrack"
-        android:layout_width="85dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="64dp"
+        android:layout_width="71dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="48dp"
         android:background="#00FFFFFF"
         android:contentDescription="save"
         android:scaleType="fitCenter"
@@ -438,21 +435,21 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/imageTrackBack5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.227"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/btnMoreMealTrack"
-        android:layout_width="120dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="64dp"
+        android:layout_width="103dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="40dp"
         android:background="#00FFFFFF"
         android:contentDescription="view more"
         android:scaleType="fitCenter"
         android:src="@drawable/viewmore"
         app:layout_constraintBottom_toBottomOf="@+id/imageTrackBack5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.712"
+        app:layout_constraintHorizontal_bias="0.674"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
