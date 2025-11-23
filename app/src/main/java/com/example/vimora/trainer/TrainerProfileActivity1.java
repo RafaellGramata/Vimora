@@ -20,6 +20,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.vimora.DatabaseHelper;
 import com.example.vimora.R;
+import com.example.vimora.WelcomeActivity;
+import com.example.vimora.trainee.TraineeProfileActivity;
 
 public class TrainerProfileActivity1 extends AppCompatActivity {
 
@@ -69,6 +71,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         Button btnPlan = findViewById(R.id.btnPlanOfProfile1);
         ImageButton btnProfile2 = findViewById(R.id.toTrainerProfile2);
         ImageButton btnReminder = findViewById(R.id.btnReminder);
+        ImageButton btnLogout = findViewById(R.id.btnLogout);
 
         btnReminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +106,12 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
                 Intent intent = new Intent(TrainerProfileActivity1.this, TrainerPlanActivity1.class);
                 intent.putExtra("userID", currentTrainerId);
                 startActivity(intent);
+            }
+        });
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TrainerProfileActivity1.this, WelcomeActivity.class));
             }
         });
 

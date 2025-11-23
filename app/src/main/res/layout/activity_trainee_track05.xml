@@ -9,21 +9,6 @@
     tools:context=".trainee.TraineeTrackActivity05">
 
     <ImageButton
-        android:id="@+id/btnLogout"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="logout"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/btnReminder"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logout"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <ImageButton
         android:id="@+id/btnReminder"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -32,7 +17,7 @@
         android:contentDescription="reminder"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/reminder"
