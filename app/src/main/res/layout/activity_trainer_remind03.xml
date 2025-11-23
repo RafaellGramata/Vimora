@@ -12,34 +12,23 @@
         android:id="@+id/reminderBack"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/reminderbackground" />
-
-    <TextView
-        android:id="@+id/txtReminder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="548dp"
-        android:text="Notifications"
-        android:textColor="#000000"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/btnBackOfReminder"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="140dp"
         android:background="#00FFFFFF"
         android:contentDescription="Back to previous page"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/back" />
 
@@ -47,25 +36,40 @@
         android:id="@+id/readChoseReminder"
         android:layout_width="280dp"
         android:layout_height="250dp"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="304dp"
         android:background="#000000"
         android:gravity="center"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/readChosenDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="36dp"
+        android:gravity="center"
         android:hint="YYYY-MM-DD"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/readChoseReminder"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="664dp"
+        android:text="Notifications"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

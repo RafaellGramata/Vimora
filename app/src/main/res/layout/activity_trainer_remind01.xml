@@ -12,7 +12,6 @@
         android:id="@+id/reminderBack"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,13 +22,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:layout_marginBottom="153dp"
         android:text="Notifications"
         android:textColor="#000000"
         android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/listViewTrainees"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reminderBack" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btnCloseOfReminder"
@@ -46,10 +47,13 @@
 
     <ListView
         android:id="@+id/listViewTrainees"
-        android:layout_width="269dp"
-        android:layout_height="317dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnCloseOfReminder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="188dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reminderBack" />
+        app:layout_constraintTop_toBottomOf="@+id/txtReminder" />
 </androidx.constraintlayout.widget.ConstraintLayout>

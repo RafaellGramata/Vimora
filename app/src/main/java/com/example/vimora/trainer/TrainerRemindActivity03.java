@@ -37,7 +37,15 @@ public class TrainerRemindActivity03 extends AppCompatActivity {
 
 
         TextView txtDate = findViewById(R.id.readChosenDate);
-        txtDate.setText(databaseHelper.getDateFromReminder(intent.getLongExtra("remindID",-1)));
+        String rawDate = databaseHelper.getDateFromReminder(intent.getLongExtra("remindID",-1));
+        if (rawDate != null && rawDate.length() == 8) {
+            String formattedDate = rawDate.substring(0, 4) + "-" +
+                    rawDate.substring(4, 6) + "-" +
+                    rawDate.substring(6, 8);
+            txtDate.setText(formattedDate);
+        } else {
+            txtDate.setText(rawDate);
+        }
 
         TextView txtMessage = findViewById(R.id.readChoseReminder);
         txtMessage.setText(databaseHelper.getMessageFromReminder(intent.getLongExtra("remindID",-1)));
