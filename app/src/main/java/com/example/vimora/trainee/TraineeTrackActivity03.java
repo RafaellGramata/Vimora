@@ -159,11 +159,11 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
                 if (startDate != null && startDate.length() >= 10) {
                     trainerDateMonthly.setText(startDate.substring(0, 10));
                 } else {
-                    trainerDateMonthly.setText("No workout started");
+                    trainerDateMonthly.setText("No workout started.");
                 }
                 startDateCursor.close();
             } else {
-                trainerDateMonthly.setText("No workout started");
+                trainerDateMonthly.setText("No workout started.");
                 if (startDateCursor != null) startDateCursor.close();
             }
 
