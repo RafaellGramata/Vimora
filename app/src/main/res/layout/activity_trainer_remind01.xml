@@ -30,86 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/reminderBack" />
 
-    <EditText
-        android:id="@+id/editTxtTraineeName"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="320dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Trainee Name"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTxtTraineeName4"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="380dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Trainee Name"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTxtTraineeName5"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="496dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Reminder 5"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTxtTraineeName6"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="440dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Trainee Name"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTxtTraineeName3"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="260dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Trainee Name"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/btnCloseOfReminder"
         android:layout_width="65dp"
@@ -123,32 +43,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btnLogout"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="logout"
-        android:scaleType="fitCenter"
+    <ListView
+        android:id="@+id/listViewTrainees"
+        android:layout_width="269dp"
+        android:layout_height="317dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCloseOfReminder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/btnReminder"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logout"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/btnReminder"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/reminder"
-        android:contentDescription="reminder"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.824"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="@+id/reminderBack" />
 </androidx.constraintlayout.widget.ConstraintLayout>

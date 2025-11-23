@@ -87,7 +87,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_REMIND + " (" +
                 COL_REMIND_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_REMIND_DATE + " TEXT NOT NULL," +
-                COL_REMIND_CONTENT + " TEXT NOT NULL)");
+                COL_REMIND_CONTENT + " TEXT NOT NULL," +
+                "trainerID INTEGER NOT NULL," +
+                "traineeID INTEGER NOT NULL," +
+                "FOREIGN KEY (trainerID) REFERENCES User(userID) ON DELETE CASCADE," +
+                "FOREIGN KEY (traineeID) REFERENCES User(userID) ON DELETE CASCADE)");
 
         db.execSQL("CREATE TABLE " + TABLE_ASSIGNED_PLAN + " (" +
                 "assignmentID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -158,6 +162,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                     "UNIQUE(traineeID, date, mealType))");
         }
+        db.execSQL("DROP TABLE IF EXISTS RemindTable");
+        onCreate(db);
     }
 
     /* ====================== Sign Up & Login ====================== */
@@ -313,11 +319,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /* ====================== Reminder ====================== */
-    public boolean addReminder(String remindDate, String remindContent) {
+    public boolean addReminder(String remindDate, String remindContent, long trainee, long trainer) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COL_REMIND_DATE, remindDate);
         cv.put(COL_REMIND_CONTENT, remindContent);
+        cv.put("traineeID",trainee);
+        cv.put("trainerID",trainer);
         long r = db.insert(TABLE_REMIND, null, cv);
         db.close();
         return r > 0;
@@ -325,6 +333,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllReminders() {
         return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_REMIND, null);
+    }
+
+    public Cursor getRemindersForTraineeTrainer(long traineeID, long trainerID) {
+        return this.getReadableDatabase().rawQuery("SELECT RemindID as _id,* FROM RemindTable WHERE traineeID = ? AND trainerID=? ORDER BY RemindDate DESC",new String[]{Long.toString(traineeID),Long.toString(trainerID)});
+    }
+
+    public String getTrainerNameFromReminder(long reminderID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT name FROM User WHERE userID=(SELECT trainerID FROM RemindTable WHERE RemindID=?)", new String[]{String.valueOf(reminderID)});
+        c.moveToFirst();
+        String name = c.getString(0);
+        c.close();
+        return name;
+    }
+
+    public String getDateFromReminder(long reminderID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT RemindDate FROM RemindTable WHERE RemindID=?", new String[]{String.valueOf(reminderID)});
+        c.moveToFirst();
+        String date = c.getString(0);
+        c.close();
+        return date;
+    }
+    public String getMessageFromReminder(long reminderID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT RemindContent FROM RemindTable WHERE RemindID=?", new String[]{String.valueOf(reminderID)});
+        c.moveToFirst();
+        String message = c.getString(0);
+        c.close();
+        return message;
     }
 
     /* ====================== Other Common Methods ====================== */

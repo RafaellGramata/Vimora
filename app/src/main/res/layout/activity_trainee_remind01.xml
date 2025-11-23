@@ -30,86 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/reminderBack" />
 
-    <EditText
-        android:id="@+id/txtReminder2"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="320dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Reminder 2"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtReminder3"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="380dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Reminder 3"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtReminder5"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="496dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Reminder 5"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtReminder4"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="440dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Reminder 4"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtReminder1"
-        android:layout_width="326dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="260dp"
-        android:background="#F4F4F4"
-        android:ems="10"
-        android:hint="Reminder 1"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/txtCoach"
         android:layout_width="wrap_content"
@@ -164,4 +84,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
+
+    <ListView
+        android:id="@+id/listReminders"
+        android:layout_width="276dp"
+        android:layout_height="304dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCloseOfReminder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/reminderBack" />
 </androidx.constraintlayout.widget.ConstraintLayout>

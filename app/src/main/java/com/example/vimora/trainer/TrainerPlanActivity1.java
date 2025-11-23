@@ -64,7 +64,7 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
 
         ImageButton btnReminder = findViewById(R.id.btnReminder);
         btnReminder.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerProfileActivity2.class);
+            Intent intent = new Intent(this, TrainerRemindActivity.class);
             intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });

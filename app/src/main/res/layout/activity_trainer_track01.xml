@@ -84,7 +84,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnTrackOfProfile"
+        android:id="@+id/btnPlanOfTrack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -97,7 +97,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack" />
 
     <Button
-        android:id="@+id/btnPlanOfProfile"
+        android:id="@+id/btnProfileOfTrack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -111,7 +111,7 @@
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack" />
 
     <Button
-        android:id="@+id/btnProfileOfProfile"
+        android:id="@+id/btnTrackOfTrack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"

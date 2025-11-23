@@ -13,8 +13,8 @@ public class TrainerTrackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer_track01);
 
-        Button btnProfile = findViewById(R.id.btnProfileOfTrack00);
-        Button btnPlan = findViewById(R.id.btnPlanOfTrack00);
+        Button btnProfile = findViewById(R.id.btnProfileOfTrack);
+        Button btnPlan = findViewById(R.id.btnPlanOfTrack);
 
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
