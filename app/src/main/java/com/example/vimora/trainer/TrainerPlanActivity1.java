@@ -76,9 +76,9 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button btnTrackOfProfile1 = findViewById(R.id.btnProfileOfProfile1);
+        Button btnTrackOfProfile1 = findViewById(R.id.btnTrackOfProfile1);
         btnTrackOfProfile1.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerProfileActivity1.class);
+            Intent intent = new Intent(this, TrainerTrackActivity.class);
             intent.putExtra("userID", currentTrainerId);
             startActivity(intent);
         });
