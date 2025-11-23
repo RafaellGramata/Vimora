@@ -27,13 +27,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 12;   // ← CHANGED from 11 to 12
+    private static final int DATABASE_VERSION = 13;   // ← CHANGED from 11 to 12
 
     // Plan Table
     private static final String TABLE_PLAN = "PlanTable";
     private static final String COL_PLAN_ID = "PlanID";
     private static final String COL_EXERCISE_NAME = "ExerciseName";
     private static final String COL_EXERCISE_CONTENT = "ExerciseContent";
+
+    // Update Plan Table
+    private static final String COL_ITEM1 = "item1";
+    private static final String COL_REPS1 = "reps1";
+    private static final String COL_SETS1 = "sets1";
+    private static final String COL_ITEM2 = "item2";
+    private static final String COL_REPS2 = "reps2";
+    private static final String COL_SETS2 = "sets2";
+    private static final String COL_ITEM3 = "item3";
+    private static final String COL_REPS3 = "reps3";
+    private static final String COL_SETS3 = "sets3";
+    private static final String COL_REST_DURATION = "rest_duration";
+    private static final String COL_WORKOUT_DURATION = "workout_duration";
+
+
+
 
     // Reminder Table
     private static final String TABLE_REMIND = "RemindTable";
@@ -82,7 +98,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_PLAN + " (" +
                 COL_PLAN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_EXERCISE_NAME + " TEXT NOT NULL," +
-                COL_EXERCISE_CONTENT + " TEXT NOT NULL)");
+                COL_EXERCISE_CONTENT + " TEXT," +
+                COL_ITEM1 + " TEXT," +
+                COL_REPS1 + " TEXT," +
+                COL_SETS1 + " TEXT," +
+                COL_ITEM2 + " TEXT," +
+                COL_REPS2 + " TEXT," +
+                COL_SETS2 + " TEXT," +
+                COL_ITEM3 + " TEXT," +
+                COL_REPS3 + " TEXT," +
+                COL_SETS3 + " TEXT," +
+                COL_REST_DURATION + " TEXT," +
+                COL_WORKOUT_DURATION + " TEXT)");
 
         db.execSQL("CREATE TABLE " + TABLE_REMIND + " (" +
                 COL_REMIND_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -182,6 +209,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                     "FOREIGN KEY(planID) REFERENCES PlanTable(PlanID) ON DELETE CASCADE, " +
                     "UNIQUE(traineeID, planID, completionDate))");
+        }
+
+        if (oldVersion < 13) {
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_ITEM1 + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_REPS1 + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_SETS1 + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_ITEM2 + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_REPS2 + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_SETS2 + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_ITEM3 + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_REPS3 + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_SETS3 + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_REST_DURATION + " TEXT");
+            db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_WORKOUT_DURATION + " TEXT");
         }
 
         db.execSQL("DROP TABLE IF EXISTS RemindTable");
@@ -295,6 +336,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return r > 0;
     }
 
+    // Plan Related Update
+    public boolean addPlan(String exerciseName, String item1, String reps1, String sets1,
+                           String item2, String reps2, String sets2,
+                           String item3, String reps3, String sets3,
+                           String restDuration, String workoutDuration) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COL_EXERCISE_NAME, exerciseName);
+        String legacyContent = item1 + "," + reps1 + "," + sets1 + "," + item2 + "," + reps2 + "," + sets2 + "," +
+                item3 + "," + reps3 + "," + sets3 + "," + restDuration + "," + workoutDuration;
+        cv.put(COL_EXERCISE_CONTENT, legacyContent);
+        cv.put(COL_ITEM1, item1);
+        cv.put(COL_REPS1, reps1);
+        cv.put(COL_SETS1, sets1);
+        cv.put(COL_ITEM2, item2);
+        cv.put(COL_REPS2, reps2);
+        cv.put(COL_SETS2, sets2);
+        cv.put(COL_ITEM3, item3);
+        cv.put(COL_REPS3, reps3);
+        cv.put(COL_SETS3, sets3);
+        cv.put(COL_REST_DURATION, restDuration);
+        cv.put(COL_WORKOUT_DURATION, workoutDuration);
+        long r = db.insert(TABLE_PLAN, null, cv);
+        db.close();
+        return r > 0;
+    }
+
     public Cursor getAllPlans() {
         return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_PLAN, null);
     }
@@ -310,6 +378,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         if (exerciseName != null) cv.put(COL_EXERCISE_NAME, exerciseName);
         if (exerciseContent != null) cv.put(COL_EXERCISE_CONTENT, exerciseContent);
+        int r = db.update(TABLE_PLAN, cv, COL_PLAN_ID + " = ?",
+                new String[]{String.valueOf(planId)});
+        db.close();
+        return r > 0;
+    }
+
+    public boolean updatePlan(long planId, String exerciseName, String item1, String reps1, String sets1,
+                              String item2, String reps2, String sets2,
+                              String item3, String reps3, String sets3,
+                              String restDuration, String workoutDuration) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        if (exerciseName != null) cv.put(COL_EXERCISE_NAME, exerciseName);
+        String legacyContent = item1 + "," + reps1 + "," + sets1 + "," + item2 + "," + reps2 + "," + sets2 + "," +
+                item3 + "," + reps3 + "," + sets3 + "," + restDuration + "," + workoutDuration;
+        cv.put(COL_EXERCISE_CONTENT, legacyContent);
+        cv.put(COL_ITEM1, item1);
+        cv.put(COL_REPS1, reps1);
+        cv.put(COL_SETS1, sets1);
+        cv.put(COL_ITEM2, item2);
+        cv.put(COL_REPS2, reps2);
+        cv.put(COL_SETS2, sets2);
+        cv.put(COL_ITEM3, item3);
+        cv.put(COL_REPS3, reps3);
+        cv.put(COL_SETS3, sets3);
+        cv.put(COL_REST_DURATION, restDuration);
+        cv.put(COL_WORKOUT_DURATION, workoutDuration);
         int r = db.update(TABLE_PLAN, cv, COL_PLAN_ID + " = ?",
                 new String[]{String.valueOf(planId)});
         db.close();

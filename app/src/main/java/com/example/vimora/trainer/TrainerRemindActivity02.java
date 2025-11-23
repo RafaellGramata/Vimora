@@ -2,6 +2,7 @@ package com.example.vimora.trainer;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,8 +21,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.vimora.DatabaseHelper;
 import com.example.vimora.R;
-import com.example.vimora.trainee.TraineeRemindActivity;
-import com.example.vimora.trainee.TraineeRemindActivity02;
+import com.example.vimora.trainer.TrainerRemindActivity01;
+import com.example.vimora.trainer.TrainerRemindActivity02;
 
 public class TrainerRemindActivity02 extends AppCompatActivity {
     DatabaseHelper databaseHelper;

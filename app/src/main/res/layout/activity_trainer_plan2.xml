@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Exercise Plan #1"
+        android:text="Exercise Plan"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -143,7 +143,7 @@
         android:id="@+id/txtStretch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="240dp"
         android:text="Stretch"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -170,8 +170,8 @@
     <ImageButton
         android:id="@+id/btnAssign"
         android:layout_width="55dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:background="#00FFFFFF"
         android:contentDescription="assign"
         android:scaleType="fitCenter"
@@ -190,9 +190,40 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/txtWarmUp"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/Item1Sets"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:ems="8"
+        android:hint=" Item1"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/item1Reps"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/workoutDurationMin"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:ems="8"
+        android:gravity="center"
+        android:hint="  Mins"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restDurationMin"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -225,14 +256,15 @@
         app:layout_constraintTop_toBottomOf="@+id/etExerciseIItem2"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
+    <TextView
         android:id="@+id/etExerciseIRestDuration"
         android:layout_width="200dp"
         android:layout_height="35dp"
         android:ems="8"
+        android:gravity="center_vertical"
         android:hint="  RestDuration"
         android:inputType="text"
-        android:text="  RestDuration"
+        android:text="   RestDuration"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -241,53 +273,37 @@
         app:layout_constraintTop_toBottomOf="@+id/etExerciseIItem3"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
+    <TextView
         android:id="@+id/etExerciseIDuration"
         android:layout_width="200dp"
         android:layout_height="35dp"
-        android:layout_marginTop="44dp"
         android:ems="8"
+        android:gravity="center_vertical"
         android:hint="  Workout Duration"
         android:inputType="text"
-        android:text="  Workout Duration"
+        android:text="   Workout Duration"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etExerciseIItem3"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <EditText
-        android:id="@+id/Item1Sets"
-        android:layout_width="50dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="55dp"
-        android:ems="8"
-        android:hint=" Item1"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/etExerciseIRestDuration"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/item1Reps"
         android:layout_width="50dp"
         android:layout_height="35dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="12dp"
         android:ems="8"
         android:hint=" Item1"
         android:inputType="text"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.675"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -300,22 +316,7 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.675"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item1Reps"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <EditText
-        android:id="@+id/item2Sets"
-        android:layout_width="50dp"
-        android:layout_height="35dp"
-        android:ems="8"
-        android:hint=" Item2"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item1Reps"
         tools:ignore="TouchTargetSizeCheck" />
@@ -330,9 +331,24 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.675"
+        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item2Reps"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/item2Sets"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:ems="8"
+        android:hint=" Item2"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item1Reps"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -340,6 +356,7 @@
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:ems="8"
+        android:gravity="center"
         android:hint="  Mins"
         android:inputType="text"
         android:textColor="#000000"
@@ -351,19 +368,31 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/workoutDurationMin"
-        android:layout_width="100dp"
+        android:id="@+id/etExerciseItem1"
+        android:layout_width="200dp"
         android:layout_height="35dp"
+        android:layout_marginTop="12dp"
         android:ems="8"
-        android:hint="  Mins"
+        android:hint="  Exercise Item 1"
         android:inputType="text"
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
+        app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etExerciseIDuration"
+        app:layout_constraintTop_toBottomOf="@+id/etExerciseName"
         tools:ignore="TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Reps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWarmUp" />
 
     <EditText
         android:id="@+id/item3Sets"
@@ -375,45 +404,20 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintHorizontal_bias="0.853"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item2Sets"
         tools:ignore="TouchTargetSizeCheck" />
-
-    <EditText
-        android:id="@+id/etExerciseItem1"
-        android:layout_width="200dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="55dp"
-        android:ems="8"
-        android:hint="  Exercise Item 1"
-        android:inputType="text"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.165"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reps"
-        app:layout_constraintBottom_toTopOf="@+id/Item1Sets"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.67"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Sets"
-        app:layout_constraintBottom_toTopOf="@+id/Item1Sets"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWarmUp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
