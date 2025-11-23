@@ -45,7 +45,6 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
         Button btnTrack = findViewById(R.id.btnTrackOfTrack00);
         ImageButton btnMeal = findViewById(R.id.btnMeal);
         ImageButton btnInfo = findViewById(R.id.btnInfo);
-        ImageButton btnLogout = findViewById(R.id.btnLogout);
         ImageButton btnReminder = findViewById(R.id.btnReminder);
 
         // Navigation listeners
@@ -85,13 +84,6 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
             }
         });
 
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(TraineeTrackActivity01.this, WelcomeActivity.class));
-                finish();
-            }
-        });
 
         btnReminder.setOnClickListener(new View.OnClickListener() {
             @Override

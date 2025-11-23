@@ -146,7 +146,7 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <ImageButton
-        android:id="@+id/btnLogout2"
+        android:id="@+id/btnLogout"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="36dp"
