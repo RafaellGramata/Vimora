@@ -187,7 +187,7 @@ public class TrainerTrackActivity03 extends AppCompatActivity {
                 }
                 firstAssignmentCursor.close();
             } else {
-                tvWorkoutStartDate.setText("No workout started");
+                tvWorkoutStartDate.setText("No workout started.");
                 if (firstAssignmentCursor != null) firstAssignmentCursor.close();
             }
 

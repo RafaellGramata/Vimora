@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,11 +25,14 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
     private EditText traineeCaloriesAverage, traineeProteinAverage, traineeFatAverage;
     private ImageButton btnInfo, btnReminder;
     private Button btnPlan, btnProfile, btnTrack;
+    private TextView txtMonthYear, btnPreviousMonth, btnNextMonth;
 
     private DatabaseHelper dbHelper;
     private NutritionDatabaseHelper nutritionHelper;
     private long traineeID;
-    private String currentYearMonth;
+    private Calendar calendar;
+    private SimpleDateFormat monthYearFormat = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
+    private SimpleDateFormat dbFormat = new SimpleDateFormat("yyyy-MM", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +53,14 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
             return;
         }
 
+        // Initialize calendar to current month
+        calendar = Calendar.getInstance();
+
         // Initialize views
         initializeViews();
 
-        // Get current month
-        currentYearMonth = getCurrentYearMonth();
-
-        // Load monthly statistics
+        // Display current month and load data
+        updateMonthDisplay();
         loadMonthlyStatistics();
 
         // Set up listeners
@@ -66,6 +71,10 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
         traineeCaloriesAverage = findViewById(R.id.traineeCaloriesAverage);
         traineeProteinAverage = findViewById(R.id.traineeProteinAverage);
         traineeFatAverage = findViewById(R.id.traineeFatAverage);
+
+        txtMonthYear = findViewById(R.id.txtMonthYear);
+        btnPreviousMonth = findViewById(R.id.btnPreviousMonth);
+        btnNextMonth = findViewById(R.id.btnNextMonth);
 
         btnInfo = findViewById(R.id.btnInfo4);
         btnReminder = findViewById(R.id.btnReminder);
@@ -86,6 +95,19 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
     }
 
     private void setupListeners() {
+        // Month navigation
+        btnPreviousMonth.setOnClickListener(v -> {
+            calendar.add(Calendar.MONTH, -1);
+            updateMonthDisplay();
+            loadMonthlyStatistics();
+        });
+
+        btnNextMonth.setOnClickListener(v -> {
+            calendar.add(Calendar.MONTH, 1);
+            updateMonthDisplay();
+            loadMonthlyStatistics();
+        });
+
         // Back button - go back to daily tracking
         btnInfo.setOnClickListener(v -> {
             Intent intent = new Intent(TraineeTrackActivity05.this, TraineeTrackActivity04.class);
@@ -113,7 +135,6 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
             finish();
         });
 
-
         // Reminder button
         btnReminder.setOnClickListener(v -> {
             Intent intent = new Intent(TraineeTrackActivity05.this, TraineeRemindActivity01.class);
@@ -122,7 +143,15 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
         });
     }
 
+    private void updateMonthDisplay() {
+        // Display month and year in readable format (e.g., "November 2025")
+        txtMonthYear.setText(monthYearFormat.format(calendar.getTime()));
+    }
+
     private void loadMonthlyStatistics() {
+        // Get current month in database format (yyyy-MM)
+        String currentYearMonth = dbFormat.format(calendar.getTime());
+
         // Get monthly averages from database
         Map<String, Double> averages = nutritionHelper.getMonthlyAverage(traineeID, currentYearMonth);
 
@@ -133,22 +162,16 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
 
         if (avgCalories > 0) {
             traineeCaloriesAverage.setText(String.format(Locale.getDefault(),
-                    "%.0f kcal/day", avgCalories));
+                    "%.0f kcal / day", avgCalories));
             traineeProteinAverage.setText(String.format(Locale.getDefault(),
-                    "%.1f g/day", avgProtein));
+                    "%.1f g / day", avgProtein));
             traineeFatAverage.setText(String.format(Locale.getDefault(),
-                    "%.1f g/day", avgFat));
+                    "%.1f g / day", avgFat));
         } else {
             traineeCaloriesAverage.setText("No data for this month");
             traineeProteinAverage.setText("No data for this month");
             traineeFatAverage.setText("No data for this month");
         }
-    }
-
-    private String getCurrentYearMonth() {
-        // Returns current month in format "yyyy-MM" (e.g., "2025-10")
-        return new SimpleDateFormat("yyyy-MM", Locale.getDefault())
-                .format(Calendar.getInstance().getTime());
     }
 
     @Override

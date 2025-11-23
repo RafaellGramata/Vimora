@@ -17,7 +17,6 @@
         android:layout_marginEnd="15dp"
         android:contentDescription="ProfileBackground"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile" />
@@ -68,9 +67,9 @@
         android:layout_marginTop="15dp"
         android:backgroundTint="#00FFFFFF"
         android:text="TRACK"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageTrackBack2" />
 
@@ -97,128 +96,138 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack2"
-        tools:ignore="DuplicateClickableBoundsCheck" />
-
-    <Button
-        android:id="@+id/btnPlanOfPlan2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="#00FFFFFF"
-        android:text="PLAN"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imagePlanBack2" />
 
+    <!-- Black Card Background -->
     <ImageView
         android:id="@+id/imagePlanBlack"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_height="600dp"
+        android:scaleType="fitXY"
         android:src="@drawable/blackcard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnPlanOfPlan" />
+
+    <!-- Date Navigation -->
+    <Button
+        android:id="@+id/btnPlanYesterday"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="&lt;"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/txtDate"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBlack" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        android:text="2025-11-23"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlanNextday"
+        app:layout_constraintStart_toEndOf="@+id/btnPlanYesterday"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBlack" />
 
     <Button
         android:id="@+id/btnPlanNextday"
-        android:layout_width="70dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#00FFFFFF"
         android:text="&gt;"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.762"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack2" />
+        app:layout_constraintStart_toEndOf="@+id/txtDate"
+        app:layout_constraintTop_toTopOf="@+id/imagePlanBlack" />
 
-    <Button
-        android:id="@+id/btnPlanYesterday"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:backgroundTint="#00FFFFFF"
-        android:text="&lt;"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imagePlanBack2" />
-
-    <ImageButton
-        android:id="@+id/btnChoose"
-        android:layout_width="76dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="628dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="edit"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/completed" />
-
+    <!-- Exercise Plan Name (replaces "Warm Up") -->
     <TextView
-        android:id="@+id/txtTrianingItem"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
-        android:hint="Workout Plan"
+        android:id="@+id/txtExercisePlanName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Exercise Plan"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWarmup" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
+    <!-- Warm up label -->
     <TextView
         android:id="@+id/txtWarmup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:text="Warm Up"
+        android:layout_marginTop="12dp"
+        android:text="Warm up"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPlanOfPlan" />
+        app:layout_constraintTop_toBottomOf="@+id/txtExercisePlanName" />
 
-    <TextView
-        android:id="@+id/txtDate"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:hint="Date"
-        android:text="Date"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+    <!-- Workout Plan Details (Scrollable) -->
+    <ScrollView
+        android:id="@+id/scrollWorkoutPlan"
+        android:layout_width="320dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPlanOfPlan" />
+        app:layout_constraintTop_toBottomOf="@+id/txtWarmup">
 
+        <TextView
+            android:id="@+id/txtTrianingItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="Loading workout plan..."
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp" />
+    </ScrollView>
+
+    <!-- Stretch Section -->
+
+    <!-- Mark as Complete / Completed Button -->
     <TextView
         android:id="@+id/txtStretch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
+        android:layout_marginTop="4dp"
         android:text="Stretch"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollWorkoutPlan" />
+
+    <Button
+        android:id="@+id/btnMarkComplete"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:text="Mark as Complete"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:backgroundTint="#005D9E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtStretch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
