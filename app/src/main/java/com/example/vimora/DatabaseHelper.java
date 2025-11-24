@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static final String DATABASE_NAME = "Vimora";
-    private static final int DATABASE_VERSION = 14;   // ← CHANGED from 13 to 14
+    private static final int DATABASE_VERSION = 14;
 
     // Plan Table
     public static final String TABLE_PLAN = "PlanTable";
@@ -137,7 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(traineeID) REFERENCES User(userID) ON DELETE CASCADE, " +
                 "UNIQUE(traineeID, date, mealType))");
 
-        // TABLE FOR WORKOUT COMPLETION TRACKING - VERSION 14 WITH CALORIES & DURATION
+        // TABLE FOR WORKOUT COMPLETION TRACKING
         db.execSQL("CREATE TABLE WorkoutCompletion (" +
                 "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "traineeID INTEGER NOT NULL, " +
@@ -225,7 +225,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_WORKOUT_DURATION + " TEXT");
         }
 
-        // UPGRADE LOGIC for version 14 - SAFE MIGRATION: Add calories & duration to WorkoutCompletion
+        // UPGRADE LOGIC for version 14 - Add calories & duration to WorkoutCompletion
         if (oldVersion < 14) {
             try {
                 android.util.Log.i("DatabaseHelper", "Starting WorkoutCompletion migration to v14");
@@ -752,5 +752,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
         }
     }
-
 }
