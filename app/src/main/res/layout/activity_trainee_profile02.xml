@@ -84,7 +84,7 @@
     <TextView
         android:id="@+id/traineeTrainerDescription"
         android:layout_width="326dp"
-        android:layout_height="48dp"
+        android:layout_height="135dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="..."
@@ -160,11 +160,9 @@
         android:layout_marginTop="256dp"
         android:background="#F4F4F4"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/editTxtTrainerWeight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@+id/txtTraineeNum"
-        app:layout_constraintTop_toTopOf="@+id/imageprofileBack"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintTop_toTopOf="@+id/imageprofileBack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

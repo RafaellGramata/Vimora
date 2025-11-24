@@ -97,7 +97,7 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
 
 
     private void loadTrainees() {
-        Cursor cursor = dbHelper.getAllTrainees();
+        Cursor cursor = dbHelper.getTraineesByTrainer(currentTrainerId);
 
         traineeIds.clear();
         traineeNames.clear();
@@ -114,6 +114,13 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
                 }
             }
             cursor.close();
+        }
+
+        if (traineeNames.isEmpty()) {
+            traineeNames.add("There's no trainee assigned.");
+            listViewTrainees.setEnabled(false);
+        } else {
+            listViewTrainees.setEnabled(true);
         }
 
         listViewTrainees.setAdapter(new android.widget.ArrayAdapter<>(

@@ -210,7 +210,7 @@
     <EditText
         android:id="@+id/inputTrainerInfo"
         android:layout_width="326dp"
-        android:layout_height="48dp"
+        android:layout_height="150dp"
         android:background="#F4F4F4"
         android:ems="10"
         android:hint="Input more details about yourself..."
