@@ -27,8 +27,8 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
     private EditText etSpec, etName, etHandleNum, etAbout;
     private DatabaseHelper dbHelper;
     private long currentTrainerId;
-    private static final String PREF_NAME = "TrainerProfilePref";
-    private static final String KEY_TRAINER_ID = "trainerId";
+    private static final String PREF_NAME = "TrainerProfilePref"; // because of crashing
+    private static final String KEY_TRAINER_ID = "trainerId"; // because of crashing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +43,9 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             return insets;
         });
 
+        // Week 9 & 10 SQLite
         Intent intent = getIntent();
         currentTrainerId = intent.getLongExtra("userID", -1);
-        if (currentTrainerId == -1) {
-            SharedPreferences pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-            currentTrainerId = pref.getLong(KEY_TRAINER_ID, -1);
-        }
 
         if (currentTrainerId == -1) {
             Toast.makeText(this, "User ID not found, please log in again.", Toast.LENGTH_SHORT).show();
@@ -56,6 +53,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             return;
         }
 
+        // same as TraineeProfileActivity
         SharedPreferences pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         pref.edit().putLong(KEY_TRAINER_ID, currentTrainerId).apply();
 
@@ -64,7 +62,6 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         etHandleNum = findViewById(R.id.inputHandleNum);
         etAbout = findViewById(R.id.inputTrainerInfo);
         TextView tvTraineeCount = findViewById(R.id.outputAssignNum);
-        tvTraineeCount.setEnabled(false);
 
         Button btnTrack = findViewById(R.id.btnTrackOfProfile1);
         Button btnPlan = findViewById(R.id.btnPlanOfProfile1);
@@ -114,6 +111,8 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             }
         });
 
+        // getTrainerProfile()
+        // DatabaseHelper line 382
         Cursor c = dbHelper.getTrainerProfile(currentTrainerId);
         if (c.moveToFirst()) {
             try {
@@ -127,6 +126,8 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         }
         c.close();
 
+        // countTrainees()
+        // DatabaseHelper line 389
         int count = dbHelper.countTrainees(currentTrainerId);
         tvTraineeCount.setText(String.valueOf(count));
 
@@ -153,6 +154,7 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
             }
         }
 
+        // DatabaseHelper line 369
         boolean success = dbHelper.updateTrainerProfile(
                 currentTrainerId, name, spec, handleNum, about);
 
@@ -163,6 +165,9 @@ public class TrainerProfileActivity1 extends AppCompatActivity {
         }
     }
 
+    // onPause()
+    // For removing the save button, and automatically saving
+    // https://developer.android.com/reference/android/app/Activity#onPause()
     @Override
     protected void onPause() {
         super.onPause();

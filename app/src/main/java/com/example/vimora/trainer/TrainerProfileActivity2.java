@@ -27,14 +27,15 @@ public class TrainerProfileActivity2 extends AppCompatActivity {
     private ListView listViewTrainees;
     private TextView tvCurrentTrainees, tvMaxTrainees;
 
-    private static final String PREF_NAME = "TrainerProfilePref";
-    private static final String KEY_TRAINER_ID = "trainerId";
+    private static final String PREF_NAME = "TrainerProfilePref"; // because of crashing
+    private static final String KEY_TRAINER_ID = "trainerId"; // because of crashing
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         dbHelper = new DatabaseHelper(this);
+
         setContentView(R.layout.activity_trainer_profile2);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tvName), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -42,58 +43,52 @@ public class TrainerProfileActivity2 extends AppCompatActivity {
             return insets;
         });
 
+        // Week 9 & 10 SQLite
         Intent intent = getIntent();
         currentTrainerId = intent.getLongExtra("userID", -1);
-        if (currentTrainerId == -1) {
-            SharedPreferences pref = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-            currentTrainerId = pref.getLong(KEY_TRAINER_ID, -1);
-        }
 
         if (currentTrainerId == -1) {
             Toast.makeText(this, "User ID missing", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
-        initViews();
-        setupButtons();
-        loadTraineeData();
-    }
 
-    private void initViews() {
         listViewTrainees = findViewById(R.id.listViewTrainees);
         tvCurrentTrainees = findViewById(R.id.tvCurrentTrainees);
         tvMaxTrainees = findViewById(R.id.tvMaxTrainees);
-    }
 
-
-    private void setupButtons() {
         findViewById(R.id.btnReminder).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerRemindActivity01.class);
-            intent.putExtra("userID", currentTrainerId); // 帶上 ID
-            startActivity(intent);
+            Intent intent2 = new Intent(this, TrainerRemindActivity01.class);
+            intent2.putExtra("userID", currentTrainerId);
+            startActivity(intent2);
         });
 
         findViewById(R.id.toTrainerProfile1).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerProfileActivity1.class);
-            intent.putExtra("userID", currentTrainerId); // 帶上 ID
-            startActivity(intent);
+            Intent intent2 = new Intent(this, TrainerProfileActivity1.class);
+            intent2.putExtra("userID", currentTrainerId);
+            startActivity(intent2);
         });
 
         findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerTrackActivity01.class);
-            intent.putExtra("userID", currentTrainerId); // 帶上 ID
-            startActivity(intent);
+            Intent intent2 = new Intent(this, TrainerTrackActivity01.class);
+            intent2.putExtra("userID", currentTrainerId);
+            startActivity(intent2);
         });
 
         findViewById(R.id.btnPlanOfProfile1).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerPlanActivity1.class);
-            intent.putExtra("userID", currentTrainerId); // 帶上 ID
-            startActivity(intent);
+            Intent intent2 = new Intent(this, TrainerPlanActivity1.class);
+            intent2.putExtra("userID", currentTrainerId);
+            startActivity(intent2);
         });
+
+        loadTraineeData();
     }
+
 
     private void loadTraineeData() {
 
+        // getTrainerProfile()
+        // DatabaseHelper line 382
         Cursor profile = dbHelper.getTrainerProfile(currentTrainerId);
         int maxHandle = 0;
         if (profile.moveToFirst()) {
@@ -101,6 +96,7 @@ public class TrainerProfileActivity2 extends AppCompatActivity {
         }
         profile.close();
         tvMaxTrainees.setText(String.valueOf(maxHandle));
+
 
         Cursor trainees = dbHelper.getTraineesByTrainer(currentTrainerId);
         ArrayList<String> traineeNames = new ArrayList<>();
@@ -128,6 +124,10 @@ public class TrainerProfileActivity2 extends AppCompatActivity {
         });
     }
 
+
+    // onResume()
+    // For everytime user gets into the profile page, the profile data will be updated
+    // https://developer.android.com/guide/components/activities/activity-lifecycle#onresume
     @Override
     protected void onResume() {
         super.onResume();

@@ -68,6 +68,8 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
             int position = listViewTrainees.getCheckedItemPosition();
             if (position != ListView.INVALID_POSITION) {
                 long traineeId = traineeIds.get(position);
+                // assignPlanToTrainee()
+                // DatabaseHelper line 504
                 if (dbHelper.assignPlanToTrainee(planId, traineeId)) {
                     Toast.makeText(this, "Assigned successfully!", Toast.LENGTH_SHORT).show();
                     finish();
@@ -123,6 +125,8 @@ public class TrainerPlanActivity3 extends AppCompatActivity {
             listViewTrainees.setEnabled(true);
         }
 
+        // setChoiceMode()
+        // https://developer.android.com/reference/kotlin/android/widget/AbsListView.html#android:choicemode
         listViewTrainees.setAdapter(new android.widget.ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_single_choice, traineeNames));
 

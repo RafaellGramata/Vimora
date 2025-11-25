@@ -1,6 +1,7 @@
 package com.example.vimora.trainer;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -91,14 +92,22 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
         });
 
         btnAdd.setOnClickListener(v -> showAddDialog());
+
+        // setOnItemLongClickListener()
+        // determine the action from the long click event
+        // https://developer.android.com/reference/android/widget/AdapterView#setOnItemLongClickListener(android.widget.AdapterView.OnItemLongClickListener)
         listViewExercises.setOnItemLongClickListener((parent, view, position, id) -> {
             long planId = exerciseIds.get(position);
             String name = exerciseNames.get(position);
 
+            // AlertDialog.Builder()
+            // https://developer.android.com/reference/android/app/AlertDialog
             new AlertDialog.Builder(this)
                     .setTitle("Delete")
                     .setMessage("Delete \"" + name + "\"?")
                     .setPositiveButton("Yes", (d, w) -> {
+                        // DatabaseHelper line 496
+                        // deletePlan()
                         dbHelper.deletePlan(planId);
                         loadExercises();
                         Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
@@ -121,9 +130,14 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
     }
 
     private void setupSearch() {
+        // addTextChangedListener & TextWatcher()
+        // https://developer.android.com/reference/android/text/TextWatcher#afterTextChanged(android.text.Editable)
         etSearch.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -138,8 +152,9 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
         allExerciseNames.clear();
         allExerciseIds.clear();
 
-        android.database.Cursor cursor = dbHelper.getAllPlans();
-
+        // DatabaseHelper line 458
+        // getAllPlans()
+        Cursor cursor = dbHelper.getAllPlans();
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 long id = cursor.getLong(cursor.getColumnIndexOrThrow("PlanID"));
@@ -171,20 +186,23 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
                 }
             }
         }
+        // notifyDataSetChanged()
+        // https://developer.android.com/reference/android/widget/ArrayAdapter#notifyDataSetChanged()
         adapter.notifyDataSetChanged();
     }
 
     private void showAddDialog() {
         EditText input = new EditText(this);
+        // AlertDialog.Builder()
+        // https://developer.android.com/reference/android/app/AlertDialog
         input.setHint("Exercise Name");
-
         new AlertDialog.Builder(this)
                 .setTitle("Add Exercise")
                 .setView(input)
                 .setPositiveButton("Add", (dialog, which) -> {
                     String name = input.getText().toString().trim();
                     if (!name.isEmpty()) {
-                        if (dbHelper.addPlan(name, "")) { // content 留空，之後編輯
+                        if (dbHelper.addPlan(name, "")) {
                             loadExercises();
                             Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show();
                         }
@@ -194,6 +212,9 @@ public class TrainerPlanActivity1 extends AppCompatActivity {
                 .show();
     }
 
+    // onResume()
+    // For everytime user gets into the profile page, the profile data will be updated
+    // https://developer.android.com/guide/components/activities/activity-lifecycle#onresume
     @Override
     protected void onResume() {
         super.onResume();

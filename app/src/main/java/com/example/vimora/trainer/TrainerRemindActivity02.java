@@ -21,8 +21,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.vimora.DatabaseHelper;
 import com.example.vimora.R;
-import com.example.vimora.trainer.TrainerRemindActivity01;
-import com.example.vimora.trainer.TrainerRemindActivity02;
 
 public class TrainerRemindActivity02 extends AppCompatActivity {
     DatabaseHelper databaseHelper;
@@ -38,6 +36,8 @@ public class TrainerRemindActivity02 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Week 9 & 10 SQLite
         Intent intent = getIntent();
         long userID = intent.getLongExtra("userID", -1);
         long traineeID = intent.getLongExtra("traineeId",-1);
@@ -49,6 +49,10 @@ public class TrainerRemindActivity02 extends AppCompatActivity {
         EditText txtDate = findViewById(R.id.editTextDate2);
 
         ListView listReminders = findViewById(R.id.listReminders);
+
+        // For reading previous reminders
+        // SimpleCursorAdapter
+        // https://developer.android.com/reference/androidx/cursoradapter/widget/SimpleCursorAdapter?hl=en
         SimpleCursorAdapter remindersAdapter = new SimpleCursorAdapter(
                 TrainerRemindActivity02.this,
                 R.layout.list_reminders_entry,
@@ -63,6 +67,10 @@ public class TrainerRemindActivity02 extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Cursor cursor = (Cursor) adapterView.getItemAtPosition(i);
+
+                // getColumnIndex()
+                // https://developer.android.com/reference/android/database/Cursor#getColumnIndex(java.lang.String)
+                // return -1 if not found
                 int idIndex = cursor.getColumnIndex("RemindID");
                 if (idIndex != -1) {
                     long remindID = cursor.getLong(idIndex);
@@ -79,9 +87,14 @@ public class TrainerRemindActivity02 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!txtDate.getText().toString().isBlank() && !textRemind.getText().toString().isBlank()) {
+                    // addReminder()
+                    // DatabaseHelper line 521
                     databaseHelper.addReminder(txtDate.getText().toString(), textRemind.getText().toString(), traineeID, userID);
                     txtDate.setText("");
                     textRemind.setText("");
+                    // renew the adapter with the new data
+                    // https://developer.android.com/reference/android/widget/SimpleCursorAdapter#changeCursor(android.database.Cursor)
+                    // getRemindersForTraineeTrainer() line 534
                     remindersAdapter.changeCursor(databaseHelper.getRemindersForTraineeTrainer(traineeID,userID));
                 }
                 else {

@@ -465,16 +465,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(planId)});
     }
 
-    public boolean updatePlan(long planId, String exerciseName, String exerciseContent) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        if (exerciseName != null) cv.put(COL_EXERCISE_NAME, exerciseName);
-        if (exerciseContent != null) cv.put(COL_EXERCISE_CONTENT, exerciseContent);
-        int r = db.update(TABLE_PLAN, cv, COL_PLAN_ID + " = ?",
-                new String[]{String.valueOf(planId)});
-        db.close();
-        return r > 0;
-    }
 
     public boolean updatePlan(long planId, String exerciseName, String item1, String reps1, String sets1,
                               String item2, String reps2, String sets2,
@@ -540,9 +530,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return r > 0;
     }
 
-    public Cursor getAllReminders() {
-        return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_REMIND, null);
-    }
 
     public Cursor getRemindersForTraineeTrainer(long traineeID, long trainerID) {
         return this.getReadableDatabase().rawQuery("SELECT RemindID as _id,* FROM RemindTable WHERE traineeID = ? AND trainerID=? ORDER BY RemindDate DESC",new String[]{Long.toString(traineeID),Long.toString(trainerID)});
@@ -675,12 +662,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return android.util.Base64.encodeToString(digest, android.util.Base64.NO_WRAP);
     }
 
-    public Cursor getAllTrainees() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT userID AS _id, * FROM User WHERE isTrainer = 0";
-        return db.rawQuery(query, null);
-    }
-
     public Cursor getTraineeDetails(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM User WHERE userID = ?";
@@ -727,30 +708,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
     }
 
-    public boolean unmarkWorkoutComplete(long traineeID, String date) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        int rows = db.delete("WorkoutCompletion",
-                "traineeID = ? AND completionDate = ?",
-                new String[]{String.valueOf(traineeID), date});
-        db.close();
-        return rows > 0;
-    }
-
-    public Cursor searchTraineesByTrainer(long trainerId, String searchQuery) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        if (searchQuery == null || searchQuery.trim().isEmpty()) {
-            // Return all trainees if no search query
-            return db.rawQuery(
-                    "SELECT userID AS _id, userID, name FROM User WHERE trainerID = ? AND isTrainer = 0 ORDER BY name",
-                    new String[]{String.valueOf(trainerId)}
-            );
-        } else {
-            // Filter by name using LIKE
-            return db.rawQuery(
-                    "SELECT userID AS _id, userID, name FROM User WHERE trainerID = ? AND isTrainer = 0 AND name LIKE ? ORDER BY name",
-                    new String[]{String.valueOf(trainerId), "%" + searchQuery + "%"}
-            );
-        }
-    }
 
 }

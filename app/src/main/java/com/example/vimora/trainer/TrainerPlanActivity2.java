@@ -70,6 +70,7 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
         restDurationMin = findViewById(R.id.restDurationMin);
         workoutDurationMin = findViewById(R.id.workoutDurationMin);
 
+        // Enable editing
         etExerciseName.setEnabled(true);
         etExerciseItem1.setEnabled(true);
         etExerciseItem2.setEnabled(true);
@@ -98,8 +99,6 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
             startActivity(i);
         });
 
-
-
         btnAssign.setOnClickListener(v -> {
             savePlanNow();
             Intent i = new Intent(this, TrainerPlanActivity3.class);
@@ -125,6 +124,8 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
 
 
     private void loadPlanContent() {
+        // getPlanById()
+        // DatabaseHelper line 462
         Cursor c = dbHelper.getPlanById(planId);
         if (c != null && c.moveToFirst()) {
             try {
@@ -141,25 +142,6 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
                 restDurationMin.setText(c.getString(c.getColumnIndexOrThrow("rest_duration")));
                 workoutDurationMin.setText(c.getString(c.getColumnIndexOrThrow("workout_duration")));
 
-                if (etExerciseItem1.getText().toString().isEmpty()) {
-                    String oldContent = c.getString(c.getColumnIndexOrThrow("ExerciseContent"));
-                    if (oldContent != null) {
-                        String[] parts = oldContent.split(",");
-                        if (parts.length >= 11) {
-                            etExerciseItem1.setText(parts[0]);
-                            item1Reps.setText(parts[1]);
-                            item1Sets.setText(parts[2]);
-                            etExerciseItem2.setText(parts[3]);
-                            item2Reps.setText(parts[4]);
-                            item2Sets.setText(parts[5]);
-                            etExerciseItem3.setText(parts[6]);
-                            item3Reps.setText(parts[7]);
-                            item3Sets.setText(parts[8]);
-                            restDurationMin.setText(parts[9]);
-                            workoutDurationMin.setText(parts[10]);
-                        }
-                    }
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -167,6 +149,9 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
         }
     }
 
+    // onPause()
+    // For removing the save button, and automatically saving
+    // https://developer.android.com/reference/android/app/Activity#onPause()
     @Override
     protected void onPause() {
         super.onPause();
@@ -186,12 +171,18 @@ public class TrainerPlanActivity2 extends AppCompatActivity {
         String sets3 = item3Sets.getText().toString().trim();
         String restDuration = restDurationMin.getText().toString().trim();
         String workoutDuration = workoutDurationMin.getText().toString().trim();
+
+        // updatePlan()
+        // DatabaseHelper line 469
         boolean success = dbHelper.updatePlan(planId, name, item1, reps1, sets1, item2, reps2, sets2, item3, reps3, sets3, restDuration, workoutDuration);
         if (success && !isFinishing()) {
             Toast.makeText(this, "Automatically saved", Toast.LENGTH_SHORT).show();
         }
     }
 
+    // onResume()
+    // For everytime user gets into the profile page, the profile data will be updated
+    // https://developer.android.com/guide/components/activities/activity-lifecycle#onresume
     @Override
     protected void onResume() {
         super.onResume();
