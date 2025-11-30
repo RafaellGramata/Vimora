@@ -43,49 +43,47 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
             return;
         }
 
-        initViews();
-        setupButtons();
-        loadTraineeData();
-    }
-
-    private void initViews() {
         tvName = findViewById(R.id.outputTraineeName);
         tvAssignedPlan = findViewById(R.id.tvAssignedPlan);
         tvAge = findViewById(R.id.tvAge);
         tvWeight = findViewById(R.id.tvWeight);
         tvHeight = findViewById(R.id.tvHeight);
         tvBMI = findViewById(R.id.tvBMI);
-    }
 
-    private void setupButtons() {
         findViewById(R.id.toTrainerProfile01).setOnClickListener(v -> finish());
         findViewById(R.id.btnReminder).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerRemindActivity01.class);
-            intent.putExtra("userID", currentTrainerId);
-            startActivity(intent);
+            Intent intent2 = new Intent(this, TrainerRemindActivity01.class);
+            intent2.putExtra("userID", currentTrainerId);
+            startActivity(intent2);
         });
 
         findViewById(R.id.btnTrackOfProfile1).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerTrackActivity01.class);
-            intent.putExtra("userID", currentTrainerId);
-            startActivity(intent);
+            Intent intent2 = new Intent(this, TrainerTrackActivity01.class);
+            intent2.putExtra("userID", currentTrainerId);
+            startActivity(intent2);
         });
 
         findViewById(R.id.btnPlanOfProfile1).setOnClickListener(v -> {
-            Intent intent = new Intent(this, TrainerPlanActivity1.class);
-            intent.putExtra("userID", currentTrainerId);
-            startActivity(intent);
+            Intent intent2 = new Intent(this, TrainerPlanActivity1.class);
+            intent2.putExtra("userID", currentTrainerId);
+            startActivity(intent2);
         });
+
+        loadTraineeData();
     }
 
     private void loadTraineeData() {
+
+        // DatabaseHelper line 665
+        // getTraineeDetails()
         Cursor c = dbHelper.getTraineeDetails(traineeId);
         if (c.moveToFirst()) {
             String name = c.getString(c.getColumnIndexOrThrow("name"));
             try {
                 int age = c.getInt(c.getColumnIndexOrThrow("traineeAge"));
                 int heightCm = c.getInt(c.getColumnIndexOrThrow("traineeHeight"));
-
+                // getLatestWeight()
+                // DatabaseHelper line 410
                 int weightKg = dbHelper.getLatestWeight(traineeId);
 
                 tvName.setText(name);
@@ -101,10 +99,11 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
                     tvBMI.setText("N/A");
                 }
             }catch (IllegalArgumentException e) {
-                e.printStackTrace();
                 Toast.makeText(this, "Error loading data", Toast.LENGTH_SHORT).show();
             }
         }
+
+
         String assignedPlanName = getAssignedPlanName(traineeId);
         tvAssignedPlan.setText(assignedPlanName);
     }
@@ -114,9 +113,7 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
         String query = "SELECT p." + DatabaseHelper.COL_EXERCISE_NAME +
                 " FROM " + DatabaseHelper.TABLE_ASSIGNED_PLAN + " a" +
                 " JOIN " + DatabaseHelper.TABLE_PLAN + " p ON a.planID = p." + DatabaseHelper.COL_PLAN_ID +
-                " WHERE a.traineeID = ?" +
-                " ORDER BY a.assignedDate DESC" +
-                " LIMIT 1";
+                " WHERE a.traineeID = ? ORDER BY a.assignedDate DESC LIMIT 1";
 
         Cursor cursor = dbHelper.getReadableDatabase().rawQuery(query, new String[]{String.valueOf(traineeId)});
 
@@ -131,7 +128,9 @@ public class TrainerProfileActivity3 extends AppCompatActivity {
     }
 
 
-
+    // onResume()
+    // For everytime user gets into the profile page, the profile data will be updated
+    // https://developer.android.com/guide/components/activities/activity-lifecycle#onresume
     @Override
     protected void onResume() {
         super.onResume();

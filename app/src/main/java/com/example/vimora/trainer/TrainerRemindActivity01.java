@@ -36,12 +36,15 @@ public class TrainerRemindActivity01 extends AppCompatActivity {
         Intent intent = getIntent();
         long userID = intent.getLongExtra("userID", -1);
 
+        // Chapter 5 ListView
         ListView listViewTrainees = findViewById(R.id.listViewTrainees);
-
+        // Week 9 & 10 SQLite
         Cursor trainees = databaseHelper.getTraineesByTrainer(userID);
         ArrayList<String> traineeNames = new ArrayList<>();
-        final ArrayList<Long> traineeIds = new ArrayList<>();
+        ArrayList<Long> traineeIds = new ArrayList<>();
 
+        // getColumnIndexOrThrow()
+        // https://developer.android.com/reference/android/database/Cursor#getColumnIndexOrThrow(java.lang.String)
         while (trainees.moveToNext()) {
             long id = trainees.getLong(trainees.getColumnIndexOrThrow("userID"));
             String name = trainees.getString(trainees.getColumnIndexOrThrow("name"));
@@ -50,6 +53,8 @@ public class TrainerRemindActivity01 extends AppCompatActivity {
         }
         trainees.close();
 
+
+        // Chapter 5 ListView
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, traineeNames);
         listViewTrainees.setAdapter(adapter);

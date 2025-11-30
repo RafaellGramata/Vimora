@@ -30,12 +30,16 @@ public class TrainerRemindActivity03 extends AppCompatActivity {
             return insets;
         });
 
+        // Week 9 & 10 SQLite
         databaseHelper = new DatabaseHelper(this);
         Intent intent = getIntent();
         long userID = intent.getLongExtra("userID",-1);
         long remindID = intent.getLongExtra("remindID",-1);
 
-
+        // The hint is yyyy-mm-dd
+        // Setting the condition for the date inputted
+        // DatabaseHelper line 547
+        // getDateFromReminder()
         TextView txtDate = findViewById(R.id.readChosenDate);
         String rawDate = databaseHelper.getDateFromReminder(intent.getLongExtra("remindID",-1));
         if (rawDate != null && rawDate.length() == 8) {
