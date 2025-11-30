@@ -153,9 +153,9 @@ public class TraineePlanActivity01 extends AppCompatActivity {
         txtDate.setText(sdf.format(date.getTime()));
     }
 
-    /**
-     * Load and display the assigned plan details for the current date
-     */
+
+     // Load and display the assigned plan details for the current date
+
     @SuppressLint("Range")
     private void loadPlanDetails() {
         try {
@@ -239,9 +239,8 @@ public class TraineePlanActivity01 extends AppCompatActivity {
         }
     }
 
-    /**
-     * Get the assigned plan ID for a specific date
-     */
+
+     // Get the assigned plan ID for a specific date
     @SuppressLint("Range")
     private long getAssignedPlanID(String date) {
         try {
@@ -266,9 +265,9 @@ public class TraineePlanActivity01 extends AppCompatActivity {
         return -1; // No plan found
     }
 
-    /**
-     * Update the completion button appearance and text
-     */
+
+     // Update the completion button appearance and text
+
     private void updateCompletionButton() {
         String currentDate = sdf.format(date.getTime());
         boolean isCompleted = databaseHelper.isWorkoutCompletedOnDate(userID, currentDate);

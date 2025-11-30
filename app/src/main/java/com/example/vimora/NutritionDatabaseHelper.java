@@ -9,7 +9,7 @@ import com.example.vimora.NutritionEntry;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/*
  * Helper class for nutrition-related database operations
  * Keeps nutrition logic separate from the main DatabaseHelper
  */
@@ -21,7 +21,7 @@ public class NutritionDatabaseHelper {
         this.dbHelper = dbHelper;
     }
 
-    /**
+    /*
      * Add or update a nutrition entry for a specific meal
      * @param traineeID User ID
      * @param date Date in format "yyyy-MM-dd"
@@ -66,7 +66,7 @@ public class NutritionDatabaseHelper {
         return result != -1;
     }
 
-    /**
+    /*
      * Get nutrition data for a specific date and meal
      */
     public NutritionEntry getNutritionEntry(long traineeID, String date, String mealType) {
@@ -92,7 +92,7 @@ public class NutritionDatabaseHelper {
         return entry;
     }
 
-    /**
+    /*
      * Get total nutrition for a specific date
      * @return Map with keys: "calories", "protein", "totalFat"
      */
@@ -118,7 +118,7 @@ public class NutritionDatabaseHelper {
         return totals;
     }
 
-    /**
+    /*
      * Get monthly average nutrition data
      * @param traineeID User ID
      * @param yearMonth Year and month in format "yyyy-MM"
@@ -162,7 +162,7 @@ public class NutritionDatabaseHelper {
         return averages;
     }
 
-    /**
+    /*
      * Get all nutrition entries for a specific date
      */
     public Cursor getAllEntriesForDate(long traineeID, String date) {
@@ -173,7 +173,7 @@ public class NutritionDatabaseHelper {
         );
     }
 
-    /**
+    /*
      * Delete a nutrition entry
      */
     public boolean deleteNutritionEntry(long entryID) {

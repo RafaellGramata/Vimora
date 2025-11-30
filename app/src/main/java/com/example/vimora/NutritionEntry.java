@@ -1,6 +1,6 @@
 package com.example.vimora;
 
-/**
+/*
  * Model class representing a nutrition entry for a meal
  */
 public class NutritionEntry {
