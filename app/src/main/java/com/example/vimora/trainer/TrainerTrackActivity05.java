@@ -142,7 +142,7 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
             String currentMonthString = monthFormat.format(currentMonth.getTime());
 
             // calculate average daily calories for the month
-            // we use a subquery to first get total calories per day,
+            // use a subquery to first get total calories per day,
             // then calculate the average of those daily totals
             Cursor caloriesCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT AVG(dailyTotal) as avgCalories FROM (" +
@@ -154,7 +154,7 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
                     new String[]{String.valueOf(traineeID), currentMonthString + "%"}
             );
 
-            // check if we got results
+            // check if got results
             if (caloriesCursor != null && caloriesCursor.moveToFirst()) {
                 // get average calories
                 double avgCalories = caloriesCursor.getDouble(caloriesCursor.getColumnIndex("avgCalories"));

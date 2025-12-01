@@ -172,10 +172,13 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
     // loads and displays monthly nutrition statistics
     private void loadMonthlyStatistics() {
         // get current month in database format (yyyy-MM)
+        // dbFormat is a simpleDateFormat object
+        // simpleDateFormat is a class used to convert a date to string, or text to date
         String currentYearMonth = dbFormat.format(calendar.getTime());
 
         // get monthly averages from database
         // this returns a map with avgCalories, avgProtein, and avgTotalFat
+        // key of map is a String (avgCalories). each key is a Double (230.5)
         Map<String, Double> averages = nutritionHelper.getMonthlyAverage(traineeID, currentYearMonth);
 
         // extract the average values from the map

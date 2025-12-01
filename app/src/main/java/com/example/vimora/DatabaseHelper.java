@@ -678,9 +678,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // saves the completion record in the WorkoutCompletion table
     // returns true if successful, false if failed
     public boolean markWorkoutComplete(long traineeID, long planID, String date) {
-        // get writable database so we can insert data
+        // get writable database to insert data
         SQLiteDatabase db = this.getWritableDatabase();
-        // create a container to hold the values we want to insert
+        // create a container to hold the values to insert
         ContentValues cv = new ContentValues();
         // add the trainee id
         cv.put("traineeID", traineeID);

@@ -170,6 +170,7 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
             Cursor startDateCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT assignedDate FROM AssignedPlan " +
                             "WHERE traineeID = ? " +
+                            // sort from oldest to newest, get the first one
                             "ORDER BY assignedDate ASC LIMIT 1",
                     new String[]{String.valueOf(userID)}
             );
@@ -179,6 +180,7 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
                 String startDate = startDateCursor.getString(startDateCursor.getColumnIndex("assignedDate"));
                 // extract just the date part (yyyy-MM-dd)
                 if (startDate != null && startDate.length() >= 10) {
+                    // 0 = start at character 0, 10 = end at character 10.
                     trainerDateMonthly.setText(startDate.substring(0, 10));
                 } else {
                     trainerDateMonthly.setText("No workout started.");
@@ -199,15 +201,22 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
 
             if (caloriesCursor != null && caloriesCursor.moveToFirst()) {
                 // get average calories
+                // column name avgCalories is from the query result AVG AS avgCalories
                 double avgCalories = caloriesCursor.getDouble(caloriesCursor.getColumnIndex("avgCalories"));
                 if (avgCalories > 0) {
                     // display with no decimal places
+                    // locale.getdefault() tells system to format number accdg to phone settings
+                    // canada/us uses . for decimal
+                    // germany uses comma for decimal
+                    // %.0f round to 0 decimal place from 150.4 to 150, 216.89 to 217
                     trainerCaloriesMonthly.setText(String.format(Locale.getDefault(), "%.0f kcal", avgCalories));
                 } else {
+                    // cursor has rows but avg is zero. completed workouts but column is always zero
                     trainerCaloriesMonthly.setText("No data");
                 }
                 caloriesCursor.close();
             } else {
+                // cursor has no rows at all. no completed workout for the month
                 trainerCaloriesMonthly.setText("No data");
             }
 

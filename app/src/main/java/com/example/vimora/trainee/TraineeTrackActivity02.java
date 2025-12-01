@@ -208,7 +208,7 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
                     new String[]{String.valueOf(userID), currentDateString}
             );
 
-            // check if we found a valid plan for this date
+            // check if found a valid plan for this date
             if (planCursor != null && planCursor.moveToFirst()) {
                 // get the plan name
                 String planName = planCursor.getString(planCursor.getColumnIndex("ExerciseName"));
@@ -301,7 +301,7 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
                 Toast.makeText(this, "Workout updated successfully", Toast.LENGTH_SHORT).show();
             } else {
                 // record doesn't exist - insert new one
-                // planID is set to NULL since we don't need it
+                // planID is set to NULL since its needed
                 databaseHelper.getWritableDatabase().execSQL(
                         "INSERT INTO WorkoutCompletion (traineeID, planID, completionDate, caloriesBurned, duration) " +
                                 "VALUES (?, NULL, ?, ?, ?)",
@@ -312,7 +312,7 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
             }
 
         } catch (NumberFormatException e) {
-            // user entered invalid numbers
+            // user entered invalid characters, should be numbers
             Toast.makeText(this, "Please enter valid numbers", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             // other error occurred

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // helper class for nutrition-related database operations
-// i created this separate class to keep nutrition logic organized
+// to keep nutrition logic organized
 // instead of putting everything in the main DatabaseHelper
 public class NutritionDatabaseHelper {
 
@@ -131,7 +131,7 @@ public class NutritionDatabaseHelper {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         // get daily totals for each day in the month
-        // we group by date to get one row per day
+        // group by date to get one row per day
         Cursor cursor = db.rawQuery(
                 "SELECT date, SUM(calories) as dailyCal, SUM(protein) as dailyProt, SUM(totalFat) as dailyFat " +
                         "FROM NutritionLog WHERE traineeID=? AND date LIKE ? " +

@@ -218,7 +218,7 @@ public class TrainerTrackActivity02 extends AppCompatActivity {
                     new String[]{String.valueOf(traineeID)}
             );
 
-            // check if we found any plan assignment
+            // check if found any plan assignment
             if (debugCursor != null && debugCursor.moveToFirst()) {
                 // extract the plan details
                 String assignedDate = debugCursor.getString(debugCursor.getColumnIndex("assignedDate"));
@@ -252,14 +252,14 @@ public class TrainerTrackActivity02 extends AppCompatActivity {
                     new String[]{String.valueOf(traineeID), currentDateString}
             );
 
-            // check if we found a valid plan for this date
+            // check if found a valid plan for this date
             if (assignedPlanCursor != null && assignedPlanCursor.moveToFirst()) {
                 // extract plan details
                 String planName = assignedPlanCursor.getString(assignedPlanCursor.getColumnIndex("ExerciseName"));
                 String assignedDate = assignedPlanCursor.getString(assignedPlanCursor.getColumnIndex("assignedDate"));
                 String duration = assignedPlanCursor.getString(assignedPlanCursor.getColumnIndex("workout_duration"));
 
-                // log that we found a valid plan
+                // log that found a valid plan
                 Log.d(TAG, "Plan is valid for current date");
                 Log.d(TAG, "Plan: " + planName + ", Assigned: " + assignedDate + ", Duration: " + duration);
 

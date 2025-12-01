@@ -196,7 +196,7 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
             android.util.Log.d("TrainerTrack04", "Loading data for traineeID: " + traineeID + ", date: " + currentDateString);
 
             // query breakfast data
-            // we sum up all nutrition entries for breakfast on this date
+            // sum up all nutrition entries for breakfast on this date
             Cursor breakfastCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT SUM(calories) as totalCalories, SUM(protein) as totalProtein, SUM(totalFat) as totalFat " +
                             "FROM NutritionLog " +
@@ -204,7 +204,7 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
                     new String[]{String.valueOf(traineeID), currentDateString}
             );
 
-            // check if we found breakfast data
+            // check if found breakfast data
             if (breakfastCursor != null && breakfastCursor.moveToFirst()) {
                 // extract the totals
                 int calories = breakfastCursor.getInt(breakfastCursor.getColumnIndex("totalCalories"));

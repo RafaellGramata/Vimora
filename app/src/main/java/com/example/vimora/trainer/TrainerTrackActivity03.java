@@ -203,7 +203,7 @@ public class TrainerTrackActivity03 extends AppCompatActivity {
                     new String[]{String.valueOf(traineeID)}
             );
 
-            // check if we found an assignment
+            // check if found an assignment
             if (firstAssignmentCursor != null && firstAssignmentCursor.moveToFirst()) {
                 // get the assigned date
                 String startDate = firstAssignmentCursor.getString(firstAssignmentCursor.getColumnIndex("assignedDate"));
@@ -221,7 +221,7 @@ public class TrainerTrackActivity03 extends AppCompatActivity {
             }
 
             // calculate average daily calories for the month
-            // we use a subquery to first get total calories per day,
+            // use a subquery to first get total calories per day,
             // then calculate the average of those daily totals
             Cursor caloriesCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT AVG(dailyTotal) as avgCalories FROM (" +
@@ -233,7 +233,7 @@ public class TrainerTrackActivity03 extends AppCompatActivity {
                     new String[]{String.valueOf(traineeID), currentMonthString + "%"}
             );
 
-            // check if we got any results
+            // check if got any results
             if (caloriesCursor != null && caloriesCursor.moveToFirst()) {
                 // get the average calories
                 double avgCalories = caloriesCursor.getDouble(caloriesCursor.getColumnIndex("avgCalories"));
