@@ -18,12 +18,19 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+// this activity shows monthly workout statistics for the trainee
+// displays workout start date, average calories, and average duration
 public class TraineeTrackActivity03 extends AppCompatActivity {
+    // database helper to query workout data
     DatabaseHelper databaseHelper;
+    // stores the logged-in trainee's id
     long userID;
+    // calendar object to track the selected month
     Calendar selectedMonth;
+    // formats month as yyyy-MM
     SimpleDateFormat monthFormat;
 
+    // ui elements for displaying statistics
     TextView txtMonthYear;
     TextView btnPreviousMonth;
     TextView btnNextMonth;
@@ -34,16 +41,21 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // connect this activity to its layout file
         setContentView(R.layout.activity_trainee_track03);
 
+        // initialize database helper
         databaseHelper = new DatabaseHelper(this);
+        // get user id from previous screen
         Intent intent = getIntent();
         userID = intent.getLongExtra("userID", -1);
 
+        // initialize month format
         monthFormat = new SimpleDateFormat("yyyy-MM", Locale.getDefault());
+        // set selected month to current month
         selectedMonth = Calendar.getInstance();
 
-        // Find views
+        // find all buttons and views
         Button btnPlan = findViewById(R.id.btnPlanOfTrack2);
         Button btnProfile = findViewById(R.id.btnProfileOfTrack2);
         Button btnTrack = findViewById(R.id.btnTrackOfTrack2);
@@ -51,6 +63,7 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
         ImageButton btnBack = findViewById(R.id.btnInfo);
         ImageButton btnMeal = findViewById(R.id.btnMeal);
 
+        // find statistics display views
         txtMonthYear = findViewById(R.id.txtMonthYear);
         btnPreviousMonth = findViewById(R.id.btnPreviousMonth);
         btnNextMonth = findViewById(R.id.btnNextMonth);
@@ -58,30 +71,33 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
         trainerCaloriesMonthly = findViewById(R.id.trainerCaloriesMonthly);
         trainerDurationMonthly = findViewById(R.id.trainerDurationMonthly);
 
-        // Load initial data
+        // display current month and load statistics
         updateMonthDisplay();
         loadMonthlyStats();
 
-        // Month navigation
+        // previous month button - go back one month
         btnPreviousMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // subtract one month
                 selectedMonth.add(Calendar.MONTH, -1);
                 updateMonthDisplay();
                 loadMonthlyStats();
             }
         });
 
+        // next month button - go forward one month
         btnNextMonth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // add one month
                 selectedMonth.add(Calendar.MONTH, 1);
                 updateMonthDisplay();
                 loadMonthlyStats();
             }
         });
 
-        // Back button
+        // back button - return to previous screen
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +105,7 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
             }
         });
 
-        // Navigation buttons
+        // navigation buttons - same as before
         btnPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,17 +152,21 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
         });
     }
 
+    // updates the month display textview
     private void updateMonthDisplay() {
         String monthString = monthFormat.format(selectedMonth.getTime());
         txtMonthYear.setText(monthString);
     }
 
+    // loads monthly workout statistics
     @SuppressLint("Range")
     private void loadMonthlyStats() {
         try {
+            // get current month as string
             String currentMonthString = monthFormat.format(selectedMonth.getTime());
 
-            // Get first assigned plan date
+            // get the first date when a plan was assigned to this trainee
+            // this shows when they started their workout journey
             Cursor startDateCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT assignedDate FROM AssignedPlan " +
                             "WHERE traineeID = ? " +
@@ -155,7 +175,9 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
             );
 
             if (startDateCursor != null && startDateCursor.moveToFirst()) {
+                // get the start date
                 String startDate = startDateCursor.getString(startDateCursor.getColumnIndex("assignedDate"));
+                // extract just the date part (yyyy-MM-dd)
                 if (startDate != null && startDate.length() >= 10) {
                     trainerDateMonthly.setText(startDate.substring(0, 10));
                 } else {
@@ -163,11 +185,12 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
                 }
                 startDateCursor.close();
             } else {
+                // no plan was ever assigned
                 trainerDateMonthly.setText("No workout started.");
                 if (startDateCursor != null) startDateCursor.close();
             }
 
-            // Calculate average calories burned per day for the month
+            // calculate average calories burned per workout day in this month
             Cursor caloriesCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT AVG(caloriesBurned) as avgCalories FROM WorkoutCompletion " +
                             "WHERE traineeID = ? AND completionDate LIKE ?",
@@ -175,8 +198,10 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
             );
 
             if (caloriesCursor != null && caloriesCursor.moveToFirst()) {
+                // get average calories
                 double avgCalories = caloriesCursor.getDouble(caloriesCursor.getColumnIndex("avgCalories"));
                 if (avgCalories > 0) {
+                    // display with no decimal places
                     trainerCaloriesMonthly.setText(String.format(Locale.getDefault(), "%.0f kcal", avgCalories));
                 } else {
                     trainerCaloriesMonthly.setText("No data");
@@ -186,7 +211,7 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
                 trainerCaloriesMonthly.setText("No data");
             }
 
-            // Calculate average duration per day for the month
+            // calculate average workout duration per workout day in this month
             Cursor durationCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT AVG(duration) as avgDuration FROM WorkoutCompletion " +
                             "WHERE traineeID = ? AND completionDate LIKE ?",
@@ -194,8 +219,10 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
             );
 
             if (durationCursor != null && durationCursor.moveToFirst()) {
+                // get average duration
                 double avgDuration = durationCursor.getDouble(durationCursor.getColumnIndex("avgDuration"));
                 if (avgDuration > 0) {
+                    // display with no decimal places
                     trainerDurationMonthly.setText(String.format(Locale.getDefault(), "%.0f minutes", avgDuration));
                 } else {
                     trainerDurationMonthly.setText("No data");
@@ -206,6 +233,7 @@ public class TraineeTrackActivity03 extends AppCompatActivity {
             }
 
         } catch (Exception e) {
+            // if error occurs, display error message
             e.printStackTrace();
             trainerDateMonthly.setText("Error loading data");
             trainerCaloriesMonthly.setText("Error");

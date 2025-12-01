@@ -19,13 +19,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+// this activity shows daily meal tracking for a trainee
+// trainer can see what the trainee ate for breakfast, lunch, and dinner
 public class TrainerTrackActivity04 extends AppCompatActivity {
+    // database helper to query nutrition data
     DatabaseHelper databaseHelper;
+    // stores the logged-in trainer's id
     long trainerID;
+    // stores the selected trainee's id
     long traineeID;
+    // calendar object to track the currently selected date
     Calendar currentDate;
+    // formats dates as yyyy-MM-dd for display and queries
     SimpleDateFormat dateFormat;
 
+    // ui elements for displaying meal data
     TextView editTextDate;
     TextView tvBreakfastCalories, tvBreakfastProtein, tvBreakfastFat;
     TextView tvLunchCalories, tvLunchProtein, tvLunchFat;
@@ -35,18 +43,22 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // connect this activity to its layout file
         setContentView(R.layout.activity_trainer_track04);
 
+        // initialize database helper
         databaseHelper = new DatabaseHelper(this);
+        // get trainer and trainee ids from previous screen
         Intent intent = getIntent();
         trainerID = intent.getLongExtra("userID", -1);
         traineeID = intent.getLongExtra("traineeID", -1);
 
-        // Initialize date format
+        // initialize date format
         dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        // set current date to today
         currentDate = Calendar.getInstance();
 
-        // Find views
+        // find all buttons and views
         Button btnProfile = findViewById(R.id.btnProfileOfTrack);
         Button btnPlan = findViewById(R.id.btnPlanOfTrack);
         Button btnTrack = findViewById(R.id.btnTrackOfTrack);
@@ -56,52 +68,56 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
         ImageView btnPrevDate = findViewById(R.id.imageView10);
         ImageView btnNextDate = findViewById(R.id.imageView11);
 
+        // find date display
         editTextDate = findViewById(R.id.editTextDate);
 
-        // Breakfast
+        // find breakfast fields
         tvBreakfastCalories = findViewById(R.id.tvBreakfastCalories);
         tvBreakfastProtein = findViewById(R.id.tvBreakfastProtein);
         tvBreakfastFat = findViewById(R.id.tvBreakfastFat);
 
-        // Lunch
+        // find lunch fields
         tvLunchCalories = findViewById(R.id.tvLunchCalories);
         tvLunchProtein = findViewById(R.id.tvLunchProtein);
         tvLunchFat = findViewById(R.id.tvLunchFat);
 
-        // Dinner
+        // find dinner fields
         tvDinnerCalories = findViewById(R.id.tvDinnerCalories);
         tvDinnerProtein = findViewById(R.id.tvDinnerProtein);
         tvDinnerFat = findViewById(R.id.tvDinnerFat);
 
-        // Total
+        // find total fields
         tvTotalCalories = findViewById(R.id.tvTotalCalories);
         tvTotalProtein = findViewById(R.id.tvTotalProtein);
         tvTotalFat = findViewById(R.id.tvTotalFat);
 
-        // Load data for current date
+        // display current date and load meal data
         updateDateDisplay();
         loadDailyMealData();
 
-        // Date navigation
+        // previous date button - go back one day
         btnPrevDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // subtract one day
                 currentDate.add(Calendar.DAY_OF_MONTH, -1);
                 updateDateDisplay();
                 loadDailyMealData();
             }
         });
 
+        // next date button - go forward one day
         btnNextDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // add one day
                 currentDate.add(Calendar.DAY_OF_MONTH, 1);
                 updateDateDisplay();
                 loadDailyMealData();
             }
         });
 
-        // Back button - return to monthly stats (Activity03)
+        // back button - return to monthly workout stats
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +129,7 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
             }
         });
 
-        // Forward button - go to monthly nutrition summary (Activity05)
+        // forward button - go to monthly nutrition summary
         btnForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +140,7 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
             }
         });
 
-        // Navigation buttons
+        // navigation buttons - same as before
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,20 +178,25 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
         });
     }
 
+    // updates the date display
     private void updateDateDisplay() {
         String dateString = dateFormat.format(currentDate.getTime());
         editTextDate.setText(dateString);
     }
 
+    // loads all meal data for the selected date
+    // gets nutrition info for breakfast, lunch, and dinner separately
     @SuppressLint("Range")
     private void loadDailyMealData() {
         try {
+            // get current date as string for queries
             String currentDateString = dateFormat.format(currentDate.getTime());
 
-            // Debug: Log the query parameters
+            // log what we're loading (helpful for debugging)
             android.util.Log.d("TrainerTrack04", "Loading data for traineeID: " + traineeID + ", date: " + currentDateString);
 
-            // Query nutrition data grouped by meal type
+            // query breakfast data
+            // we sum up all nutrition entries for breakfast on this date
             Cursor breakfastCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT SUM(calories) as totalCalories, SUM(protein) as totalProtein, SUM(totalFat) as totalFat " +
                             "FROM NutritionLog " +
@@ -183,25 +204,30 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
                     new String[]{String.valueOf(traineeID), currentDateString}
             );
 
+            // check if we found breakfast data
             if (breakfastCursor != null && breakfastCursor.moveToFirst()) {
+                // extract the totals
                 int calories = breakfastCursor.getInt(breakfastCursor.getColumnIndex("totalCalories"));
                 int protein = breakfastCursor.getInt(breakfastCursor.getColumnIndex("totalProtein"));
                 int fat = breakfastCursor.getInt(breakfastCursor.getColumnIndex("totalFat"));
 
+                // log the data
                 android.util.Log.d("TrainerTrack04", "Breakfast: " + calories + " cal, " + protein + " protein, " + fat + " fat");
 
+                // display the values
                 tvBreakfastCalories.setText(String.valueOf(calories));
                 tvBreakfastProtein.setText(String.valueOf(protein));
                 tvBreakfastFat.setText(String.valueOf(fat));
                 breakfastCursor.close();
             } else {
+                // no breakfast data found, show 0
                 android.util.Log.d("TrainerTrack04", "No breakfast data found");
                 tvBreakfastCalories.setText("0");
                 tvBreakfastProtein.setText("0");
                 tvBreakfastFat.setText("0");
             }
 
-            // Lunch
+            // query lunch data - same process as breakfast
             Cursor lunchCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT SUM(calories) as totalCalories, SUM(protein) as totalProtein, SUM(totalFat) as totalFat " +
                             "FROM NutritionLog " +
@@ -224,7 +250,7 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
                 tvLunchFat.setText("0");
             }
 
-            // Dinner
+            // query dinner data - same process as breakfast and lunch
             Cursor dinnerCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT SUM(calories) as totalCalories, SUM(protein) as totalProtein, SUM(totalFat) as totalFat " +
                             "FROM NutritionLog " +
@@ -247,7 +273,7 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
                 tvDinnerFat.setText("0");
             }
 
-            // Calculate totals
+            // calculate totals by adding breakfast + lunch + dinner
             int totalCal = Integer.parseInt(tvBreakfastCalories.getText().toString()) +
                     Integer.parseInt(tvLunchCalories.getText().toString()) +
                     Integer.parseInt(tvDinnerCalories.getText().toString());
@@ -260,14 +286,17 @@ public class TrainerTrackActivity04 extends AppCompatActivity {
                     Integer.parseInt(tvLunchFat.getText().toString()) +
                     Integer.parseInt(tvDinnerFat.getText().toString());
 
+            // display the totals
             tvTotalCalories.setText(String.valueOf(totalCal));
             tvTotalProtein.setText(String.valueOf(totalProt));
             tvTotalFat.setText(String.valueOf(totalFt));
 
         } catch (Exception e) {
+            // if any error occurs, log it and set all values to 0
             e.printStackTrace();
             android.util.Log.e("TrainerTrack04", "Error loading meal data: " + e.getMessage());
-            // Set all to 0 on error
+
+            // set all fields to 0
             tvBreakfastCalories.setText("0");
             tvBreakfastProtein.setText("0");
             tvBreakfastFat.setText("0");

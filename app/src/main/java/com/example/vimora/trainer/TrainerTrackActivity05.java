@@ -19,13 +19,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+// this activity shows monthly nutrition averages for a trainee
+// displays average calories, protein, and fat per day for the month
 public class TrainerTrackActivity05 extends AppCompatActivity {
+    // database helper to query nutrition data
     DatabaseHelper databaseHelper;
+    // stores the logged-in trainer's id
     long trainerID;
+    // stores the selected trainee's id
     long traineeID;
+    // calendar object to track the currently selected month
     Calendar currentMonth;
+    // formats month as yyyy-MM for database queries
     SimpleDateFormat monthFormat;
 
+    // ui elements to display monthly averages
     TextView tvAvgCalories;
     TextView tvAvgProtein;
     TextView tvAvgFat;
@@ -33,18 +41,22 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // connect this activity to its layout file
         setContentView(R.layout.activity_trainer_track05);
 
+        // initialize database helper
         databaseHelper = new DatabaseHelper(this);
+        // get trainer and trainee ids from previous screen
         Intent intent = getIntent();
         trainerID = intent.getLongExtra("userID", -1);
         traineeID = intent.getLongExtra("traineeID", -1);
 
-        // Initialize date format for month
+        // initialize month format
         monthFormat = new SimpleDateFormat("yyyy-MM", Locale.getDefault());
+        // set current month to this month
         currentMonth = Calendar.getInstance();
 
-        // Find views
+        // find all buttons and views
         Button btnProfile = findViewById(R.id.btnProfileOfTrack);
         Button btnPlan = findViewById(R.id.btnPlanOfTrack);
         Button btnTrack = findViewById(R.id.btnTrackOfTrack);
@@ -52,14 +64,15 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
         ImageView btnBack = findViewById(R.id.imageView9);
         ImageView btnForward = findViewById(R.id.imageView6);
 
+        // find textviews for displaying averages
         tvAvgCalories = findViewById(R.id.tvAvgCalories);
         tvAvgProtein = findViewById(R.id.tvAvgProtein);
         tvAvgFat = findViewById(R.id.tvAvgFat);
 
-        // Load monthly data
+        // load monthly nutrition data
         loadMonthlyNutritionData();
 
-        // Back button - return to daily meal track (Activity04)
+        // back button - return to daily meal tracking
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +84,7 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
             }
         });
 
-        // Forward button - also return to trainee list (Activity01)
+        // forward button - go back to trainee list
         btnForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +95,7 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
             }
         });
 
-        // Navigation buttons
+        // navigation buttons - same as before
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,12 +133,17 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
         });
     }
 
+    // loads monthly nutrition statistics for the selected month
+    // calculates average daily calories, protein, and fat
     @SuppressLint("Range")
     private void loadMonthlyNutritionData() {
         try {
+            // get current month as string for queries
             String currentMonthString = monthFormat.format(currentMonth.getTime());
 
-            // Calculate average daily calories for the month
+            // calculate average daily calories for the month
+            // we use a subquery to first get total calories per day,
+            // then calculate the average of those daily totals
             Cursor caloriesCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT AVG(dailyTotal) as avgCalories FROM (" +
                             "  SELECT date, SUM(calories) as dailyTotal " +
@@ -136,9 +154,12 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
                     new String[]{String.valueOf(traineeID), currentMonthString + "%"}
             );
 
+            // check if we got results
             if (caloriesCursor != null && caloriesCursor.moveToFirst()) {
+                // get average calories
                 double avgCalories = caloriesCursor.getDouble(caloriesCursor.getColumnIndex("avgCalories"));
                 if (avgCalories > 0) {
+                    // display with no decimal places
                     tvAvgCalories.setText(String.format(Locale.getDefault(), "%.0f kcal/day", avgCalories));
                 } else {
                     tvAvgCalories.setText("0 kcal/day");
@@ -148,7 +169,8 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
                 tvAvgCalories.setText("0 kcal/day");
             }
 
-            // Calculate average daily protein for the month
+            // calculate average daily protein for the month
+            // same approach as calories
             Cursor proteinCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT AVG(dailyTotal) as avgProtein FROM (" +
                             "  SELECT date, SUM(protein) as dailyTotal " +
@@ -162,6 +184,7 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
             if (proteinCursor != null && proteinCursor.moveToFirst()) {
                 double avgProtein = proteinCursor.getDouble(proteinCursor.getColumnIndex("avgProtein"));
                 if (avgProtein > 0) {
+                    // display with 1 decimal place
                     tvAvgProtein.setText(String.format(Locale.getDefault(), "%.1f g/day", avgProtein));
                 } else {
                     tvAvgProtein.setText("0.0 g/day");
@@ -171,7 +194,8 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
                 tvAvgProtein.setText("0.0 g/day");
             }
 
-            // Calculate average daily fat for the month
+            // calculate average daily fat for the month
+            // same approach as calories and protein
             Cursor fatCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT AVG(dailyTotal) as avgFat FROM (" +
                             "  SELECT date, SUM(totalFat) as dailyTotal " +
@@ -185,6 +209,7 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
             if (fatCursor != null && fatCursor.moveToFirst()) {
                 double avgFat = fatCursor.getDouble(fatCursor.getColumnIndex("avgFat"));
                 if (avgFat > 0) {
+                    // display with 1 decimal place
                     tvAvgFat.setText(String.format(Locale.getDefault(), "%.1f g/day", avgFat));
                 } else {
                     tvAvgFat.setText("0.0 g/day");
@@ -195,6 +220,7 @@ public class TrainerTrackActivity05 extends AppCompatActivity {
             }
 
         } catch (Exception e) {
+            // if any error occurs, display error message
             e.printStackTrace();
             tvAvgCalories.setText("Error loading data");
             tvAvgProtein.setText("Error loading data");
