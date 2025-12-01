@@ -1,18 +1,25 @@
 package com.example.vimora;
 
-/*
- * Model class representing a nutrition entry for a meal
- */
+// model class that represents a single nutrition entry for a meal
+// this stores data like calories, protein, and fat for one meal
 public class NutritionEntry {
+    // unique id for this entry in the database
     private long entryID;
+    // id of the trainee who logged this meal
     private long traineeID;
+    // date of the meal in format "yyyy-MM-dd"
     private String date;
-    private String mealType; // "breakfast", "lunch", "dinner"
+    // type of meal: "breakfast", "lunch", or "dinner"
+    private String mealType;
+    // number of calories in this meal
     private int calories;
+    // grams of protein in this meal
     private int protein;
+    // grams of fat in this meal
     private int totalFat;
 
-    // Constructor
+    // constructor for creating a new entry (without id)
+    // use this when creating a new entry that hasn't been saved to database yet
     public NutritionEntry(long traineeID, String date, String mealType,
                           int calories, int protein, int totalFat) {
         this.traineeID = traineeID;
@@ -23,7 +30,8 @@ public class NutritionEntry {
         this.totalFat = totalFat;
     }
 
-    // Constructor with ID (for retrieved data)
+    // constructor with id (for entries retrieved from database)
+    // use this when loading an existing entry from the database
     public NutritionEntry(long entryID, long traineeID, String date, String mealType,
                           int calories, int protein, int totalFat) {
         this.entryID = entryID;
@@ -35,7 +43,9 @@ public class NutritionEntry {
         this.totalFat = totalFat;
     }
 
-    // Getters and Setters
+    // getters and setters for all fields
+    // these let us read and update the values
+
     public long getEntryID() {
         return entryID;
     }
