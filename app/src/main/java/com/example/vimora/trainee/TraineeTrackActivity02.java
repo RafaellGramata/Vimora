@@ -188,17 +188,26 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
             // get current date as string
             String currentDateString = dateFormat.format(selectedDate.getTime());
 
-            // get the assigned plan for this date
-            // we use DATE() function to properly compare dates
+            // get the assigned plan for this date with duration check
+            // plan is only shown if current date falls within the plan's duration period
             Cursor planCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT p.ExerciseName FROM AssignedPlan ap " +
                             "JOIN PlanTable p ON ap.planID = p.PlanID " +
-                            "WHERE ap.traineeID = ? AND DATE(ap.assignedDate) <= DATE(?) " +
+                            "WHERE ap.traineeID = ? " +
+                            // make sure workout_duration is not null or empty
+                            "AND p.workout_duration IS NOT NULL " +
+                            "AND p.workout_duration != '' " +
+                            // make sure it's a positive number
+                            "AND CAST(p.workout_duration AS INTEGER) > 0 " +
+                            // check if current date is within the plan's duration
+                            // for example, if assigned on 2025-12-01 with duration 7,
+                            // plan is valid from 2025-12-01 to 2025-12-07
+                            "AND DATE(?) BETWEEN DATE(ap.assignedDate) AND DATE(ap.assignedDate, '+' || (CAST(p.workout_duration AS INTEGER) - 1) || ' days') " +
                             "ORDER BY ap.assignedDate DESC LIMIT 1",
                     new String[]{String.valueOf(userID), currentDateString}
             );
 
-            // check if we found a plan
+            // check if we found a valid plan for this date
             if (planCursor != null && planCursor.moveToFirst()) {
                 // get the plan name
                 String planName = planCursor.getString(planCursor.getColumnIndex("ExerciseName"));
@@ -206,7 +215,7 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
                 txtAssignedPlan.setText(planName != null ? planName : "No plan assigned");
                 planCursor.close();
             } else {
-                // no plan assigned yet
+                // no valid plan found for this date
                 txtAssignedPlan.setText("No plan assigned");
                 if (planCursor != null) planCursor.close();
             }

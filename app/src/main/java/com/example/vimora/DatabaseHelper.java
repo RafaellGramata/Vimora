@@ -18,6 +18,7 @@ import java.util.Locale;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static MessageDigest md;
+
     static {
         try {
             md = MessageDigest.getInstance("SHA-256");
@@ -198,7 +199,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "UNIQUE(traineeID, date, mealType))");
         }
 
-        // UPGRADE LOGIC for version 12
+        // upgrade for version 12
         if (oldVersion < 12) {
             db.execSQL("CREATE TABLE IF NOT EXISTS WorkoutCompletion (" +
                     "completionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -225,7 +226,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("ALTER TABLE " + TABLE_PLAN + " ADD COLUMN " + COL_WORKOUT_DURATION + " TEXT");
         }
 
-        // UPGRADE LOGIC for version 14 - Add calories & duration to WorkoutCompletion
+        // upgrade for version 14 - Add calories & duration to WorkoutCompletion
         if (oldVersion < 14) {
             try {
                 android.util.Log.i("DatabaseHelper", "Starting WorkoutCompletion migration to v14");
@@ -316,7 +317,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         "UNIQUE(traineeID, completionDate))");
             }
         }
-
         db.execSQL("DROP TABLE IF EXISTS RemindTable");
         onCreate(db);
     }
@@ -348,9 +348,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long login(String email, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM User WHERE email=?", new String[]{email});
-        if (!c.moveToFirst()) { c.close(); return -1; }
+        if (!c.moveToFirst()) {
+            c.close();
+            return -1;
+        }
         String stored = c.getString(c.getColumnIndex("passwordHash"));
-        if (!hashPassword(password).equals(stored)) { c.close(); return -1; }
+        if (!hashPassword(password).equals(stored)) {
+            c.close();
+            return -1;
+        }
         long id = c.getLong(c.getColumnIndex("userID"));
         c.close();
         return id;
@@ -523,8 +529,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(COL_REMIND_DATE, remindDate);
         cv.put(COL_REMIND_CONTENT, remindContent);
-        cv.put("traineeID",trainee);
-        cv.put("trainerID",trainer);
+        cv.put("traineeID", trainee);
+        cv.put("trainerID", trainer);
         long r = db.insert(TABLE_REMIND, null, cv);
         db.close();
         return r > 0;
@@ -532,7 +538,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public Cursor getRemindersForTraineeTrainer(long traineeID, long trainerID) {
-        return this.getReadableDatabase().rawQuery("SELECT RemindID as _id,* FROM RemindTable WHERE traineeID = ? AND trainerID=? ORDER BY RemindDate DESC",new String[]{Long.toString(traineeID),Long.toString(trainerID)});
+        return this.getReadableDatabase().rawQuery("SELECT RemindID as _id,* FROM RemindTable WHERE traineeID = ? AND trainerID=? ORDER BY RemindDate DESC", new String[]{Long.toString(traineeID), Long.toString(trainerID)});
     }
 
     public String getTrainerNameFromReminder(long reminderID) {
@@ -648,7 +654,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int getTraineeCount(long trainerID) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT COUNT(*) FROM User WHERE trainerID=?",new String[]{Long.toString(trainerID)});
+        Cursor c = db.rawQuery("SELECT COUNT(*) FROM User WHERE trainerID=?", new String[]{Long.toString(trainerID)});
         c.moveToFirst();
         int count = c.getInt(0);
         c.close();
@@ -668,38 +674,73 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, new String[]{String.valueOf(id)});
     }
 
+    // marks a workout as completed for a specific date
+    // saves the completion record in the WorkoutCompletion table
+    // returns true if successful, false if failed
     public boolean markWorkoutComplete(long traineeID, long planID, String date) {
+        // get writable database so we can insert data
         SQLiteDatabase db = this.getWritableDatabase();
+        // create a container to hold the values we want to insert
         ContentValues cv = new ContentValues();
+        // add the trainee id
         cv.put("traineeID", traineeID);
+        // check if a plan id was provided
         if (planID > 0) {
+            // plan id exists, add it
             cv.put("planID", planID);
         } else {
+            // no plan id, set it as null
+            // this happens when trainee completes workout without a specific plan
             cv.putNull("planID");
         }
+        // add the completion date (format: "yyyy-MM-dd")
         cv.put("completionDate", date);
+        // insert the record into WorkoutCompletion table
+        // returns row id if successful, -1 if failed
         long result = db.insert("WorkoutCompletion", null, cv);
+        // close database to free memory
         db.close();
+        // return true if insert was successful (result != -1)
         return result != -1;
     }
 
+    // checks if the trainee completed their workout on a specific date
+    // returns true if completed, false if not completed
     public boolean isWorkoutCompletedOnDate(long traineeID, String date) {
+        // get readable database since we're only reading data
         SQLiteDatabase db = this.getReadableDatabase();
+        // query to count how many completion records exist for this trainee and date
+        // COUNT(*) returns the number of matching rows
         Cursor c = db.rawQuery(
                 "SELECT COUNT(*) FROM WorkoutCompletion WHERE traineeID = ? AND completionDate = ?",
                 new String[]{String.valueOf(traineeID), date}
         );
+        // variable to store whether workout was completed
         boolean completed = false;
+        // move cursor to first (and only) row of results
         if (c.moveToFirst()) {
+            // get the count value from column index 0
+            // if count > 0, that means workout was completed
             completed = c.getInt(0) > 0;
         }
+        // close cursor to free memory
         c.close();
+        // close database to free memory
         db.close();
+        // return whether workout was completed
         return completed;
     }
 
+    // gets all dates when trainee completed workouts for a specific month
+    // used by the calendar to show green checkmarks on completed days
+    // returns a cursor with completion dates
     public Cursor getCompletedDatesForMonth(long traineeID, String yearMonth) {
+        // get readable database since we're only reading data
         SQLiteDatabase db = this.getReadableDatabase();
+        // query to get all unique completion dates for this month
+        // DISTINCT means no duplicate dates
+        // LIKE with % wildcard matches dates starting with yearMonth (e.g., "2025-11%")
+        // ORDER BY sorts the dates in chronological order
         return db.rawQuery(
                 "SELECT DISTINCT completionDate FROM WorkoutCompletion " +
                         "WHERE traineeID = ? AND completionDate LIKE ? " +
