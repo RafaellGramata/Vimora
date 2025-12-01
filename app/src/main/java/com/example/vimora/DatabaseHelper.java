@@ -739,7 +739,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         // query to get all unique completion dates for this month
         // DISTINCT means no duplicate dates
-        // LIKE with % wildcard matches dates starting with yearMonth (e.g., "2025-11%")
+        // LIKE with % wildcard matches dates starting with yearMonth (ex: "2025-11%")
         // ORDER BY sorts the dates in chronological order
         return db.rawQuery(
                 "SELECT DISTINCT completionDate FROM WorkoutCompletion " +

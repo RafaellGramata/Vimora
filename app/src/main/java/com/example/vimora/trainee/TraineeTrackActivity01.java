@@ -177,7 +177,7 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
 
     // builds the calendar display for the selected month
     private void setupCalendar() {
-        // update month/year display (e.g., "2025-11")
+        // update month/year display (ex: "2025-11")
         txtMonthYear.setText(monthYearFormat.format(selectedDate.getTime()));
 
         // remove any existing calendar cells from previous month
@@ -258,13 +258,13 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
     }
 
     // gets all completed workout days for the selected month from database
-    // returns a set of day numbers (e.g., {1, 5, 12, 20})
+    // returns a set of day numbers (ex: {1, 5, 12, 20})
     @SuppressLint("Range")
     private Set<Integer> getCompletedDaysForMonth() {
         // create a set to store completed day numbers
         Set<Integer> completedDays = new HashSet<>();
 
-        // get month as string (e.g., "2025-11")
+        // get month as string (ex: "2025-11")
         String yearMonth = monthYearFormat.format(selectedDate.getTime());
         // query database for all completed dates in this month
         Cursor cursor = databaseHelper.getCompletedDatesForMonth(userID, yearMonth);

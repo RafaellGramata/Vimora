@@ -37,9 +37,9 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
     private long traineeID;
     // calendar object to track selected month
     private Calendar calendar;
-    // formats month for display (e.g., "November 2025")
+    // formats month for display (ex: "November 2025")
     private SimpleDateFormat monthYearFormat = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
-    // formats month for database queries (e.g., "2025-11")
+    // formats month for database queries (ex: "2025-11")
     private SimpleDateFormat dbFormat = new SimpleDateFormat("yyyy-MM", Locale.getDefault());
 
     @Override
@@ -165,7 +165,7 @@ public class TraineeTrackActivity05 extends AppCompatActivity {
 
     // updates the month display textview
     private void updateMonthDisplay() {
-        // display month and year in readable format (e.g., "November 2025")
+        // display month and year in readable format (ex: "November 2025")
         txtMonthYear.setText(monthYearFormat.format(calendar.getTime()));
     }
 

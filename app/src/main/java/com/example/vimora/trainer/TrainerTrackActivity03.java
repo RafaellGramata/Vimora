@@ -182,7 +182,7 @@ public class TrainerTrackActivity03 extends AppCompatActivity {
 
     // updates the month display textview
     private void updateMonthDisplay() {
-        // format month as yyyy-MM (e.g., "2025-11")
+        // format month as yyyy-MM (ex: "2025-11")
         String monthString = monthFormat.format(currentMonth.getTime());
         editTextDate.setText(monthString);
     }
