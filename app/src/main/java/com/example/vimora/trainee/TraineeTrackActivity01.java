@@ -195,6 +195,8 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
         int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         // get which day of week the month starts on (0=Sunday, 1=Monday, etc.)
         int firstDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        // -1 because java's system uses 1 as Sunday while grid uses 0 for Sunday
+
 
         // create 42 cells (6 rows x 7 days) to display the full calendar
         int dayCounter = 1;
@@ -233,21 +235,29 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
         }
     }
 
-    // creates a single calendar day cell (textview)
+    // method that creates and returns a single calendar day cell (textview)
     // sets the size and styling for each cell
     private TextView createDayCell() {
         TextView dayCell = new TextView(this);
 
         // set layout parameters for grid layout
+        // layoutparams tells gridlayout how this view should be sized and positioned
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();
         // width and height set to 0 with weight 1f means equal distribution
         params.width = 0;
         params.height = 0;
+
+        // tells grid how the view behaves horizontally
+        // gridlayout.undefined tells the cell to go in whatever column the grid decides next
+        // 1f weight is every cell has the same weight, getting equal row width
         params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
+
+        //same as column for got vertical
         params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        // add small margins between cells
+        // add small margins between cells (px)
         params.setMargins(2, 2, 2, 2);
 
+        //apply the params to the dayCell
         dayCell.setLayoutParams(params);
         // center the text in the cell
         dayCell.setGravity(Gravity.CENTER);
@@ -259,7 +269,8 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
 
     // gets all completed workout days for the selected month from database
     // returns a set of day numbers (ex: {1, 5, 12, 20})
-    @SuppressLint("Range")
+    @SuppressLint("Range") // don't show warnings about a lint rule for this method
+    // lint rule is a warning system that checks for possible mistakes
     private Set<Integer> getCompletedDaysForMonth() {
         // create a set to store completed day numbers
         Set<Integer> completedDays = new HashSet<>();
@@ -282,6 +293,7 @@ public class TraineeTrackActivity01 extends AppCompatActivity {
                         int day = Integer.parseInt(parts[2]);
                         // add this day to our set
                         completedDays.add(day);
+                        // in case string cant be converted to number
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
                     }

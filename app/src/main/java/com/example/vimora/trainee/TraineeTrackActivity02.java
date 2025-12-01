@@ -190,6 +190,7 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
 
             // get the assigned plan for this date with duration check
             // plan is only shown if current date falls within the plan's duration period
+            // getReadableDatabase() gives an object to use to read data from dbh, only read
             Cursor planCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT p.ExerciseName FROM AssignedPlan ap " +
                             "JOIN PlanTable p ON ap.planID = p.PlanID " +
@@ -211,11 +212,12 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
             if (planCursor != null && planCursor.moveToFirst()) {
                 // get the plan name
                 String planName = planCursor.getString(planCursor.getColumnIndex("ExerciseName"));
-                // display the plan name
+                // display the plan name if it exists or no plan
+                // plan record exists but name is null
                 txtAssignedPlan.setText(planName != null ? planName : "No plan assigned");
                 planCursor.close();
             } else {
-                // no valid plan found for this date
+                // no valid plan found for this date. no plan record exists for the date
                 txtAssignedPlan.setText("No plan assigned");
                 if (planCursor != null) planCursor.close();
             }
@@ -223,6 +225,7 @@ public class TraineeTrackActivity02 extends AppCompatActivity {
             // check if trainee already completed workout for this date
             Cursor completionCursor = databaseHelper.getReadableDatabase().rawQuery(
                     "SELECT caloriesBurned, duration FROM WorkoutCompletion " +
+                            // ? are blanks to be filled by 2 lines below
                             "WHERE traineeID = ? AND completionDate = ?",
                     new String[]{String.valueOf(userID), currentDateString}
             );
